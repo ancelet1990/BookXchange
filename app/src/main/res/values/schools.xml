@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="school_array">
+        <item>--Select School--</item>
+        <item>Georgia Gwinnett College</item>
+        <item>Georgia State University</item>
+        <item>Georgia Tech</item>
+        <item>Gwinnett Tech</item>
+        <item>University of Georgia</item>
+        <item>Kennesaw State University</item>
+        <item>Southern Poly</item>
+        <item>Georgia Southern University</item>
+    </string-array>
+</resources>

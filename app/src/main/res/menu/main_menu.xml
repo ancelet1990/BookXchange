@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/account"
+        android:title="Account Info"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/sell_books"
+        android:title="Sell Books"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/buy_books"
+        android:title="Buy Books"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/messages"
+        android:title="Message"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/help"
+        android:title="Help"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/about"
+        android:title="About"
+        app:showAsAction="never"/>
+
+</menu>

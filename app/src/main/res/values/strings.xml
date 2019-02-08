@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BookXchange</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="new_to_our_app">New to our app?</string>
+    <string name="enter_your_first_name">Enter your first name...</string>
+    <string name="enter_your_last_name">Enter your last name...</string>
+    <string name="example">example@school.edu</string>
+    <string name="sign_up">Sign Up</string>
+</resources>

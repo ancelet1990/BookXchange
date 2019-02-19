@@ -4,11 +4,25 @@
         <item>--Select School--</item>
         <item>Georgia Gwinnett College</item>
         <item>Georgia State University</item>
-        <item>Georgia Tech</item>
-        <item>Gwinnett Tech</item>
+        <item>Georgia Institute of Technology</item>
+        <item>Gwinnett Technical College</item>
         <item>University of Georgia</item>
         <item>Kennesaw State University</item>
         <item>Southern Poly</item>
         <item>Georgia Southern University</item>
+        <item>Georgia Perimeter College</item>
+        <item>Emory University</item>
+        <item>University of North Georgia</item>
+        <item>University of West Georgia</item>
+        <item>Valdosta State University</item>
+        <item>Clark Atlanta University</item>
+        <item>Mercer University</item>
+        <item>Savannah College of Art and Design</item>
+        <item>Mercer University</item>
+        <item>Clayton University</item>
+        <item>Spellman College</item>
+        <item>Morehouse College</item>
+        <item>Albany State University</item>
+        <item>Fort Valley State University</item>
     </string-array>
 </resources>

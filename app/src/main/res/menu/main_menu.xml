@@ -18,6 +18,10 @@
         android:title="Message"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/posts"
+        android:title="Manage Posts"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/help"
         android:title="Help"
         app:showAsAction="never"/>

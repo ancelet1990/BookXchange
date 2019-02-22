@@ -14,16 +14,14 @@ public class SignUpActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        Button signUp= (Button)findViewById(R.id.btnSignUp);
 
-
-     /*   signUp.setOnClickListener(new View.OnClickListener()
+        Button signUp= findViewById(R.id.btnSignUp);
+        signUp.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
         {
-            @Override
-            public void onClick(View v)
-            {
-                startActivity(new Intent(SignUpActivity.this, BuyActivity.class));
-            }
-        });*/
+            startActivity(new Intent(SignUpActivity.this, BuyActivity.class));
+        }
+    });
     }
 }

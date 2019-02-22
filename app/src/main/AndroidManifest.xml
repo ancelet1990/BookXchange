@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MessageActivity"
-            android:label="Messages"/>
+            android:label="Messages"></activity>
         <activity android:name=".PostActivity"
-            android:label="Manage Posts"/>
+            android:label="Manage Posts" />
         <activity
             android:name=".BuyActivity"
             android:label="Buy Books" />
@@ -28,8 +28,7 @@
         <activity
             android:name=".SellActivity"
             android:label="Post Books for Sale" />
-        <activity android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

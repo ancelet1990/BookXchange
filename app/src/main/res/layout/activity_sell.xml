@@ -12,11 +12,16 @@
         android:layout_height="40dp"
         android:layout_marginStart="96dp"
         android:layout_marginLeft="96dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginRight="102dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="@string/enter_isbn"
         android:importantForAutofill="no"
         android:inputType="textPersonName|text"
+        app:layout_constraintBottom_toTopOf="@+id/txtBookTitle"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:targetApi="o" />
@@ -25,52 +30,102 @@
         android:id="@+id/txtBookTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginRight="102dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
+        android:hint="@string/enter_book_title"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="165dp" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerEdition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtISBN"
+        tools:targetApi="o" />
 
     <Spinner
         android:id="@+id/spinnerEdition"
-        android:layout_width="217dp"
-        android:layout_height="22dp"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="240dp" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginRight="102dp"
+        android:layout_marginBottom="16dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/txtAuthor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBookTitle" />
 
     <EditText
         android:id="@+id/txtAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginRight="102dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
-        android:hint="Enter Author(s)"
+        android:hint="@string/enter_author_s"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="300dp" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerCondition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerEdition"
+        android:autofillHints="" tools:targetApi="o" />
 
     <Spinner
         android:id="@+id/spinnerCondition"
         android:layout_width="208dp"
         android:layout_height="28dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginRight="102dp"
+        android:layout_marginBottom="16dp"
         android:spinnerMode="dropdown"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="388dp" />
+        app:layout_constraintBottom_toTopOf="@+id/numPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAuthor" />
 
     <EditText
         android:id="@+id/numPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="98dp"
+        android:layout_marginLeft="98dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginRight="102dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
+        android:hint="@string/enter_price"
         android:inputType="numberDecimal"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="451dp" />
+        app:layout_constraintBottom_toTopOf="@+id/imgBookPhoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCondition"
+        android:autofillHints="" tools:targetApi="o" />
 
     <ImageView
         android:id="@+id/imgBookPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="543dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_marginStart="141dp"
+        android:layout_marginLeft="141dp"
+        android:layout_marginTop="47dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numPrice"
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/todo" />
 
 </android.support.constraint.ConstraintLayout>

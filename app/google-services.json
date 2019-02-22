@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "555919824421",
+    "firebase_url": "https://book-xchange-ggc.firebaseio.com",
+    "project_id": "book-xchange-ggc",
+    "storage_bucket": "book-xchange-ggc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555919824421:android:660d70039890debc",
+        "android_client_info": {
+          "package_name": "net.androidbootcamp.bookxchange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555919824421-3m68jflchj8bp6v8g4nrkan0doheukg4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdiVMSdVXzWzxoL7URVXnNlYYBZP9jzz4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

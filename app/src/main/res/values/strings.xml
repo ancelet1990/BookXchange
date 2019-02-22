@@ -12,4 +12,10 @@
     <string name="txtAbout">Random information about our app.</string>
     <string name="txtRegPassword">Enter a password …</string>
     <string name="txtRegPasswordConfirm">Re-enter password …</string>
+    <string name="button">Select Photo</string>
+    <string name="enter_isbn">Enter ISBN</string>
+    <string name="enter_book_title">Enter Book Title</string>
+    <string name="enter_author_s">Enter Author(s)</string>
+    <string name="enter_price">Enter Price</string>
+    <string name="todo">todo</string>
 </resources>

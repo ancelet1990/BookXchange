@@ -28,7 +28,8 @@
         <activity
             android:name=".SellActivity"
             android:label="Post Books for Sale" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

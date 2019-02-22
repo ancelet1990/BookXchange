@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SellActivity">
 
-</RelativeLayout>
+    <EditText
+        android:id="@+id/txtISBN"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:hint="@string/enter_isbn"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName|text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/txtBookTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="165dp" />
+
+    <Spinner
+        android:id="@+id/spinnerEdition"
+        android:layout_width="217dp"
+        android:layout_height="22dp"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="240dp" />
+
+    <EditText
+        android:id="@+id/txtAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Author(s)"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <Spinner
+        android:id="@+id/spinnerCondition"
+        android:layout_width="208dp"
+        android:layout_height="28dp"
+        android:spinnerMode="dropdown"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="388dp" />
+
+    <EditText
+        android:id="@+id/numPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="451dp" />
+
+    <ImageView
+        android:id="@+id/imgBookPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="543dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+</android.support.constraint.ConstraintLayout>

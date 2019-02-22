@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 public class SignUpActivity extends AppCompatActivity
 {
@@ -22,6 +24,15 @@ public class SignUpActivity extends AppCompatActivity
         {
             startActivity(new Intent(SignUpActivity.this, BuyActivity.class));
         }
-    });
+        });
+
+        /* The following initializes the Spinner spinnerSchool and associates it with
+         * the school_spinner_item.xml layout file in order to change the colors and
+         * font sizes of the items in the spinner
+         */
+        Spinner spinnerSchool = findViewById(R.id.spinnerSchool);
+        ArrayAdapter<CharSequence> colors_adapter = ArrayAdapter.createFromResource(
+                this, R.array.school_array, R.layout.school_spinner_item);
+        spinnerSchool.setAdapter(colors_adapter);
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="school_spinner_Style" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:background">@color/colorWhite</item>
+    </style>
+</resources>

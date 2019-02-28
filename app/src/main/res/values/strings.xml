@@ -12,10 +12,17 @@
     <string name="txtAbout">Random information about our app.</string>
     <string name="txtRegPassword">Enter a password …</string>
     <string name="txtRegPasswordConfirm">Re-enter password …</string>
-    <string name="button">Select Photo</string>
+    <string name="select_photo">Select Photo</string>
     <string name="enter_isbn">Enter ISBN</string>
     <string name="enter_book_title">Enter Book Title</string>
     <string name="enter_author_s">Enter Author(s)</string>
     <string name="enter_price">Enter Price</string>
     <string name="todo">todo</string>
+    <string name="change_password">Change Password</string>
+    <string name="enter_new_password">Enter new password…</string>
+    <string name="confirm_new_password">Confirm new password…</string>
+    <string name="image_logo">logo</string>
+    <string name="enter_edition">Enter edition</string>
+    <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
+    <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
 </resources>

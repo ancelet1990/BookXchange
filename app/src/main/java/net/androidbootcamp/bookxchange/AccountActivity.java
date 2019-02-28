@@ -5,15 +5,57 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+import com.google.firebase.database.DataSnapshot;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AccountActivity extends AppCompatActivity
 {
+    private FirebaseUser user;
+    private TextView txtAccountName, txtAccountEmail, txtAccountSchool;
+    private String firstName, lastName, email, school;
+    Button btnChangePassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
+        txtAccountName = findViewById(R.id.txtAccountName);
+        txtAccountEmail = findViewById(R.id.txtAccountEmail);
+        txtAccountSchool = findViewById(R.id.txtAccountSchool);
+        btnChangePassword = findViewById(R.id.btnChangePassword);
+
+        final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseDatabase.getInstance().getReference().child("users").child(uid)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Get user information
+                        User user = dataSnapshot.getValue(User.class);
+                        String firstName = user.firstName;
+                        String lastName = user.lastName;
+                        String email = user.email;
+                        String school = user.school;
+                        String fullName = firstName + " " + lastName;
+
+                        txtAccountName.setText(fullName);
+                        txtAccountEmail.setText(email);
+                        txtAccountSchool.setText(school);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
     }
 
     @Override

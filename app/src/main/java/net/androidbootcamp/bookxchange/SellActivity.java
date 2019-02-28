@@ -1,13 +1,13 @@
 package net.androidbootcamp.bookxchange;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
 
 public class SellActivity extends AppCompatActivity
 {
@@ -16,6 +16,17 @@ public class SellActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell);
+
+        Button btn1 = (Button)findViewById(R.id.btnChoosePic);
+        btn1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent takePhoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivity(takePhoto);
+            }
+        });
     }
 
     @Override

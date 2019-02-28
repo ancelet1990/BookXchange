@@ -140,7 +140,7 @@
         android:layout_marginEnd="162dp"
         android:layout_marginRight="162dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/button"
+        android:text="@string/take_a_photo"
         app:layout_constraintBottom_toTopOf="@+id/imgBookPhoto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

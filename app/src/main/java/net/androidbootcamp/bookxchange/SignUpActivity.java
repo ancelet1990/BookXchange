@@ -70,7 +70,6 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         school = spSchool.getSelectedItem().toString();
-                        Log.v(TAG, "school is: " + school);
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {

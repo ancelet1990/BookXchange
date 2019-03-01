@@ -29,4 +29,12 @@
     <string name="image_photo_upload">Photo Upload Image</string>
     <string name="upload_photo">Upload Photo</string>
     <string name="create_post">Create Post</string>
+
+    <string-array name="condition_array">
+        <item>--Select Condition--</item>
+        <item>Poor</item>
+        <item>Fair</item>
+        <item>Good</item>
+        <item>New</item>
+    </string-array>
 </resources>

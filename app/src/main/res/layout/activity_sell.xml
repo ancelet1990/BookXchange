@@ -68,18 +68,19 @@
 
     <Spinner
         android:id="@+id/spinnerCondition"
-        android:layout_width="208dp"
-        android:layout_height="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:entries="@array/condition_array"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAuthor" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
 
     <EditText
         android:id="@+id/txtPrice"
@@ -98,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCondition"
+        app:layout_constraintTop_toBottomOf="@+id/txtAuthor"
         tools:targetApi="o" />
 
     <ImageView
@@ -123,12 +124,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/take_a_photo"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/btnAddPic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCondition" />
 
     <EditText
         android:id="@+id/txtEditon"
@@ -153,14 +154,14 @@
         android:id="@+id/btnAddPic"
         android:layout_width="152dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="@string/upload_photo"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnTakePic"
-        app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCondition" />
 
     <Button
         android:id="@+id/btnCreatePost"

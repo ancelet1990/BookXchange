@@ -1,26 +1,43 @@
 package net.androidbootcamp.bookxchange;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public class SellActivity extends AppCompatActivity
 {
     private EditText txtISBN, txtTitle, txtEdition, txtAuthor, txtPrice;
     private Spinner spConditon;
-    private String condition;
+    private String condition, photoURL, bookID;
     private Button btnTakePic, btnUploadPic, btnCreatePost;
     private ImageView imageView;
 
@@ -28,6 +45,10 @@ public class SellActivity extends AppCompatActivity
 
     private final int PICK_IMAGE_REQUEST = 71;
     private Boolean isPhotoTaken = true;
+
+    private DatabaseReference database;
+    //private FirebaseStorage storage;
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,6 +66,9 @@ public class SellActivity extends AppCompatActivity
         btnUploadPic = findViewById(R.id.btnAddPic);
         btnCreatePost = findViewById(R.id.btnCreatePost);
         imageView = findViewById(R.id.imgBookPhoto);
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
 
         btnTakePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,8 +90,52 @@ public class SellActivity extends AppCompatActivity
         btnCreatePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo: WHAT HAPPENS WHEN YOU CREATE POST???
-                Book book = new Book();
+                String isbn = txtISBN.getText().toString().trim();
+                String title = txtTitle.getText().toString().trim();
+                String edition = txtEdition.getText().toString().trim();
+                String author = txtAuthor.getText().toString().trim();
+                String price = txtPrice.getText().toString().trim();
+
+                spConditon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        //condition = spConditon.getSelectedItem().toString();
+                        switch(position) {
+                            case 0:
+                                condition = "";
+                                break;
+                            case 1:
+                                condition = "Poor";
+                                break;
+                            case 2:
+                                condition = "Fair";
+                                break;
+                            case 3:
+                                condition = "Good";
+                                break;
+                            case 4:
+                                condition = "New";
+                                break;
+                        }
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                if (TextUtils.isEmpty(condition)) {
+                    Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                uploadImage();
+
+                database = FirebaseDatabase.getInstance().getReference();
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                Book book = new Book(isbn, title, edition, author, condition, price, photoURL, uid);
+                database.child("books").child(bookID).setValue(book);
+                startActivity(new Intent(SellActivity.this, PostActivity.class));
             }
         });
     }
@@ -101,6 +169,44 @@ public class SellActivity extends AppCompatActivity
             }
         }
 
+    }
+
+    private void uploadImage() {
+
+        if(filePath != null) {
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            bookID = UUID.randomUUID().toString();
+            final StorageReference ref = storageReference.child("images/"+ bookID);
+            photoURL = ref.getPath();
+            ref.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Toast.makeText(SellActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            photoURL = ref.getPath();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(SellActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
+            photoURL = ref.getPath();
+        }
     }
 
     @Override

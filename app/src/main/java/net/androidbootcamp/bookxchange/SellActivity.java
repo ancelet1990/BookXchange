@@ -47,7 +47,6 @@ public class SellActivity extends AppCompatActivity
     private Boolean isPhotoTaken = true;
 
     private DatabaseReference database;
-    //private FirebaseStorage storage;
     private StorageReference storageReference;
 
     @Override
@@ -99,40 +98,41 @@ public class SellActivity extends AppCompatActivity
                 spConditon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        switch(position) {
-                            case 0:
-                                condition = "";
-                                break;
-                            case 1:
-                                condition = "Poor";
-                                break;
-                            case 2:
-                                condition = "Fair";
-                                break;
-                            case 3:
-                                condition = "Good";
-                                break;
-                            case 4:
-                                condition = "New";
-                                break;
-                        }
+//                        todo: FIX BUG WITH CONDITION SPINNER
+//                        switch(position) {
+//                            case 0:
+//                                condition = "";
+//                                break;
+//                            case 1:
+//                                condition = "Poor";
+//                                break;
+//                            case 2:
+//                                condition = "Fair";
+//                                break;
+//                            case 3:
+//                                condition = "Good";
+//                                break;
+//                            case 4:
+//                                condition = "New";
+//                                break;
+//                        }
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
                         Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-                if (TextUtils.isEmpty(condition)) {
-                    Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                TODO: FIX CONDITION BUG
+//                if (TextUtils.isEmpty(condition)) {
+//                    Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
 
                 uploadImage();
 
                 database = FirebaseDatabase.getInstance().getReference();
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                Book book = new Book(isbn, title, edition, author, condition, price, photoURL, uid);
+                Book book = new Book(isbn, title, edition, author, "condition", price, photoURL, uid);
                 database.child("books").child(bookID).setValue(book);
                 startActivity(new Intent(SellActivity.this, PostActivity.class));
             }
@@ -245,11 +245,11 @@ public class SellActivity extends AppCompatActivity
                 Intent intent6 = new Intent(this, AboutActivity.class);
                 this.startActivity(intent6);
                 break;
-//            case R.id.log_out:
-//                FirebaseAuth.getInstance().signOut();
-//                finish();
-//                startActivity(new Intent(this, LoginActivity.class));
-//                break;
+            case R.id.log_out:
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
         }
         return true;
     }

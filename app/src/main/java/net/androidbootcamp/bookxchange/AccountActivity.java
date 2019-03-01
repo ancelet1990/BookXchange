@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
@@ -35,9 +36,11 @@ public class AccountActivity extends AppCompatActivity
 
         final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseDatabase.getInstance().getReference().child("users").child(uid)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addListenerForSingleValueEvent(new ValueEventListener()
+                {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(DataSnapshot dataSnapshot)
+                    {
                         // Get user information
                         User user = dataSnapshot.getValue(User.class);
                         String firstName = user.firstName;
@@ -52,10 +55,19 @@ public class AccountActivity extends AppCompatActivity
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    public void onCancelled(DatabaseError databaseError)
+                    {
 
                     }
                 });
+        btnChangePassword.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(AccountActivity.this, PasswordActivity.class));
+            }
+        });
     }
 
     @Override

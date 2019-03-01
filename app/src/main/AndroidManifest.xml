@@ -11,9 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MessageActivity"
-            android:label="Messages"></activity>
-        <activity android:name=".PostActivity"
+        <activity android:name=".PasswordActivity"
+            android:label="Password Change" />
+        <activity
+            android:name=".MessageActivity"
+            android:label="Messages" />
+        <activity
+            android:name=".PostActivity"
             android:label="Manage Posts" />
         <activity
             android:name=".BuyActivity"
@@ -30,8 +34,9 @@
         <activity
             android:name=".SellActivity"
             android:label="Post Books for Sale"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -40,9 +45,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="SignUpActivity"
+        <activity
+            android:name=".SignUpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

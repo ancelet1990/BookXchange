@@ -19,6 +19,7 @@
     <string name="enter_price">Enter Price</string>
     <string name="todo">todo</string>
     <string name="change_password">Change Password</string>
+    <string name="submit_password">Submit</string>
     <string name="enter_new_password">Enter new password…</string>
     <string name="confirm_new_password">Confirm new password…</string>
     <string name="image_logo">logo</string>
@@ -29,6 +30,7 @@
     <string name="image_photo_upload">Photo Upload Image</string>
     <string name="upload_photo">Upload Photo</string>
     <string name="create_post">Create Post</string>
+    <string name="sign_out">Sign Out</string>
 
     <string-array name="condition_array">
         <item>--Select Condition--</item>

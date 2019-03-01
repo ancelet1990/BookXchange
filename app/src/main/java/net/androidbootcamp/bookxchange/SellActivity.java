@@ -99,7 +99,6 @@ public class SellActivity extends AppCompatActivity
                 spConditon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        //condition = spConditon.getSelectedItem().toString();
                         switch(position) {
                             case 0:
                                 condition = "";

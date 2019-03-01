@@ -41,6 +41,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:gravity="start"
         android:text="@android:string/unknownName"
         android:textColor="@color/colorTextPrimary"
         android:textSize="18sp"
@@ -62,6 +63,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:gravity="start"
         android:text="@android:string/unknownName"
         android:textColor="@color/colorTextPrimary"
         android:textSize="18sp"
@@ -79,6 +81,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:gravity="start"
         android:text="@android:string/unknownName"
         android:textColor="@color/colorTextPrimary"
         android:textSize="18sp"
@@ -91,13 +94,13 @@
     <!--android:paddingBottom="50dp"-->
     <Button
         android:id="@+id/btnChangePassword"
-        android:layout_width="286dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="242dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="24dp"
         android:background="@color/colorAccent"
         android:text="@string/change_password"
         android:textColor="@color/colorWhite"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,5 +122,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/book_green" />
+
+    <Button
+        android:id="@+id/btnSignOut"
+        android:layout_width="111dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@color/colorAccent"
+        android:text="@string/sign_out"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnChangePassword" />
 
 </android.support.constraint.ConstraintLayout>

@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.CAMERA" android:required="false"/>
     <uses-permission android:name="android.hardware.camera"/>
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -49,7 +50,8 @@
             android:name=".SignUpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ChangePassword"></activity>
+        <activity android:name=".ChangePassword"
+            android:label="Change Password" />
     </application>
 
 </manifest>

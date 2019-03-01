@@ -98,24 +98,24 @@ public class SellActivity extends AppCompatActivity
                 spConditon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                        todo: FIX BUG WITH CONDITION SPINNER
-//                        switch(position) {
-//                            case 0:
-//                                condition = "";
-//                                break;
-//                            case 1:
-//                                condition = "Poor";
-//                                break;
-//                            case 2:
-//                                condition = "Fair";
-//                                break;
-//                            case 3:
-//                                condition = "Good";
-//                                break;
-//                            case 4:
-//                                condition = "New";
-//                                break;
-//                        }
+                        //todo: FIX BUG WITH CONDITION SPINNER
+                        switch(position) {
+                            case 0:
+                                condition = "";
+                                break;
+                            case 1:
+                                condition = "Poor";
+                                break;
+                            case 2:
+                                condition = "Fair";
+                                break;
+                            case 3:
+                                condition = "Good";
+                                break;
+                            case 4:
+                                condition = "New";
+                                break;
+                        }
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {

@@ -1,15 +1,17 @@
 package net.androidbootcamp.bookxchange;
 
-class Book {
+class Book
+{
 
     String isbn, title, edition, author, condition, price, photoURL, uid;
 
-
-    public Book() {
+    public Book()
+    {
 
     }
 
-    public Book(String isbn, String title, String edition, String author, String condition, String price, String photoURL, String uid){
+    public Book(String isbn, String title, String edition, String author, String condition, String price, String photoURL, String uid)
+    {
         this.isbn = isbn;
         this.title = title;
         this.edition = edition;

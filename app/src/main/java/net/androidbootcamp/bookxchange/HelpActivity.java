@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class HelpActivity extends AppCompatActivity
 {
 
@@ -55,6 +57,11 @@ public class HelpActivity extends AppCompatActivity
             case R.id.about:
                 Intent intent6 = new Intent(this, AboutActivity.class);
                 this.startActivity(intent6);
+                break;
+            case R.id.log_out:
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
         }
         return true;

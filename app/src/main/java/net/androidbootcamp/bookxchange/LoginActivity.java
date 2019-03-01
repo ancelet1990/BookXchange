@@ -89,11 +89,11 @@ public class LoginActivity extends AppCompatActivity
                                 if (!task.isSuccessful()) {
                                     // there was an error
                                     Log.d(TAG, "auth failed :" + task.getException());
-//                                    if (password.length() < 6) {
-//                                        loginPassword.setError(getString(R.string.minimum_password));
-//                                    } else {
-//                                        Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
-//                                    }
+                                    if (password.length() < 6) {
+                                        loginPassword.setError(getString(R.string.minimum_password));
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                    }
                                 } else {
                                     startActivity(new Intent(LoginActivity.this, BuyActivity.class));
                                     finish();

@@ -38,14 +38,13 @@ public class SellActivity extends AppCompatActivity
     private EditText txtISBN, txtTitle, txtEdition, txtAuthor, txtPrice;
     private Spinner spConditon;
     private String condition, photoURL, bookID;
-    private Button btnTakePic, btnUploadPic, btnCreatePost;
+    private Button btnUploadPic, btnCreatePost;
     private ImageView imageView;
 
     private Uri filePath;
 
     private final int PICK_IMAGE_REQUEST = 71;
     private static final int CAMERA_REQUEST_CODE=1;
-    private Boolean isPhotoTaken = true;
 
     private DatabaseReference database;
     private StorageReference storageReference;
@@ -62,7 +61,6 @@ public class SellActivity extends AppCompatActivity
         txtAuthor = findViewById(R.id.txtAuthor);
         spConditon = findViewById(R.id.spinnerCondition);
         txtPrice = findViewById(R.id.txtPrice);
-        btnTakePic = findViewById(R.id.btnTakePic);
         btnUploadPic = findViewById(R.id.btnAddPic);
         btnCreatePost = findViewById(R.id.btnCreatePost);
         imageView = findViewById(R.id.imgBookPhoto);
@@ -70,21 +68,9 @@ public class SellActivity extends AppCompatActivity
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        btnTakePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isPhotoTaken = true;
-                Intent takePhoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (takePhoto.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(takePhoto, CAMERA_REQUEST_CODE);
-                }
-            }
-        });
-
         btnUploadPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isPhotoTaken = false;
                 chooseImage();
             }
         });
@@ -152,7 +138,7 @@ public class SellActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(!isPhotoTaken) {
+
             if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK  && data != null && data.getData() != null ) {
                 filePath = data.getData();
                 try {
@@ -163,14 +149,6 @@ public class SellActivity extends AppCompatActivity
                     e.printStackTrace();
                 }
             }
-        }
-        if(isPhotoTaken) {
-            if(CAMERA_REQUEST_CODE == requestCode && resultCode == RESULT_OK){
-                Bitmap bitmap = (Bitmap)data.getExtras().get("data");
-                imageView.setImageBitmap(bitmap);
-            }
-        }
-
     }
 
     private void uploadImage() {
@@ -207,7 +185,9 @@ public class SellActivity extends AppCompatActivity
                             progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
-            photoURL = ref.getPath();
+        }
+        else {
+            Toast.makeText(SellActivity.this, "Filepath is NULL", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -247,11 +227,6 @@ public class SellActivity extends AppCompatActivity
             case R.id.about:
                 Intent intent6 = new Intent(this, AboutActivity.class);
                 this.startActivity(intent6);
-                break;
-            case R.id.log_out:
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                startActivity(new Intent(this, LoginActivity.class));
                 break;
         }
         return true;

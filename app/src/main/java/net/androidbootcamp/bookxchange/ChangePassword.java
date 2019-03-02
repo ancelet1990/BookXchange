@@ -97,11 +97,6 @@ public class ChangePassword extends AppCompatActivity {
                 Intent intent6 = new Intent(this, AboutActivity.class);
                 this.startActivity(intent6);
                 break;
-            case R.id.log_out:
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                startActivity(new Intent(this, LoginActivity.class));
-                break;
         }
         return true;
     }

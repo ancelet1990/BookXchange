@@ -44,6 +44,7 @@ public class SellActivity extends AppCompatActivity
     private Uri filePath;
 
     private final int PICK_IMAGE_REQUEST = 71;
+    private static final int CAMERA_REQUEST_CODE=1;
     private Boolean isPhotoTaken = true;
 
     private DatabaseReference database;
@@ -74,7 +75,9 @@ public class SellActivity extends AppCompatActivity
             public void onClick(View v) {
                 isPhotoTaken = true;
                 Intent takePhoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(takePhoto, PICK_IMAGE_REQUEST);
+                if (takePhoto.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(takePhoto, CAMERA_REQUEST_CODE);
+                }
             }
         });
 
@@ -162,7 +165,7 @@ public class SellActivity extends AppCompatActivity
             }
         }
         if(isPhotoTaken) {
-            if(this.PICK_IMAGE_REQUEST == requestCode && resultCode == RESULT_OK){
+            if(CAMERA_REQUEST_CODE == requestCode && resultCode == RESULT_OK){
                 Bitmap bitmap = (Bitmap)data.getExtras().get("data");
                 imageView.setImageBitmap(bitmap);
             }

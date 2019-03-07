@@ -47,7 +47,8 @@
             android:name=".SignUpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ChangePassword"
+        <activity
+            android:name=".ChangePassword"
             android:label="Change Password" />
     </application>
 

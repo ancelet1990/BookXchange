@@ -44,7 +44,6 @@ public class SellActivity extends AppCompatActivity
     private Uri filePath;
 
     private final int PICK_IMAGE_REQUEST = 71;
-    private static final int CAMERA_REQUEST_CODE=1;
 
     private DatabaseReference database;
     private StorageReference storageReference;
@@ -57,7 +56,7 @@ public class SellActivity extends AppCompatActivity
 
         txtISBN = findViewById(R.id.txtISBN);
         txtTitle = findViewById(R.id.txtBookTitle);
-        txtEdition = findViewById(R.id.txtEditon);
+//        txtEdition = findViewById(R.id.txtEditon);
         txtAuthor = findViewById(R.id.txtAuthor);
         spConditon = findViewById(R.id.spinnerCondition);
         txtPrice = findViewById(R.id.txtPrice);
@@ -67,6 +66,34 @@ public class SellActivity extends AppCompatActivity
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+
+        spConditon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //todo: FIX BUG WITH CONDITION SPINNER
+                switch(position) {
+                    case 0:
+                        condition = "";
+                        break;
+                    case 1:
+                        condition = "Poor";
+                        break;
+                    case 2:
+                        condition = "Fair";
+                        break;
+                    case 3:
+                        condition = "Good";
+                        break;
+                    case 4:
+                        condition = "New";
+                        break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         btnUploadPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,44 +111,33 @@ public class SellActivity extends AppCompatActivity
                 String author = txtAuthor.getText().toString().trim();
                 String price = txtPrice.getText().toString().trim();
 
-                spConditon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        //todo: FIX BUG WITH CONDITION SPINNER
-                        switch(position) {
-                            case 0:
-                                condition = "";
-                                break;
-                            case 1:
-                                condition = "Poor";
-                                break;
-                            case 2:
-                                condition = "Fair";
-                                break;
-                            case 3:
-                                condition = "Good";
-                                break;
-                            case 4:
-                                condition = "New";
-                                break;
-                        }
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
-                    }
-                });
-//                TODO: FIX CONDITION BUG
-//                if (TextUtils.isEmpty(condition)) {
-//                    Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
+
+                if (TextUtils.isEmpty(condition)) {
+                    Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(title)) {
+                    Toast.makeText(getApplicationContext(), "Please enter the title", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(isbn)) {
+                    Toast.makeText(getApplicationContext(), "Please enter the ISBN", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(author)) {
+                    Toast.makeText(getApplicationContext(), "Please enter the author", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(price)) {
+                    Toast.makeText(getApplicationContext(), "Please enter the price", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 uploadImage();
 
                 database = FirebaseDatabase.getInstance().getReference();
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                Book book = new Book(isbn, title, edition, author, "condition", price, photoURL, uid);
+                Book book = new Book(isbn, title, edition, author, condition, price, photoURL, uid, false);
                 database.child("books").child(bookID).setValue(book);
                 startActivity(new Intent(SellActivity.this, PostActivity.class));
             }
@@ -139,16 +155,16 @@ public class SellActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-            if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK  && data != null && data.getData() != null ) {
-                filePath = data.getData();
-                try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                    imageView.setImageBitmap(bitmap);
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
+        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK  && data != null && data.getData() != null ) {
+            filePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                imageView.setImageBitmap(bitmap);
             }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void uploadImage() {

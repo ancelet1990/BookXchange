@@ -54,6 +54,17 @@ public class SignUpActivity extends AppCompatActivity {
         //initialize spinner
         spSchool = findViewById(R.id.spinnerSchool);
 
+        spSchool.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                school = spSchool.getSelectedItem().toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(getApplicationContext(), "Please select a school", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        });
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,17 +77,6 @@ public class SignUpActivity extends AppCompatActivity {
                 lastName = regLastName.getText().toString().trim();
 
 
-                spSchool.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        school = spSchool.getSelectedItem().toString();
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        Toast.makeText(getApplicationContext(), "Please select a school", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                });
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Please enter your email address", Toast.LENGTH_SHORT).show();
                     return;

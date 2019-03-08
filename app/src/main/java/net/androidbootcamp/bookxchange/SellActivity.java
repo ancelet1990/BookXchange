@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -39,6 +40,7 @@ public class SellActivity extends AppCompatActivity
     private Spinner spConditon;
     private String condition, photoURL, bookID;
     private Button btnUploadPic, btnCreatePost;
+    private FloatingActionButton fabCreatePost;
     private ImageView imageView;
 
     private Uri filePath;
@@ -56,13 +58,13 @@ public class SellActivity extends AppCompatActivity
 
         txtISBN = findViewById(R.id.txtISBN);
         txtTitle = findViewById(R.id.txtBookTitle);
-//        txtEdition = findViewById(R.id.txtEditon);
         txtAuthor = findViewById(R.id.txtAuthor);
         spConditon = findViewById(R.id.spinnerCondition);
         txtPrice = findViewById(R.id.txtPrice);
         btnUploadPic = findViewById(R.id.btnAddPic);
         btnCreatePost = findViewById(R.id.btnCreatePost);
         imageView = findViewById(R.id.imgBookPhoto);
+        fabCreatePost = findViewById(R.id.fabCreatePost);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -102,34 +104,17 @@ public class SellActivity extends AppCompatActivity
             }
         });
 
-        btnCreatePost.setOnClickListener(new View.OnClickListener() {
+        fabCreatePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String isbn = txtISBN.getText().toString().trim();
                 String title = txtTitle.getText().toString().trim();
-                String edition = txtEdition.getText().toString().trim();
                 String author = txtAuthor.getText().toString().trim();
                 String price = txtPrice.getText().toString().trim();
 
 
                 if (TextUtils.isEmpty(condition)) {
-                    Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(title)) {
-                    Toast.makeText(getApplicationContext(), "Please enter the title", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(isbn)) {
-                    Toast.makeText(getApplicationContext(), "Please enter the ISBN", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(author)) {
-                    Toast.makeText(getApplicationContext(), "Please enter the author", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(price)) {
-                    Toast.makeText(getApplicationContext(), "Please enter the price", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -137,7 +122,7 @@ public class SellActivity extends AppCompatActivity
 
                 database = FirebaseDatabase.getInstance().getReference();
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                Book book = new Book(isbn, title, edition, author, condition, price, photoURL, uid, false);
+                Book book = new Book(isbn, title, author, condition, price, photoURL, uid, false);
                 database.child("books").child(bookID).setValue(book);
                 startActivity(new Intent(SellActivity.this, PostActivity.class));
             }
@@ -201,6 +186,7 @@ public class SellActivity extends AppCompatActivity
                             progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
+            //photoURL = ref.getPath();
         }
         else {
             Toast.makeText(SellActivity.this, "Filepath is NULL", Toast.LENGTH_LONG).show();

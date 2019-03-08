@@ -11,11 +11,10 @@ class Book
 
     }
 
-    public Book(String isbn, String title, String edition, String author, String condition, String price, String photoURL, String uid, Boolean bookIsSold)
+    public Book(String isbn, String title, String author, String condition, String price, String photoURL, String uid, Boolean bookIsSold)
     {
         this.isbn = isbn;
         this.title = title;
-        this.edition = edition;
         this.author = author;
         this.condition = condition;
         this.price = price;

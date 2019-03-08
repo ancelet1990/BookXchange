@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDivider"
     tools:context=".SellActivity">
 
     <EditText
@@ -16,7 +15,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:background="@color/colorWhite"
         android:ems="10"
         android:hint="@string/enter_isbn"
         android:importantForAutofill="no"
@@ -39,7 +37,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:background="@color/colorWhite"
         android:ems="10"
         android:hint="@string/enter_book_title"
         android:importantForAutofill="no"
@@ -63,7 +60,6 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:autofillHints=""
-        android:background="@color/colorWhite"
         android:ems="10"
         android:hint="@string/enter_author_s"
         android:inputType="textPersonName"
@@ -90,8 +86,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPrice"
-        style="@style/school_spinner_Style"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
 
     <EditText
         android:id="@+id/txtPrice"
@@ -103,7 +98,6 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:autofillHints=""
-        android:background="@color/colorWhite"
         android:ems="10"
         android:hint="@string/enter_price"
         android:inputType="numberDecimal"
@@ -118,8 +112,8 @@
 
     <ImageView
         android:id="@+id/imgBookPhoto"
-        android:layout_width="126dp"
-        android:layout_height="129dp"
+        android:layout_width="197dp"
+        android:layout_height="173dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="24dp"
@@ -141,14 +135,14 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="?android:attr/colorPrimary"
         android:text="@string/upload_photo"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCondition" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCondition" tools:targetApi="lollipop" />
 
     <Button
         android:id="@+id/btnCreatePost"
@@ -161,6 +155,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -173,8 +168,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabCreatePost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="visible"
+        app:backgroundTint="?android:attr/colorControlActivated"
+        app:backgroundTintMode="multiply"
+        app:fabCustomSize="@android:dimen/notification_large_icon_width"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="40dp"
+        app:rippleColor="@color/colorDivider"
+        app:srcCompat="@drawable/exit_to_app_white_36x36"
+        tools:targetApi="lollipop" />
 
 </android.support.constraint.ConstraintLayout>

@@ -3,6 +3,7 @@ package net.androidbootcamp.bookxchange;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,7 +25,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -36,7 +37,7 @@ import java.util.UUID;
 
 public class SellActivity extends AppCompatActivity
 {
-    private EditText txtISBN, txtTitle, txtEdition, txtAuthor, txtPrice;
+    private EditText txtISBN, txtTitle, txtAuthor, txtPrice;
     private Spinner spConditon;
     private String condition, photoURL, bookID;
     private Button btnUploadPic, btnCreatePost;
@@ -62,9 +63,10 @@ public class SellActivity extends AppCompatActivity
         spConditon = findViewById(R.id.spinnerCondition);
         txtPrice = findViewById(R.id.txtPrice);
         btnUploadPic = findViewById(R.id.btnAddPic);
-        btnCreatePost = findViewById(R.id.btnCreatePost);
         imageView = findViewById(R.id.imgBookPhoto);
         fabCreatePost = findViewById(R.id.fabCreatePost);
+
+        imageView.setColorFilter(Color.GRAY);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -72,30 +74,17 @@ public class SellActivity extends AppCompatActivity
         spConditon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //todo: FIX BUG WITH CONDITION SPINNER
-                switch(position) {
-                    case 0:
-                        condition = "";
-                        break;
-                    case 1:
-                        condition = "Poor";
-                        break;
-                    case 2:
-                        condition = "Fair";
-                        break;
-                    case 3:
-                        condition = "Good";
-                        break;
-                    case 4:
-                        condition = "New";
-                        break;
-                }
+                condition = spConditon.getSelectedItem().toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
             }
         });
+
+        ArrayAdapter<CharSequence> condition_adapter = ArrayAdapter.createFromResource(
+                this, R.array.condition_array, R.layout.spinner_item);
+        spConditon.setAdapter(condition_adapter);
 
         btnUploadPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +133,7 @@ public class SellActivity extends AppCompatActivity
             filePath = data.getData();
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                imageView.clearColorFilter();
                 imageView.setImageBitmap(bitmap);
             }
             catch (IOException e) {
@@ -186,7 +176,6 @@ public class SellActivity extends AppCompatActivity
                             progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
-            //photoURL = ref.getPath();
         }
         else {
             Toast.makeText(SellActivity.this, "Filepath is NULL", Toast.LENGTH_LONG).show();

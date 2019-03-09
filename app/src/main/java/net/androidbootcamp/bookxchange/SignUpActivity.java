@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -65,6 +66,10 @@ public class SignUpActivity extends AppCompatActivity {
                 return;
             }
         });
+
+        ArrayAdapter<CharSequence> school_adapter = ArrayAdapter.createFromResource(
+                this, R.array.school_array, R.layout.spinner_item);
+        spSchool.setAdapter(school_adapter);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

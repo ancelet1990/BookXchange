@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +26,13 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -39,7 +45,7 @@ public class SellActivity extends AppCompatActivity
 {
     private EditText txtISBN, txtTitle, txtAuthor, txtPrice;
     private Spinner spConditon;
-    private String condition, photoURL, bookID;
+    private String condition, photoURL, bookID, userSchool;
     private Button btnUploadPic, btnCreatePost;
     private FloatingActionButton fabCreatePost;
     private ImageView imageView;
@@ -67,6 +73,18 @@ public class SellActivity extends AppCompatActivity
         fabCreatePost = findViewById(R.id.fabCreatePost);
 
         imageView.setColorFilter(Color.GRAY);
+
+        FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Get user information
+                        User user = dataSnapshot.getValue(User.class);
+                        userSchool = user.school;
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) { }
+                });
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -109,10 +127,11 @@ public class SellActivity extends AppCompatActivity
 
                 uploadImage();
 
+
                 database = FirebaseDatabase.getInstance().getReference();
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Book book = new Book(isbn, title, author, condition, price, photoURL, uid, false);
-                database.child("books").child(bookID).setValue(book);
+                database.child("books").child(userSchool).child(bookID).setValue(book);
                 startActivity(new Intent(SellActivity.this, PostActivity.class));
             }
         });

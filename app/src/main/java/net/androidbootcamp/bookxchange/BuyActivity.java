@@ -1,21 +1,63 @@
 package net.androidbootcamp.bookxchange;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import net.androidbootcamp.bookxchange.Adapter.BuyingAdapter;
+
+import java.util.ArrayList;
 
 public class BuyActivity extends AppCompatActivity
 {
-
+    DatabaseReference reference;
+    RecyclerView recyclerView;
+    ArrayList<Book> list;
+    BuyingAdapter buyingAdapter;
+//
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy);
+
+        recyclerView = findViewById(R.id.myRecycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        list = new ArrayList<Book>();
+
+        reference = FirebaseDatabase.getInstance().getReference().child("books");
+        reference.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                for ( DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                {
+                    Book b = dataSnapshot.getValue(Book.class);
+                    list.add(b);
+                }
+                buyingAdapter = new BuyingAdapter(BuyActivity.this, list);
+                recyclerView.setAdapter(buyingAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+                Toast.makeText(BuyActivity.this, "Oops.... Something is wrong", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

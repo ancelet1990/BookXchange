@@ -77,38 +77,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLoginPassword" />
 
-    <TextView
-        android:id="@+id/txtSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:linksClickable="true"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:text="@string/new_to_our_app"
-        android:textColor="@color/colorWhite"
-        android:textColorLink="@color/colorWhite"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.367"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+    <!--<TextView-->
+        <!--android:id="@+id/txtSignUp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="32dp"-->
+        <!--android:clickable="true"-->
+        <!--android:focusable="true"-->
+        <!--android:linksClickable="true"-->
+        <!--android:paddingLeft="5dp"-->
+        <!--android:paddingRight="5dp"-->
+        <!--android:text="@string/new_to_our_app"-->
+        <!--android:textColor="@color/colorWhite"-->
+        <!--android:textColorLink="@color/colorWhite"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.367"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/btnLogin" />-->
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="78dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/colorWhite"
-        android:text="@string/sign_up"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:typeface="sans"
-        app:layout_constraintStart_toEndOf="@+id/txtSignUp"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+    <!--<Button-->
+        <!--android:id="@+id/btnRegister"-->
+        <!--android:layout_width="78dp"-->
+        <!--android:layout_height="27dp"-->
+        <!--android:layout_marginTop="32dp"-->
+        <!--android:background="@color/colorWhite"-->
+        <!--android:text="@string/sign_up"-->
+        <!--android:textColor="@color/colorPrimaryDark"-->
+        <!--android:textSize="16sp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:typeface="sans"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/txtSignUp"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/btnLogin" />-->
 
     <ProgressBar
         android:id="@+id/progressBar"

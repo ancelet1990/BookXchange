@@ -32,6 +32,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import net.androidbootcamp.bookxchange.model.Book;
+
 import java.io.IOException;
 import java.util.UUID;
 

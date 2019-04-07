@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import net.androidbootcamp.bookxchange.Adapter.BuyingAdapter;
+import net.androidbootcamp.bookxchange.model.Book;
 
 import java.util.ArrayList;
 

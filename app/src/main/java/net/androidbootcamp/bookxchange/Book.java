@@ -2,7 +2,6 @@ package net.androidbootcamp.bookxchange;
 
 public class Book
 {
-
     String isbn, title, author, condition, price, photoURL, uid;
     Boolean bookIsSold;
 
@@ -23,11 +22,13 @@ public class Book
         this.bookIsSold = bookIsSold;
     }
 
-    public void setCondition(String condition) {
+    public void setCondition(String condition)
+    {
         this.condition = condition;
     }
 
-    public String getCondition() {
+    public String getCondition()
+    {
         return this.condition;
     }
 

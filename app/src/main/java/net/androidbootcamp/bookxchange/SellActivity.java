@@ -11,7 +11,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,13 +25,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -45,7 +39,7 @@ public class SellActivity extends AppCompatActivity
 {
     private EditText txtISBN, txtTitle, txtAuthor, txtPrice;
     private Spinner spConditon;
-    private String condition, photoURL, bookID, userSchool;
+    private String condition, photoURL, bookID;
     private Button btnUploadPic, btnCreatePost;
     private FloatingActionButton fabCreatePost;
     private ImageView imageView;
@@ -74,70 +68,68 @@ public class SellActivity extends AppCompatActivity
 
         imageView.setColorFilter(Color.GRAY);
 
-        FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // Get user information
-                        User user = dataSnapshot.getValue(User.class);
-                        userSchool = user.school;
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) { }
-                });
-
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        spConditon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spConditon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
                 condition = spConditon.getSelectedItem().toString();
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+                Toast.makeText(getApplicationContext(), "Please select a condition",
+                               Toast.LENGTH_SHORT).show();
             }
         });
 
-        ArrayAdapter<CharSequence> condition_adapter = ArrayAdapter.createFromResource(
-                this, R.array.condition_array, R.layout.spinner_item);
+        ArrayAdapter<CharSequence> condition_adapter = ArrayAdapter
+                .createFromResource(this, R.array.condition_array, R.layout.spinner_item);
         spConditon.setAdapter(condition_adapter);
 
-        btnUploadPic.setOnClickListener(new View.OnClickListener() {
+        btnUploadPic.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 chooseImage();
             }
         });
 
-        fabCreatePost.setOnClickListener(new View.OnClickListener() {
+        fabCreatePost.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 String isbn = txtISBN.getText().toString().trim();
                 String title = txtTitle.getText().toString().trim();
                 String author = txtAuthor.getText().toString().trim();
                 String price = txtPrice.getText().toString().trim();
 
-
-                if (TextUtils.isEmpty(condition)) {
-                    Toast.makeText(getApplicationContext(), "Please select a condition", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(condition))
+                {
+                    Toast.makeText(getApplicationContext(), "Please select a condition",
+                                   Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 uploadImage();
 
-
                 database = FirebaseDatabase.getInstance().getReference();
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Book book = new Book(isbn, title, author, condition, price, photoURL, uid, false);
-                database.child("books").child(userSchool).child(bookID).setValue(book);
+                database.child("Books").child(bookID).setValue(book);
                 startActivity(new Intent(SellActivity.this, PostActivity.class));
             }
         });
     }
 
-    private void chooseImage() {
+    private void chooseImage()
+    {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -145,71 +137,84 @@ public class SellActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK  && data != null && data.getData() != null ) {
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null &&
+            data.getData() != null)
+        {
             filePath = data.getData();
-            try {
+            try
+            {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 imageView.clearColorFilter();
                 imageView.setImageBitmap(bitmap);
-            }
-            catch (IOException e) {
+            } catch (IOException e)
+            {
                 e.printStackTrace();
             }
         }
     }
 
-    private void uploadImage() {
-
-        if(filePath != null) {
+    private void uploadImage()
+    {
+        if (filePath != null)
+        {
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
             bookID = UUID.randomUUID().toString();
-            final StorageReference ref = storageReference.child("images/"+ bookID);
+            final StorageReference ref = storageReference.child("Book_Images/" + bookID);
             photoURL = ref.getPath();
             ref.putFile(filePath)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            progressDialog.dismiss();
-                            Toast.makeText(SellActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                            photoURL = ref.getPath();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            progressDialog.dismiss();
-                            Toast.makeText(SellActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
-                                    .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
-                        }
-                    });
-        }
-        else {
+               .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
+               {
+                   @Override
+                   public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                   {
+                       progressDialog.dismiss();
+                       Toast.makeText(SellActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                       photoURL = ref.getPath();
+                   }
+               }).addOnFailureListener(new OnFailureListener()
+            {
+                @Override
+                public void onFailure(@NonNull Exception e)
+                {
+                    progressDialog.dismiss();
+                    Toast.makeText(SellActivity.this, "Failed " + e.getMessage(),
+                                   Toast.LENGTH_SHORT).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>()
+            {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot)
+                {
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred() /
+                                       taskSnapshot.getTotalByteCount());
+                    progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                }
+            });
+        } else
+        {
             Toast.makeText(SellActivity.this, "Filepath is NULL", Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
-    public boolean onCreateOptionsMenu (Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
             case R.id.account:
                 Intent intent = new Intent(this, AccountActivity.class);
                 this.startActivity(intent);

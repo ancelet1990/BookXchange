@@ -26,7 +26,7 @@ public class BuyActivity extends AppCompatActivity
     RecyclerView recyclerView;
     ArrayList<Book> list;
     BuyingAdapter buyingAdapter;
-//
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -43,7 +43,7 @@ public class BuyActivity extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                for ( DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
                 {
                     Book b = dataSnapshot.getValue(Book.class);
                     list.add(b);
@@ -55,15 +55,16 @@ public class BuyActivity extends AppCompatActivity
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError)
             {
-                Toast.makeText(BuyActivity.this, "Oops.... Something is wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BuyActivity.this, "Oops.... Something is wrong", Toast.LENGTH_SHORT)
+                     .show();
             }
         });
     }
 
     @Override
-    public boolean onCreateOptionsMenu (Menu menu)
+    public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 

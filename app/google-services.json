@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "555919824421-nrdhmndcqqm5n2bpo99mhv2kieduutiq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.androidbootcamp.bookxchange",
+            "certificate_hash": "c8c3dabb4c97e3299107285363e4d47acc071b82"
+          }
+        },
+        {
           "client_id": "555919824421-3m68jflchj8bp6v8g4nrkan0doheukg4.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "555919824421-3m68jflchj8bp6v8g4nrkan0doheukg4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

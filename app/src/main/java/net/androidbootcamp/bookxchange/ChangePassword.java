@@ -17,12 +17,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class ChangePassword extends AppCompatActivity {
-
+public class ChangePassword extends AppCompatActivity
+{
     private FirebaseUser user;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
@@ -32,45 +33,65 @@ public class ChangePassword extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        btnSubmit.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 String newPassword = txtChangePW.getText().toString().trim();
                 String newPasswordConfirm = txtConfirmChangePW.getText().toString().trim();
 
-                if(TextUtils.isEmpty(newPassword)) {
-                    Toast.makeText(getApplicationContext(), "Please enter a password", Toast.LENGTH_LONG).show();
+                if (TextUtils.isEmpty(newPassword))
+                {
+                    Toast.makeText(getApplicationContext(), "Please enter a password",
+                                   Toast.LENGTH_LONG).show();
                 }
-                if(newPassword.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password needs to be at least 6 characters long", Toast.LENGTH_LONG).show();
+                if (newPassword.length() < 6)
+                {
+                    Toast.makeText(getApplicationContext(),
+                                   "Password needs to be at least 6 characters long",
+                                   Toast.LENGTH_LONG).show();
                 }
-                if (TextUtils.isEmpty(newPasswordConfirm)) {
-                    Toast.makeText(getApplicationContext(), "Please confirm new password", Toast.LENGTH_LONG).show();
+                if (TextUtils.isEmpty(newPasswordConfirm))
+                {
+                    Toast.makeText(getApplicationContext(), "Please confirm new password",
+                                   Toast.LENGTH_LONG).show();
                 }
-                if (!newPassword.equals(newPasswordConfirm)) {
-                    Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
+                if (! newPassword.equals(newPasswordConfirm))
+                {
+                    Toast.makeText(getApplicationContext(), "Passwords do not match",
+                                   Toast.LENGTH_LONG).show();
                 }
 
                 user = FirebaseAuth.getInstance().getCurrentUser();
 
                 user.updatePassword(newPassword)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(ChangePassword.this, "Password is updated!", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(ChangePassword.this, AccountActivity.class));
-                                } else {
-                                    Toast.makeText(ChangePassword.this, "Failed to update password!", Toast.LENGTH_SHORT).show();
-                                }
+                    .addOnCompleteListener(new OnCompleteListener<Void>()
+                    {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task)
+                        {
+                            if (task.isSuccessful())
+                            {
+                                Toast.makeText(ChangePassword.this, "Password is updated!",
+                                               Toast.LENGTH_SHORT).show();
+                                startActivity(
+                                        new Intent(ChangePassword.this, AccountActivity.class));
+                            } else
+                            {
+                                Toast.makeText(ChangePassword.this, "Failed to update password!",
+                                               Toast.LENGTH_SHORT).show();
                             }
-                        });
+                        }
+                    });
             }
         });
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
             case R.id.account:
                 Intent intent = new Intent(this, AccountActivity.class);
                 this.startActivity(intent);

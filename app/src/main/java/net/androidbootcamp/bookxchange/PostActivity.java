@@ -10,7 +10,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class PostActivity extends AppCompatActivity
 {
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -19,9 +18,9 @@ public class PostActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu (Menu menu)
+    public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 

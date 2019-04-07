@@ -7,19 +7,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class AccountActivity extends AppCompatActivity
 {
     private TextView txtAccountName, txtAccountEmail, txtAccountSchool;
     private String fullName;
+    ImageView imageView;
+
     private FirebaseAuth auth;
+    DatabaseReference reference;
+    FirebaseUser fuser;
+//    StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,45 +37,56 @@ public class AccountActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
+        imageView = findViewById(R.id.imageLogo);
         txtAccountName = findViewById(R.id.txtAccountName);
         txtAccountEmail = findViewById(R.id.txtAccountEmail);
         txtAccountSchool = findViewById(R.id.txtAccountSchool);
         Button btnChangePassword = findViewById(R.id.btnChangePassword);
         Button btnSignOut = findViewById(R.id.btnSignOut);
 
+//        storageReference = FirebaseStorage.getInstance().getReference("Profile Pics");
 
-        final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        FirebaseDatabase.getInstance().getReference().child("users").child(uid)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // Get user information
-                        User user = dataSnapshot.getValue(User.class);
-                        fullName = user.firstName + " " + user.lastName;
-                        txtAccountName.setText(fullName);
-                        txtAccountEmail.setText(user.email);
-                        txtAccountSchool.setText(user.school);
-                    }
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-        btnChangePassword.setOnClickListener(new View.OnClickListener() {
+        reference.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                // Get user information
+                User user = dataSnapshot.getValue(User.class);
+                fullName = user.getFirstName() + " " + user.getLastName();
+                txtAccountName.setText(fullName);
+                txtAccountEmail.setText(user.getEmail());
+                txtAccountSchool.setText(user.getSchool());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }
+        });
+
+        btnChangePassword.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
                 startActivity(new Intent(AccountActivity.this, ChangePassword.class));
             }
         });
 
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
+        btnSignOut.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 auth = FirebaseAuth.getInstance();
-                if (auth.getCurrentUser() != null) {
+                if (auth.getCurrentUser() != null)
+                {
                     auth.signOut();
                 }
                 startActivity(new Intent(AccountActivity.this, LoginActivity.class));
@@ -73,11 +94,10 @@ public class AccountActivity extends AppCompatActivity
         });
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu (Menu menu)
+    public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 

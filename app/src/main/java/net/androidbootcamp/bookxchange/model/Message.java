@@ -1,4 +1,4 @@
-package net.androidbootcamp.bookxchange;
+package net.androidbootcamp.bookxchange.model;
 
 public class Message
 {

@@ -38,7 +38,7 @@ public class BuyActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<Book>();
 
-        reference = FirebaseDatabase.getInstance().getReference().child("books");
+        reference = FirebaseDatabase.getInstance().getReference().child("Books");
         reference.addValueEventListener(new ValueEventListener()
         {
             @Override

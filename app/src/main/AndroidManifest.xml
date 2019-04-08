@@ -51,7 +51,7 @@
         <activity
             android:name=".SignUpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustPan" />
             android:parentActivityName=".StartActivity"/>
         <activity
             android:name=".ChangePassword"

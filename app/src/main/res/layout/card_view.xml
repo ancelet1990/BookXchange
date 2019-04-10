@@ -6,87 +6,13 @@
     android:weightSum="2"
     android:orientation="horizontal">
 
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtISBN"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:text="ISBN"
-            android:layout_marginLeft="2dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtTitle"
-            android:textSize="15dp"
-            android:text="Title"
-            android:textStyle="bold"
-            android:layout_marginLeft="2dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtAuthor"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:text="Author"
-            android:layout_marginLeft="2dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtPrice"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:text="Price"
-            android:layout_marginLeft="2dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtCondition"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:text="Condition"
-            android:layout_marginLeft="2dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtUser"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:text="User"/>
-//try to send this also
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnMessage"
-            android:text="Message User"
-            android:layout_marginLeft="125dp"
-            android:layout_marginBottom="10dp"
-            android:visibility="visible"/>
-
-    </LinearLayout>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_marginLeft="2dp">
 
         <ImageView
             android:id="@+id/imgBookPhoto"
@@ -94,5 +20,165 @@
             android:layout_height="match_parent" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtISBN"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="ISBN"
+        android:layout_marginLeft="2dp"/>
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTitle"
+        android:textSize="15dp"
+        android:text="Title"
+        android:textStyle="bold"
+        android:layout_marginLeft="2dp"/>
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAuthor"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="Author"
+        android:layout_marginLeft="2dp"/>
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPrice"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="Price"
+        android:layout_marginLeft="2dp"/>
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCondition"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="Condition"
+        android:layout_marginLeft="2dp"/>
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtUser"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="User"/>
+
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnMessage"
+        android:text="Message User"
+        android:layout_marginRight="125dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="visible"/>
+
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/txtISBN"-->
+            <!--android:textSize="15dp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text="ISBN"-->
+            <!--android:layout_marginLeft="2dp"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/txtTitle"-->
+            <!--android:textSize="15dp"-->
+            <!--android:text="Title"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_marginLeft="2dp"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/txtAuthor"-->
+            <!--android:textSize="15dp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text="Author"-->
+            <!--android:layout_marginLeft="2dp"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/txtPrice"-->
+            <!--android:textSize="15dp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text="Price"-->
+            <!--android:layout_marginLeft="2dp"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/txtCondition"-->
+            <!--android:textSize="15dp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text="Condition"-->
+            <!--android:layout_marginLeft="2dp"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/txtUser"-->
+            <!--android:textSize="15dp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text="User"/>-->
+<!--//try to send this also-->
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/btnMessage"-->
+            <!--android:text="Message User"-->
+            <!--android:layout_marginLeft="125dp"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:visibility="visible"/>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginRight="5dp">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imgBookPhoto"-->
+            <!--android:layout_width="148dp"-->
+            <!--android:layout_height="match_parent" />-->
+
+    <!--</LinearLayout>-->
 
 </LinearLayout>

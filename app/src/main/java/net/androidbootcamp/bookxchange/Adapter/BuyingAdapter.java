@@ -38,12 +38,14 @@ public class BuyingAdapter extends RecyclerView.Adapter<BuyingAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
         final Book book = aBook.get(position);
-        holder.isbn.setText(book.getIsbn());
-        holder.title.setText(book.getTitle());
-        holder.author.setText(book.getAuthor());
-        holder.condition.setText(book.getCondition());
-        holder.price.setText(book.getPrice());
+        holder.isbn.setText("ISBN: " + book.getIsbn());
+        holder.title.setText("Title: " + book.getTitle());
+        holder.author.setText("Author: " + book.getAuthor());
+        holder.condition.setText("Condition: " + book.getCondition());
+        holder.price.setText("Price: $" + book.getPrice());
         holder.user.setText(book.getUid());
+
+        //holder.bPic.setImageBitmap();
     }
 
     @Override

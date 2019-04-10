@@ -125,7 +125,7 @@ public class SellActivity extends AppCompatActivity
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Book book = new Book(isbn, title, author, condition, price, photoURL, uid, false);
                 database.child("Books").child(bookID).setValue(book);
-                startActivity(new Intent(SellActivity.this, PostActivity.class));
+                startActivity(new Intent(SellActivity.this, ManagePostsActivity.class));
             }
         });
     }
@@ -234,7 +234,7 @@ public class SellActivity extends AppCompatActivity
                 this.startActivity(intent3);
                 break;
             case R.id.posts:
-                Intent intent4 = new Intent(this, PostActivity.class);
+                Intent intent4 = new Intent(this, ManagePostsActivity.class);
                 this.startActivity(intent4);
                 break;
             case R.id.help:

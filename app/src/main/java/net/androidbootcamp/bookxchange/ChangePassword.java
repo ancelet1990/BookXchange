@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -109,7 +108,7 @@ public class ChangePassword extends AppCompatActivity
                 this.startActivity(intent3);
                 break;
             case R.id.posts:
-                Intent intent4 = new Intent(this, PostActivity.class);
+                Intent intent4 = new Intent(this, ManagePostsActivity.class);
                 this.startActivity(intent4);
                 break;
             case R.id.help:

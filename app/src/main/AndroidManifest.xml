@@ -27,7 +27,7 @@
             android:name=".MessageActivity"
             android:label="Messages" />
         <activity
-            android:name=".PostActivity"
+            android:name=".ManagePostsActivity"
             android:label="Manage Posts" />
         <activity
             android:name=".BuyActivity"

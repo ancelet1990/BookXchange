@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.firebase.auth.FirebaseAuth;
-
-public class PostActivity extends AppCompatActivity
+public class ManagePostsActivity extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,7 +44,7 @@ public class PostActivity extends AppCompatActivity
                 this.startActivity(intent3);
                 break;
             case R.id.posts:
-                Intent intent4 = new Intent(this, PostActivity.class);
+                Intent intent4 = new Intent(this, ManagePostsActivity.class);
                 this.startActivity(intent4);
                 break;
             case R.id.help:

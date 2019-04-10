@@ -46,7 +46,7 @@ public class BuyActivity extends AppCompatActivity
             {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
                 {
-                    Book b = dataSnapshot.getValue(Book.class);
+                    Book b = dataSnapshot1.getValue(Book.class);
                     list.add(b);
                 }
                 buyingAdapter = new BuyingAdapter(BuyActivity.this, list);

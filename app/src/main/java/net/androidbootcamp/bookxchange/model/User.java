@@ -2,11 +2,28 @@ package net.androidbootcamp.bookxchange.model;
 
 public class User
 {
-    private String firstName, lastName, email, school, id, imageURL;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String school;
+    private String id;
+    private String imageURL;
+    private String status;
 
     public User()
     {
 
+    }
+
+    public User(String firstName, String lastName, String email, String school, String id, String imageURL, String status)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.school = school;
+        this.id = id;
+        this.imageURL = imageURL;
+        this.status = status;
     }
 
     public User(String firstName, String lastName, String email, String school, String id, String imageURL)
@@ -19,14 +36,6 @@ public class User
         this.imageURL = imageURL;
     }
 
-    public User(String firstName, String lastName, String email, String school)
-    {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.school = school;
-    }
-
     public User(String firstName, String lastName, String email, String school, String id)
     {
         this.firstName = firstName;
@@ -34,6 +43,14 @@ public class User
         this.email = email;
         this.school = school;
         this.id = id;
+    }
+
+    public User(String firstName, String lastName, String email, String school)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.school = school;
     }
 
     public String getFirstName()
@@ -94,5 +111,15 @@ public class User
     public void setImageURL(String imageURL)
     {
         this.imageURL = imageURL;
+    }
+
+    public String getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(String status)
+    {
+        this.status = status;
     }
 }

@@ -57,6 +57,8 @@ public class ManagePostsActivity extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
+                list.clear();
+                list2.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
                 {
                     Book b = dataSnapshot1.getValue(Book.class);

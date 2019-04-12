@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,29 +24,40 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnPausedListener;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import net.androidbootcamp.bookxchange.model.Book;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 public class SellActivity extends AppCompatActivity
 {
     private EditText txtISBN, txtTitle, txtAuthor, txtPrice;
     private Spinner spConditon;
-    private String condition, photoURL, bookID;
+    private String condition, bookID;
+    private String photoURL;
     private Button btnUploadPic, btnCreatePost;
     private FloatingActionButton fabCreatePost;
     private ImageView imageView;
+    private Book book;
 
     private Uri filePath;
 
@@ -69,6 +82,8 @@ public class SellActivity extends AppCompatActivity
         fabCreatePost = findViewById(R.id.fabCreatePost);
 
         imageView.setColorFilter(Color.GRAY);
+
+        book = new Book();
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -119,11 +134,19 @@ public class SellActivity extends AppCompatActivity
                     return;
                 }
 
-                uploadImage();
+
 
                 database = FirebaseDatabase.getInstance().getReference();
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                Book book = new Book(isbn, title, author, condition, price, photoURL, uid, false);
+                //book = new Book(isbn, title, author, condition, price, photoURL, uid, false);
+                book.setIsbn(isbn);
+                book.setTitle(title);
+                book.setAuthor(author);
+                book.setCondition(condition);
+                book.setPrice(price);
+                book.setUid(uid);
+                book.setBookIsSold(false);
+
                 database.child("Books").child(bookID).setValue(book);
                 startActivity(new Intent(SellActivity.this, ManagePostsActivity.class));
             }
@@ -152,6 +175,7 @@ public class SellActivity extends AppCompatActivity
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 imageView.clearColorFilter();
                 imageView.setImageBitmap(bitmap);
+                uploadImage();
             } catch (IOException e)
             {
                 e.printStackTrace();
@@ -159,8 +183,9 @@ public class SellActivity extends AppCompatActivity
         }
     }
 
-    private void uploadImage()
-    {
+    private void uploadImage() {
+        final String[] url = new String[1];
+        double progress = 0;
         if (filePath != null)
         {
             final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -169,16 +194,15 @@ public class SellActivity extends AppCompatActivity
 
             bookID = UUID.randomUUID().toString();
             final StorageReference ref = storageReference.child("Book_Images/" + bookID);
-            photoURL = ref.getPath();
+
             ref.putFile(filePath)
                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
                {
                    @Override
                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                    {
-                       progressDialog.dismiss();
-                       Toast.makeText(SellActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                       photoURL = ref.getPath();
+
+
                    }
                }).addOnFailureListener(new OnFailureListener()
             {
@@ -197,6 +221,30 @@ public class SellActivity extends AppCompatActivity
                     double progress = (100.0 * taskSnapshot.getBytesTransferred() /
                                        taskSnapshot.getTotalByteCount());
                     progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                }
+            }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        photoURL = task.getResult().toString();
+                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Log.v("This url = ", uri.toString());
+                                book.setPhotoURL(uri.toString());
+                                Log.v("this book url = ", book.getPhotoURL());
+                            }
+                        });
+
+                        photoURL = ref.getDownloadUrl().toString();
+                        progressDialog.dismiss();
+                        Toast.makeText(SellActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+
+
+                    }
                 }
             });
         } else

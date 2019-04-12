@@ -9,18 +9,18 @@ public class Book
     {
 
     }
-
-    public Book(String isbn, String title, String author, String condition, String price, String photoURL, String uid, Boolean bookIsSold)
-    {
-        this.isbn = isbn;
-        this.title = title;
-        this.author = author;
-        this.condition = condition;
-        this.price = price;
-        this.photoURL = photoURL;
-        this.uid = uid;
-        this.bookIsSold = bookIsSold;
-    }
+//
+//    public Book(String isbn, String title, String author, String condition, String price, String photoURL, String uid, Boolean bookIsSold)
+//    {
+//        this.isbn = isbn;
+//        this.title = title;
+//        this.author = author;
+//        this.condition = condition;
+//        this.price = price;
+//        this.photoURL = photoURL;
+//        this.uid = uid;
+//        this.bookIsSold = bookIsSold;
+//    }
 
     public void setCondition(String condition)
     {
@@ -101,4 +101,5 @@ public class Book
     {
         this.bookIsSold = bookIsSold;
     }
+
 }

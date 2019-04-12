@@ -59,7 +59,8 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
 
         final int pos = position;
 
-        holder1.btn.setVisibility(View.GONE);
+        holder1.btn.setVisibility(View.INVISIBLE);
+        holder1.sold.setVisibility(View.VISIBLE);
 
         holder1.isbn.setText("ISBN: " + book.getIsbn());
         holder1.title.setText("Title: " + book.getTitle());
@@ -77,7 +78,7 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
             @Override
             public void onClick(View v) {
                aBook.remove(book);
-                holder1.btn.setVisibility(View.GONE);
+                holder1.btn.setVisibility(View.INVISIBLE);
                 holder1.sold.setVisibility(View.VISIBLE);
                 database.child("Books").child(book.getBookID()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

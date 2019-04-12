@@ -56,7 +56,7 @@ public class BuyingAdapter extends RecyclerView.Adapter<BuyingAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
         final Book book = aBook.get(position);
-        
+
         holder.isbn.setText("ISBN: " + book.getIsbn());
         holder.title.setText("Title: " + book.getTitle());
         holder.author.setText("Author: " + book.getAuthor());

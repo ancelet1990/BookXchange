@@ -2,7 +2,7 @@ package net.androidbootcamp.bookxchange.model;
 
 public class Book
 {
-    String isbn, title, author, condition, price, photoURL, uid;
+    String bookID, isbn, title, author, condition, price, photoURL, uid;
     Boolean bookIsSold;
 
     public Book()
@@ -21,6 +21,10 @@ public class Book
 //        this.uid = uid;
 //        this.bookIsSold = bookIsSold;
 //    }
+
+    public void setBookID(String bookID) { this.bookID = bookID; }
+
+    public String getBookID() { return bookID; }
 
     public void setCondition(String condition)
     {

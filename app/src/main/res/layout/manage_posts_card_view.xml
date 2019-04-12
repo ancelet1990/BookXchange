@@ -78,13 +78,13 @@
             android:layout_marginLeft="2dp"/>
 
         <Button
+            android:id="@+id/btnSold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnMessage"
-            android:text="Mark As Sold"
             android:layout_marginRight="125dp"
             android:layout_marginBottom="10dp"
-            android:visibility="visible"/>
+            android:text="Mark As Sold"
+            android:visibility="visible" />
 
     </LinearLayout>
 

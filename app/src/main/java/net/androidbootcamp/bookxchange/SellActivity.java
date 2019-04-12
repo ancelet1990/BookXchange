@@ -176,8 +176,6 @@ public class SellActivity extends AppCompatActivity
     }
 
     private void uploadImage() {
-        final String[] url = new String[1];
-        double progress = 0;
         if (filePath != null)
         {
             final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -185,6 +183,7 @@ public class SellActivity extends AppCompatActivity
             progressDialog.show();
 
             bookID = UUID.randomUUID().toString();
+            book.setBookID(bookID);
             final StorageReference ref = storageReference.child("Book_Images/" + bookID);
 
             ref.putFile(filePath)

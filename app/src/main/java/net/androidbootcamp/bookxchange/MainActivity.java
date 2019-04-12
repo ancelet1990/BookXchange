@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 User user = dataSnapshot.getValue(User.class);
-                username.setText(user.getFirstName() + " " + user.getLastName());
+                username.setText(user.getUsername());
                 if (user.getImageURL().equals("default"))
                 {
                     profile_image.setImageResource(R.mipmap.ic_launcher);
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity
                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
                     Message chat = snapshot.getValue(Message.class);
-                    if (chat.getReceiver().equals(firebaseUser.getUid()) && ! chat.isIsseen())
+                    if (chat.getReceiver().equals(firebaseUser.getUid()) && !chat.isIsseen())
                     {
                         unread++;
                     }
@@ -115,9 +115,7 @@ public class MainActivity extends AppCompatActivity
                     viewPagerAdapter.addFragment(new ChatsFragment(), "(" + unread + ") Chats");
                 }
 
-                //                viewPagerAdapter.addFragment(new ChatsFragment(), "Chats");
                 viewPagerAdapter.addFragment(new UsersFragment(), "Users");
-                //                viewPagerAdapter.addFragment(new ProfileFragment(), "Profile");
 
                 viewPager.setAdapter(viewPagerAdapter);
 
@@ -138,50 +136,6 @@ public class MainActivity extends AppCompatActivity
 //        viewPager.setAdapter(viewPagerAdapter);
 //
 //        tabLayout.setupWithViewPager(viewPager);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
-            case R.id.account:
-                Intent intent = new Intent(this, AccountActivity.class);
-                this.startActivity(intent);
-                break;
-            case R.id.sell_books:
-                Intent intent1 = new Intent(this, SellActivity.class);
-                this.startActivity(intent1);
-                break;
-            case R.id.buy_books:
-                Intent intent2 = new Intent(this, BuyActivity.class);
-                this.startActivity(intent2);
-                break;
-            case R.id.messages:
-                Intent intent3 = new Intent(this, MainActivity.class);
-                this.startActivity(intent3);
-                break;
-            case R.id.posts:
-                Intent intent4 = new Intent(this, ManagePostsActivity.class);
-                this.startActivity(intent4);
-                break;
-            case R.id.help:
-                Intent intent5 = new Intent(this, HelpActivity.class);
-                this.startActivity(intent5);
-                break;
-            case R.id.about:
-                Intent intent6 = new Intent(this, AboutActivity.class);
-                this.startActivity(intent6);
-                break;
-        }
-        return true;
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter
@@ -245,5 +199,49 @@ public class MainActivity extends AppCompatActivity
     {
         super.onPause();
         status("offline");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.account:
+                Intent intent = new Intent(this, AccountActivity.class);
+                this.startActivity(intent);
+                break;
+            case R.id.sell_books:
+                Intent intent1 = new Intent(this, SellActivity.class);
+                this.startActivity(intent1);
+                break;
+            case R.id.buy_books:
+                Intent intent2 = new Intent(this, BuyActivity.class);
+                this.startActivity(intent2);
+                break;
+            case R.id.messages:
+                Intent intent3 = new Intent(this, MainActivity.class);
+                this.startActivity(intent3);
+                break;
+            case R.id.posts:
+                Intent intent4 = new Intent(this, ManagePostsActivity.class);
+                this.startActivity(intent4);
+                break;
+            case R.id.help:
+                Intent intent5 = new Intent(this, HelpActivity.class);
+                this.startActivity(intent5);
+                break;
+            case R.id.about:
+                Intent intent6 = new Intent(this, AboutActivity.class);
+                this.startActivity(intent6);
+                break;
+        }
+        return true;
     }
 }

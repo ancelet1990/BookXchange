@@ -52,10 +52,12 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
 
 
     @Override
-    public void onBindViewHolder(@NonNull ManageSoldPostsAdapter.ViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull final ManageSoldPostsAdapter.ViewHolder holder, int position)
     {
         final Book book = aBook.get(position);
         final ManageSoldPostsAdapter.ViewHolder holder1 = holder;
+
+        final int pos = position;
 
         holder1.btn.setVisibility(View.GONE);
 
@@ -66,7 +68,7 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
         holder1.price.setText("Price: $" + book.getPrice());
         Picasso.with(context).load(book.getPhotoURL()).fit().into(holder1.bPic);
 
-
+        
 
         database = FirebaseDatabase.getInstance().getReference();
 
@@ -74,6 +76,7 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               aBook.remove(book);
                 holder1.btn.setVisibility(View.GONE);
                 holder1.sold.setVisibility(View.VISIBLE);
                 database.child("Books").child(book.getBookID()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -88,6 +91,7 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
                     }
                 });
                 book.setBookIsSold(true);
+                holder1.itemView.setVisibility(View.GONE);
             }
         });
 

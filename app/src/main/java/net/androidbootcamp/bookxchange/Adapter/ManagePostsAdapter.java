@@ -52,10 +52,11 @@ public class ManagePostsAdapter extends RecyclerView.Adapter<ManagePostsAdapter.
 
 
     @Override
-    public void onBindViewHolder(@NonNull ManagePostsAdapter.ViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull final ManagePostsAdapter.ViewHolder holder, final int position)
     {
         final Book book = aBook.get(position);
         final ManagePostsAdapter.ViewHolder holder1 = holder;
+        final int pos = position;
 
         if (book.getBookIsSold()) {
             holder1.btn.setVisibility(View.GONE);
@@ -79,6 +80,7 @@ public class ManagePostsAdapter extends RecyclerView.Adapter<ManagePostsAdapter.
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                aBook.remove(book);
                 holder1.btn.setVisibility(View.GONE);
                 holder1.sold.setVisibility(View.VISIBLE);
                 database.child("Books").child(book.getBookID()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -93,6 +95,7 @@ public class ManagePostsAdapter extends RecyclerView.Adapter<ManagePostsAdapter.
                     }
                 });
                 book.setBookIsSold(true);
+                holder1.itemView.setVisibility(View.GONE);
             }
         });
 

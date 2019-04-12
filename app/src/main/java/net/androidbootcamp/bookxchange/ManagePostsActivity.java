@@ -64,7 +64,7 @@ public class ManagePostsActivity extends AppCompatActivity
                     {
                         list.add(b);
                     }
-                    else {
+                    if (uid.equals(b.getUid()) && b.getBookIsSold()) {
                         list2.add(b);
                     }
                 }

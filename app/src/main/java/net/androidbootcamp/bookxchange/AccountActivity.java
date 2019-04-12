@@ -89,7 +89,7 @@ public class AccountActivity extends AppCompatActivity
                 {
                     auth.signOut();
                 }
-                startActivity(new Intent(AccountActivity.this, LoginActivity.class));
+                startActivity(new Intent(AccountActivity.this, StartActivity.class));
             }
         });
     }

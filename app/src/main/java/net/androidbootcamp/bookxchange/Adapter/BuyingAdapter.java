@@ -62,7 +62,6 @@ public class BuyingAdapter extends RecyclerView.Adapter<BuyingAdapter.ViewHolder
         holder.author.setText("Author: " + book.getAuthor());
         holder.condition.setText("Condition: " + book.getCondition());
         holder.price.setText("Price: $" + book.getPrice());
-        holder.user.setText(book.getUid());
         Picasso.with(context).load(book.getPhotoURL()).fit().into(holder.bPic);
 
     }

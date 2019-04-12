@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +34,8 @@ public class BuyActivity extends AppCompatActivity
     User user;
     EditText search_books;
     Book book;
+    FirebaseUser fuser;
+    String uid;
 
 
     @Override
@@ -44,6 +48,10 @@ public class BuyActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<Book>();
 
+
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+        uid = fuser.getUid();
+
         reference = FirebaseDatabase.getInstance().getReference().child("Books");
         reference.addValueEventListener(new ValueEventListener()
         {
@@ -53,7 +61,7 @@ public class BuyActivity extends AppCompatActivity
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
                 {
                     Book b = dataSnapshot1.getValue(Book.class);
-                    if (!b.getBookIsSold()) {
+                    if (!b.getBookIsSold() && !uid.equals(b.getUid())) {
                         list.add(b);
                     }
                 }

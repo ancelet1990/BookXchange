@@ -68,7 +68,7 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
         holder1.price.setText("Price: $" + book.getPrice());
         Picasso.with(context).load(book.getPhotoURL()).fit().into(holder1.bPic);
 
-        
+
 
         database = FirebaseDatabase.getInstance().getReference();
 

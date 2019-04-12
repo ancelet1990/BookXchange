@@ -6,9 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".BuyActivity">
 
+    <EditText
+        android:id="@+id/search_books"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Search..." />
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/myRecycler"/>
+        android:id="@+id/myRecycler"
+        android:layout_below="@id/search_books"/>
 
 </RelativeLayout>

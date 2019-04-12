@@ -1,9 +1,9 @@
 package net.androidbootcamp.bookxchange;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -17,8 +17,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-
 
 import net.androidbootcamp.bookxchange.Adapter.ManagePostsAdapter;
 import net.androidbootcamp.bookxchange.Adapter.ManageSoldPostsAdapter;
@@ -110,7 +108,7 @@ public class ManagePostsActivity extends AppCompatActivity
                 this.startActivity(intent2);
                 break;
             case R.id.messages:
-                Intent intent3 = new Intent(this, MessageActivity.class);
+                Intent intent3 = new Intent(this, MainActivity.class);
                 this.startActivity(intent3);
                 break;
             case R.id.posts:

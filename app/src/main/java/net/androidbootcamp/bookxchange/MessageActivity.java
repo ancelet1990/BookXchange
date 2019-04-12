@@ -121,7 +121,7 @@ public class MessageActivity extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 User user = dataSnapshot.getValue(User.class);
-                username.setText(user.getFirstName());
+                username.setText(user.getFirstName() + " " + user.getLastName());
                 if (user.getImageURL().equals("default"))
                 {
                     profile_image.setImageResource(R.mipmap.ic_launcher);
@@ -374,7 +374,7 @@ public class MessageActivity extends AppCompatActivity
                 this.startActivity(intent2);
                 break;
             case R.id.messages:
-                Intent intent3 = new Intent(this, MessageActivity.class);
+                Intent intent3 = new Intent(this, MainActivity.class);
                 this.startActivity(intent3);
                 break;
             case R.id.posts:

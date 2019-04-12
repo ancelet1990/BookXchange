@@ -2,16 +2,18 @@ package net.androidbootcamp.bookxchange.model;
 
 public class Book
 {
-    String bookID, isbn, title, author, condition, price, photoURL, uid;
-    Boolean bookIsSold;
+    private String bookID, isbn, title, author, condition, price, photoURL, uid;
+    private String search;
+    private Boolean bookIsSold;
 
     public Book()
     {
 
     }
-//
-//    public Book(String isbn, String title, String author, String condition, String price, String photoURL, String uid, Boolean bookIsSold)
+
+//    public Book(String bookID, String isbn, String title, String author, String condition, String price, String photoURL, String uid, String search, Boolean bookIsSold)
 //    {
+//        this.bookID = bookID;
 //        this.isbn = isbn;
 //        this.title = title;
 //        this.author = author;
@@ -19,6 +21,7 @@ public class Book
 //        this.price = price;
 //        this.photoURL = photoURL;
 //        this.uid = uid;
+//        this.search = search;
 //        this.bookIsSold = bookIsSold;
 //    }
 
@@ -106,4 +109,13 @@ public class Book
         this.bookIsSold = bookIsSold;
     }
 
+    public String getSearch()
+    {
+        return search;
+    }
+
+    public void setSearch(String search)
+    {
+        this.search = search;
+    }
 }

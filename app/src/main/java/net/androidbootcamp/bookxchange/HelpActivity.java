@@ -40,7 +40,7 @@ public class HelpActivity extends AppCompatActivity
                 this.startActivity(intent2);
                 break;
             case R.id.messages:
-                Intent intent3 = new Intent(this, MessageActivity.class);
+                Intent intent3 = new Intent(this, MainActivity.class);
                 this.startActivity(intent3);
                 break;
             case R.id.posts:

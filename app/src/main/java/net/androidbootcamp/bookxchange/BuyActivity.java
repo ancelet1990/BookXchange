@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +30,9 @@ public class BuyActivity extends AppCompatActivity
     ArrayList<Book> list;
     BuyingAdapter buyingAdapter;
     User user;
+    EditText search_books;
+    Book book;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,7 +68,102 @@ public class BuyActivity extends AppCompatActivity
                      .show();
             }
         });
+
+//        search_books = findViewById(R.id.search_books);
+//        search_books.addTextChangedListener(new TextWatcher()
+//        {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after)
+//            {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int start, int before, int count)
+//            {
+//                searchBooks(charSequence.toString().toLowerCase());
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s)
+//            {
+//
+//            }
+//        });
     }
+
+//    private void searchBooks(String s)
+//    {
+//        final FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
+//        Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("search")
+//                                      .startAt(s)
+//                                      .endAt(s + "\uf8ff");
+//
+//        query.addValueEventListener(new ValueEventListener()
+//        {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+//            {
+//                list.clear();
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    Book book = snapshot.getValue(Book.class);
+//
+//                    assert book != null;
+//                    assert fuser != null;
+//                    if (!user.getId().equals(fuser.getUid())) {
+//                        list.add(book);
+//                    }
+//                }
+//
+//                buyingAdapter = new BuyingAdapter(new BuyActivity().this, list, user);
+//                recyclerView.setAdapter(buyingAdapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError)
+//            {
+//
+//            }
+//        });
+//    }
+//
+//    private void readBooks()
+//    {
+//        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+//
+//        reference.addValueEventListener(new ValueEventListener()
+//        {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+//            {
+//                if (search_books.getText().toString().equals(""))
+//                {
+//                    list.clear();
+//                    for (DataSnapshot snapshot : dataSnapshot.getChildren())
+//                    {
+//                        Book book = snapshot.getValue(Book.class);
+//
+//                        assert book != null;
+//                        assert firebaseUser != null;
+//                        if (!book.getBookID().equals(book.getBookID()))
+//                        {
+//                            list.add(book);
+//                        }
+//                    }
+//
+//                    buyingAdapter = new UserAdapter(getContext(), list, false);
+//                    recyclerView.setAdapter(buyingAdapter);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError)
+//            {
+//
+//            }
+//        });
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -91,7 +190,7 @@ public class BuyActivity extends AppCompatActivity
                 this.startActivity(intent2);
                 break;
             case R.id.messages:
-                Intent intent3 = new Intent(this, MessageActivity.class);
+                Intent intent3 = new Intent(this, MainActivity.class);
                 this.startActivity(intent3);
                 break;
             case R.id.posts:

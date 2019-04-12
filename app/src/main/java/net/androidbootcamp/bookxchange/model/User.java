@@ -9,13 +9,15 @@ public class User
     private String id;
     private String imageURL;
     private String status;
+    private String search;
+    private String username;
 
     public User()
     {
 
     }
 
-    public User(String firstName, String lastName, String email, String school, String id, String imageURL, String status)
+    public User(String firstName, String lastName, String email, String school, String id, String imageURL, String status, String search, String username)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,33 +26,8 @@ public class User
         this.id = id;
         this.imageURL = imageURL;
         this.status = status;
-    }
-
-    public User(String firstName, String lastName, String email, String school, String id, String imageURL)
-    {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.school = school;
-        this.id = id;
-        this.imageURL = imageURL;
-    }
-
-    public User(String firstName, String lastName, String email, String school, String id)
-    {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.school = school;
-        this.id = id;
-    }
-
-    public User(String firstName, String lastName, String email, String school)
-    {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.school = school;
+        this.search = search;
+        this.username = username;
     }
 
     public String getFirstName()
@@ -121,5 +98,25 @@ public class User
     public void setStatus(String status)
     {
         this.status = status;
+    }
+
+    public String getSearch()
+    {
+        return search;
+    }
+
+    public void setSearch(String search)
+    {
+        this.search = search;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
     }
 }

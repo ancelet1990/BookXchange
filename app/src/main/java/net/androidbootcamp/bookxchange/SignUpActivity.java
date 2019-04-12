@@ -174,6 +174,9 @@ public class SignUpActivity extends AppCompatActivity
                                 hashMap.put("email", email);
                                 hashMap.put("school", school);
                                 hashMap.put("imageURL", "default");
+                                hashMap.put("status", "offline");
+                                hashMap.put("username", firstName + " " + lastName);
+                                hashMap.put("search", firstName.toLowerCase() + " " + lastName.toLowerCase());
 
                                 Log.d(TAG, "create user completed successfully = " +
                                            task.isSuccessful());

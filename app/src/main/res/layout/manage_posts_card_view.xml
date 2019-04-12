@@ -77,6 +77,16 @@
             android:text="Condition"
             android:layout_marginLeft="2dp"/>
 
+        <TextView
+            android:id="@+id/txtSOLD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SOLD"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         <Button
             android:id="@+id/btnSold"
             android:layout_width="wrap_content"

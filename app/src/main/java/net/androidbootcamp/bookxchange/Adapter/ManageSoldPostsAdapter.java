@@ -26,14 +26,14 @@ import net.androidbootcamp.bookxchange.model.Book;
 
 import java.util.ArrayList;
 
-public class ManagePostsAdapter extends RecyclerView.Adapter<ManagePostsAdapter.ViewHolder>
+public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPostsAdapter.ViewHolder>
 {
     private Context context;
     private ArrayList<Book> aBook;
     private DatabaseReference database;
 
 
-    public ManagePostsAdapter(Context context, ArrayList<Book> aBook)
+    public ManageSoldPostsAdapter(Context context, ArrayList<Book> aBook)
     {
         this.context = context;
         this.aBook = aBook;
@@ -41,28 +41,23 @@ public class ManagePostsAdapter extends RecyclerView.Adapter<ManagePostsAdapter.
     //just to commint and send
     @NonNull
     @Override
-    public ManagePostsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public ManageSoldPostsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(context).inflate(R.layout.manage_posts_card_view, parent, false);
 
 
 
-        return new ManagePostsAdapter.ViewHolder(view);
+        return new ManageSoldPostsAdapter.ViewHolder(view);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull ManagePostsAdapter.ViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull ManageSoldPostsAdapter.ViewHolder holder, int position)
     {
         final Book book = aBook.get(position);
-        final ManagePostsAdapter.ViewHolder holder1 = holder;
+        final ManageSoldPostsAdapter.ViewHolder holder1 = holder;
 
-        if (book.getBookIsSold()) {
-            holder1.btn.setVisibility(View.GONE);
-        }
-        else {
-            holder1.btn.setVisibility(View.VISIBLE);
-        }
+        holder1.btn.setVisibility(View.GONE);
 
         holder1.isbn.setText("ISBN: " + book.getIsbn());
         holder1.title.setText("Title: " + book.getTitle());

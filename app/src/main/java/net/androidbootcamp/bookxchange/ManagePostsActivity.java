@@ -21,6 +21,7 @@ import com.google.firebase.storage.FirebaseStorage;
 
 
 import net.androidbootcamp.bookxchange.Adapter.ManagePostsAdapter;
+import net.androidbootcamp.bookxchange.Adapter.ManageSoldPostsAdapter;
 import net.androidbootcamp.bookxchange.model.Book;
 
 import java.util.ArrayList;
@@ -29,8 +30,9 @@ public class ManagePostsActivity extends AppCompatActivity
 {
     DatabaseReference reference;
     RecyclerView recyclerView1, recyclerView2;
-    ArrayList<Book> list;
+    ArrayList<Book> list, list2;
     ManagePostsAdapter postsAdapter;
+    ManageSoldPostsAdapter soldPostsAdapter;
     FirebaseUser fuser;
     String uid;
 
@@ -45,6 +47,7 @@ public class ManagePostsActivity extends AppCompatActivity
         recyclerView1.setLayoutManager(new LinearLayoutManager(this));
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<Book>();
+        list2 = new ArrayList<Book>();
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
         uid = fuser.getUid();
@@ -63,9 +66,14 @@ public class ManagePostsActivity extends AppCompatActivity
                     {
                         list.add(b);
                     }
+                    else {
+                        list2.add(b);
+                    }
                 }
                 postsAdapter = new ManagePostsAdapter(ManagePostsActivity.this, list);
                 recyclerView1.setAdapter(postsAdapter);
+                soldPostsAdapter = new ManageSoldPostsAdapter(ManagePostsActivity.this, list2);
+                recyclerView2.setAdapter(soldPostsAdapter);
             }
 
             @Override

@@ -1,9 +1,9 @@
 package net.androidbootcamp.bookxchange;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import net.androidbootcamp.bookxchange.Adapter.BuyingAdapter;
 import net.androidbootcamp.bookxchange.model.Book;
+import net.androidbootcamp.bookxchange.model.User;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,7 @@ public class BuyActivity extends AppCompatActivity
     RecyclerView recyclerView;
     ArrayList<Book> list;
     BuyingAdapter buyingAdapter;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,7 +53,7 @@ public class BuyActivity extends AppCompatActivity
                         list.add(b);
                     }
                 }
-                buyingAdapter = new BuyingAdapter(BuyActivity.this, list);
+                buyingAdapter = new BuyingAdapter(BuyActivity.this, list, user);
                 recyclerView.setAdapter(buyingAdapter);
             }
 

@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"></activity>
         <activity
             android:name=".StartActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -46,16 +47,15 @@
             android:name=".LoginActivity"
             android:parentActivityName=".StartActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".SignUpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        android:parentActivityName=".StartActivity"/>
         <activity
             android:name=".ChangePassword"
             android:label="Change Password" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity" />
     </application>
 
 </manifest>

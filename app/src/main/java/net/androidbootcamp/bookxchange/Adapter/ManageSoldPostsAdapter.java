@@ -59,7 +59,7 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
 
         final int pos = position;
 
-        holder1.btn.setVisibility(View.INVISIBLE);
+        holder1.btn.setVisibility(View.GONE);
         holder1.sold.setVisibility(View.VISIBLE);
 
         holder1.isbn.setText("ISBN: " + book.getIsbn());

@@ -26,61 +26,63 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/txtISBN"
-            android:textSize="15dp"
-            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
             android:text="ISBN"
-            android:layout_marginLeft="2dp"/>
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/txtTitle"
-            android:textSize="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
             android:text="Title"
-            android:textStyle="bold"
-            android:layout_marginLeft="2dp"/>
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/txtAuthor"
-            android:textSize="15dp"
-            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
             android:text="Author"
-            android:layout_marginLeft="2dp"/>
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/txtPrice"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:text="Price"
-            android:layout_marginLeft="2dp"/>
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtCondition"
+            android:layout_marginLeft="2dp"
+            android:text="Price"
             android:textSize="15dp"
-            android:textStyle="bold"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
             android:text="Condition"
-            android:layout_marginLeft="2dp"/>
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtSOLD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="SOLD"
             android:textColor="@color/colorTextPrimary"
             android:textSize="24sp"
@@ -91,7 +93,6 @@
             android:id="@+id/btnSold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="125dp"
             android:layout_marginBottom="10dp"
             android:text="Mark As Sold"
             android:visibility="visible" />

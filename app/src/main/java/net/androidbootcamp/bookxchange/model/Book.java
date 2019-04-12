@@ -4,6 +4,7 @@ public class Book
 {
     private String bookID, isbn, title, author, condition, price, photoURL, uid;
     private String search;
+    private String bookPoster;
     private Boolean bookIsSold;
 
     public Book()
@@ -117,5 +118,15 @@ public class Book
     public void setSearch(String search)
     {
         this.search = search;
+    }
+
+    public String getBookPoster()
+    {
+        return bookPoster;
+    }
+
+    public void setBookPoster(String bookPoster)
+    {
+        this.bookPoster = bookPoster;
     }
 }

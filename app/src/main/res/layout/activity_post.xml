@@ -22,6 +22,17 @@
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="20sp" />
 
+            <TextView
+                android:id="@+id/txtEmptyActive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtLabel"
+                android:layout_margin="10dp"
+                android:text="no active posts to display..."
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerActive"
                 android:layout_width="match_parent"
@@ -41,6 +52,17 @@
                 android:text="Sold Books"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txtEmptySold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtLabel2"
+                android:layout_margin="10dp"
+                android:text="you have not sold any books yet..."
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerSold"

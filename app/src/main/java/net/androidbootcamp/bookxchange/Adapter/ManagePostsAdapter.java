@@ -11,34 +11,34 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import net.androidbootcamp.bookxchange.model.Book;
 import net.androidbootcamp.bookxchange.R;
+import net.androidbootcamp.bookxchange.model.Book;
 
 import java.util.ArrayList;
 
-public class BuyingAdapter extends RecyclerView.Adapter<BuyingAdapter.ViewHolder>
+public class ManagePostsAdapter extends RecyclerView.Adapter<ManagePostsAdapter.ViewHolder>
 {
     private Context context;
     private ArrayList<Book> aBook;
 
-    public BuyingAdapter(Context context, ArrayList<Book> aBook)
+    public ManagePostsAdapter(Context context, ArrayList<Book> aBook)
     {
         this.context = context;
         this.aBook = aBook;
     }
-//just to commint and send
+    //just to commint and send
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public ManagePostsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        View view = LayoutInflater.from(context).inflate(R.layout.card_view, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.manage_posts_card_view, parent, false);
 
-        return new BuyingAdapter.ViewHolder(view);
+        return new ManagePostsAdapter.ViewHolder(view);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull ManagePostsAdapter.ViewHolder holder, int position)
     {
         final Book book = aBook.get(position);
 
@@ -60,21 +60,21 @@ public class BuyingAdapter extends RecyclerView.Adapter<BuyingAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView isbn, title, author, condition, price, user;
+        public TextView isbn, title, author, condition, price, user, label1, label2;
         public ImageView bPic;
 
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
 
+            label1 = itemView.findViewById(R.id.txtLabel);
+            label2 = itemView.findViewById(R.id.txtLabel2);
             isbn = itemView.findViewById(R.id.txtISBN);
             title = itemView.findViewById(R.id.txtTitle);
             author = itemView.findViewById(R.id.txtAuthor);
             price = itemView.findViewById(R.id.txtPrice);
             condition = itemView.findViewById(R.id.txtCondition);
             bPic = itemView.findViewById(R.id.imgBookPhoto);
-            user = itemView.findViewById(R.id.txtUser);
-
         }
     }
 }

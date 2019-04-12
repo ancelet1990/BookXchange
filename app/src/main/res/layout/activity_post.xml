@@ -1,47 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ManagePostsActivity">
+    android:layout_height="wrap_content">
 
-    <!--<TextView-->
-        <!--android:id="@+id/textView2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:paddingLeft="20dp"-->
-        <!--android:paddingTop="20dp"-->
-        <!--android:paddingRight="20dp"-->
-        <!--android:text="@string/active_posts"-->
-        <!--android:textColor="@color/colorTextPrimary"-->
-        <!--android:textSize="24sp" />-->
+    <TextView
+    android:id="@+id/txtLabel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:text="Active Posts"
+    android:textColor="@color/colorTextPrimary"
+    android:textSize="20sp" />
 
-    <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:paddingLeft="20dp"-->
-        <!--android:paddingTop="10dp"-->
-        <!--android:paddingRight="20dp"-->
-        <!--android:scrollbars="vertical" />-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerActive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtLabel"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
-    <!--<TextView-->
-        <!--android:id="@+id/textView3"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:paddingLeft="20dp"-->
-        <!--android:paddingTop="20dp"-->
-        <!--android:paddingRight="20dp"-->
-        <!--android:text="@string/sold_books"-->
-        <!--android:textColor="@color/colorTextPrimary"-->
-        <!--android:textSize="24sp" />-->
+    </android.support.v7.widget.RecyclerView>
 
-    <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:paddingLeft="20dp"-->
-        <!--android:paddingTop="10dp"-->
-        <!--android:paddingRight="20dp"-->
-        <!--android:scrollbars="vertical" />-->
-</LinearLayout>
+    <TextView
+        android:id="@+id/txtLabel2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recyclerActive"
+        android:layout_margin="10dp"
+        android:text="Sold Books"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="20sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerSold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtLabel2"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

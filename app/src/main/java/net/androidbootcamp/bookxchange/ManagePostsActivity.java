@@ -1,18 +1,80 @@
 package net.androidbootcamp.bookxchange;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+
+
+import net.androidbootcamp.bookxchange.Adapter.ManagePostsAdapter;
+import net.androidbootcamp.bookxchange.model.Book;
+
+import java.util.ArrayList;
 
 public class ManagePostsActivity extends AppCompatActivity
 {
+    DatabaseReference reference;
+    RecyclerView recyclerView1, recyclerView2;
+    ArrayList<Book> list;
+    ManagePostsAdapter postsAdapter;
+    FirebaseUser fuser;
+    String uid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
+
+        recyclerView1 = findViewById(R.id.recyclerActive);
+        recyclerView2 = findViewById(R.id.recyclerSold);
+        recyclerView1.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
+        list = new ArrayList<Book>();
+
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+        uid = fuser.getUid();
+
+        reference = FirebaseDatabase.getInstance().getReference().child("Books");
+
+        reference.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                {
+                    Book b = dataSnapshot1.getValue(Book.class);
+                    if (uid.equals(b.getUid()) && !b.getBookIsSold())
+                    {
+                        list.add(b);
+                    }
+                }
+                postsAdapter = new ManagePostsAdapter(ManagePostsActivity.this, list);
+                recyclerView1.setAdapter(postsAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+                Toast.makeText(ManagePostsActivity.this, "Oops.... Something is wrong", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
     }
 
     @Override

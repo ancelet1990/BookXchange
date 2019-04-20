@@ -50,7 +50,7 @@ public class ManagePostsActivity extends AppCompatActivity
         fuser = FirebaseAuth.getInstance().getCurrentUser();
         uid = fuser.getUid();
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Books");
+        reference = FirebaseDatabase.getInstance().getReference().child("books");
 
         reference.addValueEventListener(new ValueEventListener()
         {

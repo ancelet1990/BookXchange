@@ -139,7 +139,7 @@ public class SellActivity extends AppCompatActivity
                 book.setUid(uid);
                 book.setBookIsSold(false);
 
-                database.child("Books").child(bookID).setValue(book);
+                database.child("books").child(bookID).setValue(book);
                 startActivity(new Intent(SellActivity.this, ManagePostsActivity.class));
             }
         });

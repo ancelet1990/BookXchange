@@ -12,19 +12,19 @@ public class Book
 
     }
 
-//    public Book(String bookID, String isbn, String title, String author, String condition, String price, String photoURL, String uid, String search, Boolean bookIsSold)
-//    {
-//        this.bookID = bookID;
-//        this.isbn = isbn;
-//        this.title = title;
-//        this.author = author;
-//        this.condition = condition;
-//        this.price = price;
-//        this.photoURL = photoURL;
-//        this.uid = uid;
-//        this.search = search;
-//        this.bookIsSold = bookIsSold;
-//    }
+    public Book(String bookID, String isbn, String title, String author, String condition, String price, String photoURL, String uid, String search, Boolean bookIsSold)
+    {
+        this.bookID = bookID;
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.condition = condition;
+        this.price = price;
+        this.photoURL = photoURL;
+        this.uid = uid;
+        this.search = search;
+        this.bookIsSold = bookIsSold;
+    }
 
     public void setBookID(String bookID) { this.bookID = bookID; }
 

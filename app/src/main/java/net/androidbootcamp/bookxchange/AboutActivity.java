@@ -36,7 +36,7 @@ public class AboutActivity extends AppCompatActivity
                 this.startActivity(intent1);
                 break;
             case R.id.buy_books:
-                Intent intent2 = new Intent(this, BuyActivity.class);
+                Intent intent2 = new Intent(this, MainBuyActivity.class);
                 this.startActivity(intent2);
                 break;
             case R.id.messages:

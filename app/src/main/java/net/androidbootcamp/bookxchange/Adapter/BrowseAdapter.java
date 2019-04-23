@@ -17,44 +17,34 @@ import com.squareup.picasso.Picasso;
 import net.androidbootcamp.bookxchange.MessageActivity;
 import net.androidbootcamp.bookxchange.R;
 import net.androidbootcamp.bookxchange.model.Book;
-import net.androidbootcamp.bookxchange.model.User;
+
 
 import java.util.ArrayList;
 
-public class BuyingAdapter extends RecyclerView.Adapter<BuyingAdapter.ViewHolder>
-{
+public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder>{
     private Context context;
     private ArrayList<Book> aBook;
-    private User user;
 
-    public BuyingAdapter(Context context, ArrayList<Book> aBook, User user)
+
+    public BrowseAdapter(Context context, ArrayList<Book> aBook)
     {
         this.context = context;
         this.aBook = aBook;
-        this.user = user;
+
     }
-//just to commint and send
+    //just to commint and send
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public BrowseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(context).inflate(R.layout.card_view, parent, false);
 
         closeKeyboard(view);
-        return new BuyingAdapter.ViewHolder(view);
-    }
-
-    private void closeKeyboard(View view) {
-
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+        return new BrowseAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position)
-    {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Book book = aBook.get(position);
 
         holder.isbn.setText("ISBN: " + book.getIsbn());
@@ -74,8 +64,16 @@ public class BuyingAdapter extends RecyclerView.Adapter<BuyingAdapter.ViewHolder
                 context.startActivity(intent);
             }
         });
-
     }
+
+    private void closeKeyboard(View view) {
+
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
 
     @Override
     public int getItemCount()
@@ -86,7 +84,7 @@ public class BuyingAdapter extends RecyclerView.Adapter<BuyingAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView isbn, title, author, condition, price, user, searchBooks;
+        public TextView isbn, title, author, condition, price, user;
         public ImageView bPic;
         Button btnMessage;
 
@@ -103,8 +101,8 @@ public class BuyingAdapter extends RecyclerView.Adapter<BuyingAdapter.ViewHolder
             bPic = itemView.findViewById(R.id.imgBookPhoto);
             user = itemView.findViewById(R.id.txtUser);
             btnMessage = itemView.findViewById(R.id.btnMessage);
-            searchBooks = itemView.findViewById(R.id.search_books);
 
         }
     }
+
 }

@@ -53,7 +53,7 @@ public class StartActivity extends AppCompatActivity
 
         if (firebaseUser != null)
         {
-            Intent intent = new Intent(StartActivity.this, BuyActivity.class);
+            Intent intent = new Intent(StartActivity.this, MainBuyActivity.class);
             startActivity(intent);
             finish();
         }

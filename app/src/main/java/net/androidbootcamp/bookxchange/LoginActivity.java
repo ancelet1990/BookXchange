@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity
 
         if (auth.getCurrentUser() != null)
         {
-            startActivity(new Intent(LoginActivity.this, BuyActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainBuyActivity.class));
             finish();
         }
 
@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity
                                 }
                             } else
                             {
-                                startActivity(new Intent(LoginActivity.this, BuyActivity.class));
+                                startActivity(new Intent(LoginActivity.this, MainBuyActivity.class));
                                 finish();
                             }
                         }

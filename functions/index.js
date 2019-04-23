@@ -2,7 +2,7 @@ const functions = require('firebase-functions');
 
 const request = require('request-promise')
 
-exports.indexBooksToElastic = functions.database.ref('/books/_doc/{bookID}')
+exports.indexBooksToElastic = functions.database.ref('/books/{bookID}')
 	.onWrite((change,context) => {
 		let bookData = change.after.val();
 		let bookID = context.params.bookID;
@@ -10,7 +10,7 @@ exports.indexBooksToElastic = functions.database.ref('/books/_doc/{bookID}')
 		console.log('Indexing book:', bookData);
 		
 		let elasticSearchConfig = functions.config().elasticsearch;
-		let elasticSearchUrl = elasticSearchConfig.url + 'books/' + bookID;
+		let elasticSearchUrl = elasticSearchConfig.url + 'books/book/' + bookID;
 		let elasticSearchMethod = bookData ? 'POST' : 'DELETE';
 		
 		let elasticSearchRequest = {

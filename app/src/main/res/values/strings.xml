@@ -46,4 +46,13 @@
 
     <string name="active_posts">Active Posts</string>
     <string name="sold_books">Sold Books</string>
+    <string name="node_elasticsearch">elasticsearch</string>
+    <string name="field_password">password</string>
+
+    <!-- Fragment Names -->
+    <string name="fragment_search">Search</string>
+    <string name="fragment_watch_list">Watch List</string>
+    <string name="fragment_post">Post</string>
+    <string name="fragment_view_post">Post</string>
+    <string name="fragment_account">Account</string>
 </resources>

@@ -33,6 +33,7 @@ public class ManagePostsAdapter extends RecyclerView.Adapter<ManagePostsAdapter.
     private DatabaseReference database;
 
 
+
     public ManagePostsAdapter(Context context, ArrayList<Book> aBook)
     {
         this.context = context;
@@ -83,7 +84,7 @@ public class ManagePostsAdapter extends RecyclerView.Adapter<ManagePostsAdapter.
                 aBook.remove(book);
                 holder1.btn.setVisibility(View.GONE);
                 holder1.sold.setVisibility(View.VISIBLE);
-                database.child("Books").child(book.getBookID()).addListenerForSingleValueEvent(new ValueEventListener() {
+                database.child("books").child(book.getBookID()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         dataSnapshot.getRef().child("bookIsSold").setValue(true);

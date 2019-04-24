@@ -80,7 +80,7 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
                aBook.remove(book);
                 holder1.btn.setVisibility(View.INVISIBLE);
                 holder1.sold.setVisibility(View.VISIBLE);
-                database.child("Books").child(book.getBookID()).addListenerForSingleValueEvent(new ValueEventListener() {
+                database.child("books").child(book.getBookID()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         dataSnapshot.getRef().child("bookIsSold").setValue(true);

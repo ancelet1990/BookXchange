@@ -36,14 +36,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessageActivity extends AppCompatActivity
 {
-    CircleImageView profile_image;
-    TextView username;
+    private CircleImageView profile_image;
+    private TextView username;
 
-    FirebaseUser fuser;
-    DatabaseReference reference;
+    private FirebaseUser fuser;
+    private DatabaseReference reference;
 
-    ImageButton btn_send;
-    EditText text_send;
+    private ImageButton btn_send;
+    private EditText text_send;
 
     MessageAdapter messageAdapter;
     List<Message> mchat;
@@ -146,7 +146,7 @@ public class MessageActivity extends AppCompatActivity
         seenMessage(userid);
     }
 
-    private void seenMessage(final String userid)
+    private void seenMessage(final String userID)
     {
         reference = FirebaseDatabase.getInstance().getReference("Chats");
         seenListener = reference.addValueEventListener(new ValueEventListener()
@@ -157,7 +157,7 @@ public class MessageActivity extends AppCompatActivity
                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
                     Message chat = snapshot.getValue(Message.class);
-                    if (chat.getReceiver().equals(fuser.getUid()) && chat.getSender().equals(userid))
+                    if (chat.getReceiver().equals(fuser.getUid()) && chat.getSender().equals(userID))
                     {
                         HashMap<String, Object> hashMap = new HashMap<>();
                         hashMap.put("isseen", true);

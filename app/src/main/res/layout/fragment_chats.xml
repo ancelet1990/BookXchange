@@ -8,7 +8,7 @@
     tools:context=".Fragments.ChatsFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyler_view"
+        android:id="@+id/recyler_view_chats"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

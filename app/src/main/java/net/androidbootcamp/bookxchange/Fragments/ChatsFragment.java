@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import net.androidbootcamp.bookxchange.Adapter.ChatsAdapter;
 import net.androidbootcamp.bookxchange.Adapter.UserAdapter;
 import net.androidbootcamp.bookxchange.Notifications.Token;
 import net.androidbootcamp.bookxchange.R;
@@ -30,7 +31,7 @@ import java.util.List;
 public class ChatsFragment extends Fragment
 {
     private RecyclerView recyclerView;
-    private UserAdapter userAdapter;
+    private ChatsAdapter chatsAdapter;
     private List<User> mUsers;
 
     FirebaseUser fuser;
@@ -45,12 +46,18 @@ public class ChatsFragment extends Fragment
     {
         View view = inflater.inflate(R.layout.fragment_chats, container, false);
 
-        recyclerView = view.findViewById(R.id.recyler_view);
+        recyclerView = view.findViewById(R.id.recyler_view_chats);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        fuser = FirebaseAuth.getInstance().getCurrentUser();
+        init();
+        updateToken(FirebaseInstanceId.getInstance().getToken());
+        return view;
+    }
 
+    private void init() {
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+        
         usersList = new ArrayList<>();
 
         //new code
@@ -77,42 +84,6 @@ public class ChatsFragment extends Fragment
             }
         });
 
-        //removed for performance
-        //        reference = FirebaseDatabase.getInstance().getReference("Chats");
-        //        reference.addValueEventListener(new ValueEventListener()
-        //        {
-        //            @Override
-        //            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-        //            {
-        //                usersList.clear();
-        //
-        //                for (DataSnapshot snapshot : dataSnapshot.getChildren())
-        //                {
-        //                    Chat chat = snapshot.getValue(Chat.class);
-        //
-        //                    if (chat.getSender().equals(fuser.getUid()))
-        //                    {
-        //                        usersList.add(chat.getReceiver());
-        //                    }
-        //                    if (chat.getReceiver().equals(fuser.getUid()))
-        //                    {
-        //                        usersList.add(chat.getSender());
-        //                    }
-        //                }
-        //
-        //                readChats();
-        //            }
-        //
-        //            @Override
-        //            public void onCancelled(@NonNull DatabaseError databaseError)
-        //            {
-        //
-        //            }
-        //        });
-
-        updateToken(FirebaseInstanceId.getInstance().getToken());
-
-        return view;
     }
 
     //for notifications
@@ -132,7 +103,6 @@ public class ChatsFragment extends Fragment
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                mUsers.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
                     User user = snapshot.getValue(User.class);
@@ -145,8 +115,8 @@ public class ChatsFragment extends Fragment
                     }
                 }
 
-                userAdapter = new UserAdapter(getContext(), mUsers, true);
-                recyclerView.setAdapter(userAdapter);
+                chatsAdapter = new ChatsAdapter(getContext(), mUsers, true);
+                recyclerView.setAdapter(chatsAdapter);
             }
 
             @Override

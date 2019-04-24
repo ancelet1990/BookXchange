@@ -53,9 +53,11 @@
     <string name="fragment_search">Search</string>
     <string name="fragment_watch_list">Watch List</string>
     <string name="fragment_post">Post</string>
-    <string name="fragment_view_post">Post</string>
+    <string name="fragment_view_book">Book</string>
     <string name="fragment_account">Account</string>
 
     <!-- About page info -->
     <string name="about_info"></string>
+
+    <string name="arg_book_id">arg_book_id</string>
 </resources>

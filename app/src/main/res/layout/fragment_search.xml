@@ -20,4 +20,12 @@
         android:layout_height="match_parent"
         android:layout_below="@id/search_books" />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/containerframe"
+        android:visibility="gone">
+
+    </FrameLayout>
+
 </RelativeLayout>

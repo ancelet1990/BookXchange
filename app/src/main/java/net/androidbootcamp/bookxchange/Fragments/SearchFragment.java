@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,6 +50,7 @@ public class SearchFragment extends Fragment {
     private ArrayList<Book> mBooks;
     private SearchAdapter searchAdapter;
     private static final int VERTICAL_ITEM_SPACE = 48;
+    private FrameLayout mFrameLayout;
 
     private EditText mSearchText;
 
@@ -58,6 +61,7 @@ public class SearchFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.searchRecycler);
         mSearchText = view.findViewById(R.id.search_books);
+        mFrameLayout = view.findViewById(R.id.containerframe);
 
         //add ItemDecoration
         recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(VERTICAL_ITEM_SPACE));
@@ -157,6 +161,21 @@ public class SearchFragment extends Fragment {
                 return false;
             }
         });
+    }
+
+    public void viewPost(String bookID){
+        BookDetailFragment fragment = new BookDetailFragment();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+        Bundle args = new Bundle();
+        args.putString(getString(R.string.arg_book_id), bookID);
+        fragment.setArguments(args);
+
+        transaction.replace(R.id.containerframe, fragment, getString(R.string.fragment_view_book));
+        transaction.addToBackStack(getString(R.string.fragment_view_book));
+        transaction.commit();
+
+        mFrameLayout.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -67,7 +67,6 @@ public class ChatsFragment extends Fragment
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                usersList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
                     Chatlist chatlist = snapshot.getValue(Chatlist.class);
@@ -103,6 +102,7 @@ public class ChatsFragment extends Fragment
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
+                mUsers.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
                     User user = snapshot.getValue(User.class);

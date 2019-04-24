@@ -96,8 +96,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                ViewPagerAdapter viewPagerAdapter =
-                        new ViewPagerAdapter(getSupportFragmentManager());
+                MainActivity.ViewPagerAdapter viewPagerAdapter =
+                        new MainActivity.ViewPagerAdapter(getSupportFragmentManager());
                 int unread = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                 {
@@ -106,6 +106,10 @@ public class MainActivity extends AppCompatActivity
                     {
                         unread++;
                     }
+                }
+
+                if (unread >= 1) {
+
                 }
 
                 if (unread == 0)

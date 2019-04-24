@@ -37,7 +37,7 @@ public class AccountActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        imageView = findViewById(R.id.imageLogo);
+        imageView = findViewById(R.id.imageView3);
         txtAccountName = findViewById(R.id.txtAccountName);
         txtAccountEmail = findViewById(R.id.txtAccountEmail);
         txtAccountSchool = findViewById(R.id.txtAccountSchool);

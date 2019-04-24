@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/MenuStyle">
 
@@ -62,12 +62,13 @@
             android:hint="Type a message..."/>
 
         <ImageButton
+            android:id="@+id/btn_send"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/btn_send"
-            android:background="@drawable/ic_action_name"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_action_name"
+            android:tint="@color/colorPrimary" />
 
     </RelativeLayout>
 

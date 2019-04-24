@@ -22,8 +22,12 @@ import net.androidbootcamp.bookxchange.Adapter.BrowseAdapter;
 import net.androidbootcamp.bookxchange.R;
 import net.androidbootcamp.bookxchange.model.Book;
 import net.androidbootcamp.bookxchange.model.User;
+import net.androidbootcamp.bookxchange.util.DividerItemDecoration;
+import net.androidbootcamp.bookxchange.util.VerticalSpaceItemDecoration;
 
 import java.util.ArrayList;
+
+import static android.widget.LinearLayout.HORIZONTAL;
 
 public class BrowseFragment extends Fragment {
 
@@ -33,7 +37,7 @@ public class BrowseFragment extends Fragment {
     BrowseAdapter browseAdapter;
     FirebaseUser fuser;
     String uid;
-
+    private static final int VERTICAL_ITEM_SPACE = 48;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,8 +46,13 @@ public class BrowseFragment extends Fragment {
         recyclerView = view.findViewById(R.id.buyRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
+        //add ItemDecoration
+        recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(VERTICAL_ITEM_SPACE));
+        //or
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+        //or
+        recyclerView.addItemDecoration(
+                new DividerItemDecoration(getActivity(), R.drawable.drawable_divider));
 
         mBook = new ArrayList<Book>();
 

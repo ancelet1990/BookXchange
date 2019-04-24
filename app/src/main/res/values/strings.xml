@@ -55,4 +55,7 @@
     <string name="fragment_post">Post</string>
     <string name="fragment_view_post">Post</string>
     <string name="fragment_account">Account</string>
+
+    <!-- About page info -->
+    <string name="about_info"></string>
 </resources>

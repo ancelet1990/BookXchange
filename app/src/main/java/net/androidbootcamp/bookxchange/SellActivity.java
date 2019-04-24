@@ -73,7 +73,7 @@ public class SellActivity extends AppCompatActivity
         imageView = findViewById(R.id.imgBookPhoto);
         fabCreatePost = findViewById(R.id.fabCreatePost);
 
-        imageView.setColorFilter(Color.GRAY);
+        imageView.setColorFilter(Color.LTGRAY);
 
         book = new Book();
 

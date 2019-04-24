@@ -4,31 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
+    android:background="@color/colorPrimary"
     tools:context=".SignUpActivity">
-
-    <TextView
-        android:id="@+id/txtAppNameReg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:text="@string/app_name"
-        android:textColor="@color/colorWhite"
-        android:textSize="46sp"
-        android:textStyle="bold"
-        android:typeface="sans"
-        app:fontFamily="sans-serif-condensed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtFirstName"
         android:layout_width="245dp"
         android:layout_height="44dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="184dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         android:autofillHints=""
@@ -110,11 +93,12 @@
         android:id="@+id/btnSignUp"
         android:layout_width="169dp"
         android:layout_height="54dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/colorAccent"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/light_rounded_button"
         android:text="@string/sign_up"
         android:textColor="@color/colorWhite"
         android:textSize="22sp"
+        android:textStyle="bold"
         android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -170,5 +154,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="227dp"
+        android:layout_height="229dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:scaleType="fitStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_color_notag" />
 
 </android.support.constraint.ConstraintLayout>

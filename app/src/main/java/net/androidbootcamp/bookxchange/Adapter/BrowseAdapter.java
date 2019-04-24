@@ -47,12 +47,11 @@ public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Book book = aBook.get(position);
 
-        holder.isbn.setText("ISBN: " + book.getIsbn());
-        holder.title.setText("Title: " + book.getTitle());
-        holder.author.setText("Author: " + book.getAuthor());
+        holder.isbn.setText(book.getIsbn());
+        holder.title.setText(book.getTitle());
+        holder.author.setText(book.getAuthor());
         holder.condition.setText("Condition: " + book.getCondition());
-        holder.price.setText("Price: $" + book.getPrice());
-        holder.user.setText("Seller: " + book.getBookPoster());
+        holder.price.setText("$" + book.getPrice());
         Picasso.with(context).load(book.getPhotoURL()).fit().into(holder.bPic);
         holder.btnMessage.setOnClickListener(new View.OnClickListener()
         {
@@ -84,7 +83,7 @@ public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView isbn, title, author, condition, price, user;
+        public TextView isbn, title, author, condition, price;
         public ImageView bPic;
         Button btnMessage;
 
@@ -99,7 +98,6 @@ public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder
             price = itemView.findViewById(R.id.txtPrice);
             condition = itemView.findViewById(R.id.txtCondition);
             bPic = itemView.findViewById(R.id.imgBookPhoto);
-            user = itemView.findViewById(R.id.txtUser);
             btnMessage = itemView.findViewById(R.id.btnMessage);
 
         }

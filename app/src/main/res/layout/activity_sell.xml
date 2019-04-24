@@ -169,7 +169,7 @@
         android:clickable="true"
         android:focusable="true"
         android:visibility="visible"
-        app:backgroundTint="?android:attr/colorControlActivated"
+        app:backgroundTint="@color/colorPrimary"
         app:backgroundTintMode="multiply"
         app:fabCustomSize="@android:dimen/notification_large_icon_width"
         app:fabSize="auto"

@@ -24,7 +24,9 @@ import net.androidbootcamp.bookxchange.R;
 import net.androidbootcamp.bookxchange.model.Book;
 import net.androidbootcamp.bookxchange.model.HitsList;
 import net.androidbootcamp.bookxchange.model.HitsObject;
+import net.androidbootcamp.bookxchange.util.DividerItemDecoration;
 import net.androidbootcamp.bookxchange.util.ElasticSearchAPI;
+import net.androidbootcamp.bookxchange.util.VerticalSpaceItemDecoration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,6 +47,7 @@ public class SearchFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Book> mBooks;
     private SearchAdapter searchAdapter;
+    private static final int VERTICAL_ITEM_SPACE = 48;
 
     private EditText mSearchText;
 
@@ -55,6 +58,14 @@ public class SearchFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.searchRecycler);
         mSearchText = view.findViewById(R.id.search_books);
+
+        //add ItemDecoration
+        recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(VERTICAL_ITEM_SPACE));
+        //or
+
+        //or
+        recyclerView.addItemDecoration(
+                new DividerItemDecoration(getActivity(), R.drawable.drawable_divider));
 
         init();
 

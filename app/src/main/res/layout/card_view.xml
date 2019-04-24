@@ -1,190 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="2"
-    android:orientation="horizontal">
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="12dp"
+    android:orientation="horizontal"
+    android:weightSum="2">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="2dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:layout_weight="1">
 
         <ImageView
             android:id="@+id/imgBookPhoto"
-            android:layout_width="148dp"
+            android:layout_width="103dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/notebook" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtISBN"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:text="ISBN"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:text="Title"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtAuthor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:text="Author"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Title"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txtPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:text="Price"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtISBN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ISBN"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/txtCondition"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:text="Condition"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtAuthor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="Author"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/txtUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="User"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtCondition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Condition"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/btnMessage"
+                    <TextView
+                        android:id="@+id/txtPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Price"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@color/colorAccent"
-                android:text="Message User"
-                android:textColor="@color/colorWhite"
-                android:textSize="18sp"
-                android:visibility="visible" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnMessage"
+                    android:layout_width="151dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/rounded_button"
+                    android:text="message seller"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_button"
+                    android:text="details"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
     <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1"-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_marginBottom="5dp"-->
-        <!--android:layout_marginTop="5dp">-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_marginBottom="5dp"-->
+    <!--android:layout_marginTop="5dp">-->
 
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/txtISBN"-->
-            <!--android:textSize="15dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:text="ISBN"-->
-            <!--android:layout_marginLeft="2dp"/>-->
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/txtISBN"-->
+    <!--android:textSize="15dp"-->
+    <!--android:textStyle="bold"-->
+    <!--android:text="ISBN"-->
+    <!--android:layout_marginLeft="2dp"/>-->
 
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/txtTitle"-->
-            <!--android:textSize="15dp"-->
-            <!--android:text="Title"-->
-            <!--android:textStyle="bold"-->
-            <!--android:layout_marginLeft="2dp"/>-->
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/txtTitle"-->
+    <!--android:textSize="15dp"-->
+    <!--android:text="Title"-->
+    <!--android:textStyle="bold"-->
+    <!--android:layout_marginLeft="2dp"/>-->
 
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/txtAuthor"-->
-            <!--android:textSize="15dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:text="Author"-->
-            <!--android:layout_marginLeft="2dp"/>-->
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/txtAuthor"-->
+    <!--android:textSize="15dp"-->
+    <!--android:textStyle="bold"-->
+    <!--android:text="Author"-->
+    <!--android:layout_marginLeft="2dp"/>-->
 
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/txtPrice"-->
-            <!--android:textSize="15dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:text="Price"-->
-            <!--android:layout_marginLeft="2dp"/>-->
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/txtPrice"-->
+    <!--android:textSize="15dp"-->
+    <!--android:textStyle="bold"-->
+    <!--android:text="Price"-->
+    <!--android:layout_marginLeft="2dp"/>-->
 
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/txtCondition"-->
-            <!--android:textSize="15dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:text="Condition"-->
-            <!--android:layout_marginLeft="2dp"/>-->
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/txtCondition"-->
+    <!--android:textSize="15dp"-->
+    <!--android:textStyle="bold"-->
+    <!--android:text="Condition"-->
+    <!--android:layout_marginLeft="2dp"/>-->
 
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/txtUser"-->
-            <!--android:textSize="15dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:text="User"/>-->
-<!--//try to send this also-->
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/btnMessage"-->
-            <!--android:text="Message User"-->
-            <!--android:layout_marginLeft="125dp"-->
-            <!--android:layout_marginBottom="10dp"-->
-            <!--android:visibility="visible"/>-->
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/txtUser"-->
+    <!--android:textSize="15dp"-->
+    <!--android:textStyle="bold"-->
+    <!--android:text="User"/>-->
+    <!--//try to send this also-->
+    <!--<Button-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/btnMessage"-->
+    <!--android:text="Message User"-->
+    <!--android:layout_marginLeft="125dp"-->
+    <!--android:layout_marginBottom="10dp"-->
+    <!--android:visibility="visible"/>-->
 
     <!--</LinearLayout>-->
 
     <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1"-->
-        <!--android:layout_marginBottom="5dp"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:layout_marginRight="5dp">-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:layout_marginBottom="5dp"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:layout_marginRight="5dp">-->
 
-        <!--<ImageView-->
-            <!--android:id="@+id/imgBookPhoto"-->
-            <!--android:layout_width="148dp"-->
-            <!--android:layout_height="match_parent" />-->
+    <!--<ImageView-->
+    <!--android:id="@+id/imgBookPhoto"-->
+    <!--android:layout_width="148dp"-->
+    <!--android:layout_height="match_parent" />-->
 
     <!--</LinearLayout>-->
 

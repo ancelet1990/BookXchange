@@ -108,10 +108,6 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
 
-                if (unread >= 1) {
-
-                }
-
                 if (unread == 0)
                 {
                     viewPagerAdapter.addFragment(new ChatsFragment(), "Chats");

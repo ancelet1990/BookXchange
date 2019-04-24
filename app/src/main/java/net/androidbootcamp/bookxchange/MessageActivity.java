@@ -212,6 +212,23 @@ public class MessageActivity extends AppCompatActivity
             }
         });        //end of added code
 
+        final DatabaseReference chatRefReciever = FirebaseDatabase.getInstance().getReference("Chatlist")
+                .child(userid)
+                .child(fuser.getUid());
+        chatRefReciever.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    chatRefReciever.child("id").setValue(fuser.getUid());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         final String msg = message;
 
 //        reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());

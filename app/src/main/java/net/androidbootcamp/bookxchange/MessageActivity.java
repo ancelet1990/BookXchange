@@ -50,7 +50,7 @@ public class MessageActivity extends AppCompatActivity
 
     RecyclerView recyclerView;
 
-    Intent intent;
+    private Intent intent;
 
     ValueEventListener seenListener;
     String userid;

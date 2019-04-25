@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import net.androidbootcamp.bookxchange.BookDetailActivity;
 import net.androidbootcamp.bookxchange.MessageActivity;
 import net.androidbootcamp.bookxchange.R;
 import net.androidbootcamp.bookxchange.model.Book;
@@ -63,6 +64,15 @@ public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder
                 context.startActivity(intent);
             }
         });
+
+        holder.btnDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(context, BookDetailActivity.class);
+                intent1.putExtra("bookid", book.getBookID());
+                context.startActivity(intent1);
+            }
+        });
     }
 
     private void closeKeyboard(View view) {
@@ -85,7 +95,7 @@ public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder
     {
         public TextView isbn, title, author, condition, price;
         public ImageView bPic;
-        Button btnMessage;
+        Button btnMessage, btnDetails;
 
 
         public ViewHolder(@NonNull View itemView)
@@ -99,6 +109,7 @@ public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder
             condition = itemView.findViewById(R.id.txtCondition);
             bPic = itemView.findViewById(R.id.imgBookPhoto);
             btnMessage = itemView.findViewById(R.id.btnMessage);
+            btnDetails = itemView.findViewById(R.id.btnDetails);
 
         }
     }

@@ -28,14 +28,11 @@ import net.androidbootcamp.bookxchange.model.Book;
 import java.util.ArrayList;
 
 public class BookDetailActivity extends AppCompatActivity {
-    private TextView isbn, title, author, condition, price, photoURL, uid;
+    private TextView isbn, title, author, condition, price, edition, tags;
     private String bookID;
     private ImageView bookImage;
     private Button btnMessage;
-    private Intent intent;
     private Book book;
-    DatabaseReference reference;
-    FirebaseUser fuser;
 
     public BookDetailActivity(){
 
@@ -54,6 +51,9 @@ public class BookDetailActivity extends AppCompatActivity {
         price = findViewById(R.id.tvPriceDetail);
         bookImage = findViewById(R.id.ivBookDetail);
         btnMessage = findViewById(R.id.btnMessageDetail);
+        edition = findViewById(R.id.tvEditionDetail);
+        tags = findViewById(R.id.tvTagsDetail);
+
 
         //Intent intent = getIntent();
        // book_ID = intent.getStringExtra("bookid");
@@ -77,13 +77,24 @@ public class BookDetailActivity extends AppCompatActivity {
                     Log.d("XXX ", "onDataChange: found the book: " + book.getTitle());
 
                     title.setText(book.getTitle());
-                    isbn.setText(book.getIsbn());
+                    isbn.setText("ISBN: " + book.getIsbn());
                     author.setText(book.getAuthor());
                     condition.setText("Condition: " + "\t" + book.getCondition());
                     price.setText("Asking Price: $"+ book.getPrice());
+                    tags.setText("Tags: " + book.getTags());
                     Picasso.with(getApplicationContext()).load(book.getPhotoURL()).fit().into(bookImage);
 
-                    //UniversalImageLoader.setImage(mPost.getImage(), mPostImage);
+                    String end = "";
+                    int no = Integer.parseInt(book.getEdition());
+
+                    if (no == 1) { end = "st"; }
+                    if (no == 2) { end = "nd"; }
+                    if  (no == 3) { end = "rd"; }
+                    if (no > 3) { end = "th"; }
+                    else { end = "";}
+
+                    edition.setText(book.getEdition() + end + " Edition");
+
                 }
             }
 

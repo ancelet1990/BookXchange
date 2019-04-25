@@ -56,9 +56,16 @@
     <string name="fragment_view_book">Book</string>
     <string name="fragment_account">Account</string>
 
-    <!-- About page info -->
-    <string name="about_info"></string>
-
     <string name="arg_book_id">arg_book_id</string>
     <string name="title_activity_sell3">SellActivity3</string>
+
+
+    <!-- About page info -->
+    <string name="terms_1">By entering your email, logging into your account, or accepting notifications, you agree to receive personalized BookXchange notifications each day. You may unsubscribe at any time.</string>
+    <string name="terms_2">Welcome to the BookXChange Mobile App (defined below). By using it, you are agreeing to these Terms of Use (defined below). Please read them carefully. If you have any questions, please email us at bookxchange18@gmail.com</string>
+    <string name="terms_3">These Terms of Use were last updated on April 23, 2019.</string>
+    <string name="terms_4">ACCEPTANCE OF TERMS OF USE</string>
+    <string name="terms_5">BookXChange, Inc. (“BookXChange” "we" or “us” or “our”) owns and operates the mobile applicatuon, BookXChange, the mobile and touch versions and any sites we have now or in the future that reference these Terms of Use (collectively, "Site"). By (a) using the Site and BookXchange’s services through the Site, (b) signing up for an account and/or (c) completing a purchase on the Site, you agree to these Terms of Use (defined below) and any additional terms applicable to certain programs in which you may elect to participate. You also agree to our Privacy Statement, incorporated herein by reference and located at http://www.BookXchange.com/privacy ("Privacy Statement"), and acknowledge that you will regularly visit the Terms of Use (defined below) to familiarize yourself with any updates. The Privacy Statement, together with these terms of use, and any other terms contained herein or incorporated herein by reference, are collectively referred to as the "Terms of Use." The term "using" also includes any person or entity that accesses or uses the Site with crawlers, robots, data mining, or extraction tools or any other functionality.</string>
+    <string name="terms_6">IF YOU DO NOT AGREE TO THESE TERMS OF USE, IMMEDIATELY STOP USING THE SITE AND DO NOT USE ANY BOOKXCHANGE SERVICE, PARTICIPATE IN ANY PROGRAM OR PURCHASE ANY VOUCHER, PRODUCT OR OTHER GOOD OR SERVICE OFFERED THROUGH THE SITE.</string>
+    <string name ="terms_7"></string>
 </resources>

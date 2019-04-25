@@ -63,7 +63,7 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
         holder1.sold.setVisibility(View.VISIBLE);
 
         holder1.isbn.setText("ISBN: " + book.getIsbn());
-        holder1.title.setText("Title: " + book.getTitle());
+        holder1.title.setText(book.getTitle());
         holder1.author.setText("Author: " + book.getAuthor());
         holder1.condition.setText("Condition: " + book.getCondition());
         holder1.price.setText("Price: $" + book.getPrice());

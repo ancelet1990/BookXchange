@@ -50,6 +50,18 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/EditionDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="10dp"
+                android:text="Author"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/AuthorDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,15 +118,16 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvISBNDetail"
+                android:id="@+id/tvEditionDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
-                android:text="ISBN"
+                android:text="Edition"
                 android:textColor="@color/colorTextPrimary"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvAuthorDetail"
@@ -128,7 +141,29 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/tvISBNDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="ISBN"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="20sp" />
+
+            <TextView
                 android:id="@+id/tvConditionDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:text="Condition"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvTagsDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

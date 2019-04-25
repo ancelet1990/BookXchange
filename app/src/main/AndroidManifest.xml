@@ -44,10 +44,10 @@
             android:label="Help" />
         <activity
             android:name=".AboutActivity"
-            android:label="About BookXchange" />
+            android:label="Terms of Use" />
         <activity
             android:name=".SellActivity"
-            android:label="Post Books for Sale"
+            android:label="Post Book for Sale"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".LoginActivity"

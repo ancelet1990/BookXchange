@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/account"
-        android:title="Account Info"
+        android:title="My Account"
         app:showAsAction="never"/>
 
     <item android:id="@+id/sell_books"
@@ -22,12 +22,14 @@
         android:title="Manage Posts"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/help"
+    <item
+        android:id="@+id/help"
         android:title="Help"
-        app:showAsAction="never"/>
+        android:visible="false"
+        app:showAsAction="never" />
 
     <item android:id="@+id/about"
-        android:title="About"
+        android:title="Terms of Use"
         app:showAsAction="never"/>
 
 </menu>

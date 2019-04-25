@@ -62,7 +62,7 @@ public class SellActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sell2);
+        setContentView(R.layout.activity_sell);
 
         txtISBN = findViewById(R.id.txtISBN);
         txtTitle = findViewById(R.id.txtTitle);

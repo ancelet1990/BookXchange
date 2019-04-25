@@ -1,7 +1,6 @@
 package net.androidbootcamp.bookxchange;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,17 +31,16 @@ import net.androidbootcamp.bookxchange.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
 {
-    CircleImageView profile_image;
-    TextView username, initials;
+    private CircleImageView profile_image;
+    private TextView username, initials;
 
-    FirebaseUser firebaseUser;
-    DatabaseReference reference;
+    private FirebaseUser firebaseUser;
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -81,9 +79,6 @@ public class MainActivity extends AppCompatActivity
                 }
                 String userInitials = user.getFirstName().charAt(0) + "" + user.getLastName().charAt(0);
                 initials.setText(userInitials);
-//                Random rnd = new Random();
-//                int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-//                initials.setBackgroundColor(color);
             }
 
             @Override
@@ -96,8 +91,7 @@ public class MainActivity extends AppCompatActivity
         final TabLayout tabLayout = findViewById(R.id.tab_layout);
         final ViewPager viewPager = findViewById(R.id.view_pager);
 
-        //        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        //new code
+
         reference = FirebaseDatabase.getInstance().getReference("Chats");
         reference.addValueEventListener(new ValueEventListener()
         {
@@ -137,14 +131,6 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-
-//        viewPagerAdapter.addFragment(new ChatsFragment(), "Chats");
-//        viewPagerAdapter.addFragment(new UsersFragment(), "Users");
-//        viewPagerAdapter.addFragment(new ProfileFragment(), "Profile");
-//
-//        viewPager.setAdapter(viewPagerAdapter);
-//
-//        tabLayout.setupWithViewPager(viewPager);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter

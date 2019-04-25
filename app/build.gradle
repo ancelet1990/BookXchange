@@ -40,6 +40,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.google.firebase:firebase-messaging:17.3.1'
 
 
     /*retrofit*/
@@ -47,6 +48,7 @@ dependencies {
 
     /*retrofit gson lib*/
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

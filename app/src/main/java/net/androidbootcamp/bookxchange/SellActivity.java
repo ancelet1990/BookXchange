@@ -42,7 +42,7 @@ import java.util.UUID;
 
 public class SellActivity extends AppCompatActivity
 {
-    private EditText txtISBN, txtTitle, txtAuthor, txtPrice;
+    private EditText txtISBN, txtTitle, txtAuthor, txtPrice, txtTags, txtEdition;
     private Spinner spConditon;
     private String condition, bookID;
     private String photoURL;
@@ -62,16 +62,18 @@ public class SellActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sell);
+        setContentView(R.layout.activity_sell2);
 
         txtISBN = findViewById(R.id.txtISBN);
-        txtTitle = findViewById(R.id.txtBookTitle);
+        txtTitle = findViewById(R.id.txtTitle);
         txtAuthor = findViewById(R.id.txtAuthor);
         spConditon = findViewById(R.id.spinnerCondition);
         txtPrice = findViewById(R.id.txtPrice);
         btnUploadPic = findViewById(R.id.btnAddPic);
         imageView = findViewById(R.id.imgBookPhoto);
         fabCreatePost = findViewById(R.id.fabCreatePost);
+        txtEdition = findViewById(R.id.txtEdiiton);
+        txtTags = findViewById(R.id.txtTags);
 
         imageView.setColorFilter(Color.LTGRAY);
 
@@ -118,7 +120,8 @@ public class SellActivity extends AppCompatActivity
                 String title = txtTitle.getText().toString().trim();
                 String author = txtAuthor.getText().toString().trim();
                 String price = txtPrice.getText().toString().trim();
-
+                String edition = txtEdition.getText().toString().trim();
+                String tags = txtTags.getText().toString().trim();
                 if (TextUtils.isEmpty(condition))
                 {
                     Toast.makeText(getApplicationContext(), "Please select a condition",
@@ -137,6 +140,8 @@ public class SellActivity extends AppCompatActivity
                 book.setCondition(condition);
                 book.setPrice(price);
                 book.setUid(uid);
+                book.setEdition(edition);
+                book.setTags(tags);
                 book.setBookIsSold(false);
 
                 database.child("books").child(bookID).setValue(book);

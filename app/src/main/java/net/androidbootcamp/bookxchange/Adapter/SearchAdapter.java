@@ -47,7 +47,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         holder.isbn.setText(book.getIsbn());
         holder.title.setText(book.getTitle());
         holder.author.setText(book.getAuthor());
-        holder.condition.setText(book.getCondition());
+        holder.condition.setText("Condition: " + book.getCondition());
         holder.price.setText("$" + book.getPrice());
         Picasso.with(mContext).load(book.getPhotoURL()).fit().into(holder.bPic);
         holder.btnMessage.setOnClickListener(new View.OnClickListener()

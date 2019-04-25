@@ -23,12 +23,12 @@
     <string name="enter_new_password">Enter new password…</string>
     <string name="confirm_new_password">Confirm new password…</string>
     <string name="image_logo">logo</string>
-    <string name="enter_edition">Enter edition</string>
+    <string name="enter_edition">Enter Edition</string>
     <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
     <string name="take_a_photo">Take a Photo</string>
     <string name="image_photo_upload">Photo Upload Image</string>
-    <string name="upload_photo">Upload Photo</string>
+    <string name="upload_photo">upload photo</string>
     <string name="create_post">Create Post</string>
     <string name="sign_out">Sign Out</string>
     <string name="log_out">Log Out</string>
@@ -60,4 +60,5 @@
     <string name="about_info"></string>
 
     <string name="arg_book_id">arg_book_id</string>
+    <string name="title_activity_sell3">SellActivity3</string>
 </resources>

@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     android:textSize="18sp"
     android:textColor="@color/colorTextSecondary"
-    android:paddingTop="10dp"
+    android:paddingTop="5dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingBottom="10dp"
+    android:paddingBottom="5dp"
     android:textAlignment="inherit">
 </TextView>

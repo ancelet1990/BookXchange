@@ -19,6 +19,8 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import net.androidbootcamp.bookxchange.Adapter.SearchAdapter;
@@ -51,6 +53,8 @@ public class SearchFragment extends Fragment {
     private SearchAdapter searchAdapter;
     private static final int VERTICAL_ITEM_SPACE = 48;
     private FrameLayout mFrameLayout;
+    private FirebaseUser fuser;
+    private String uid;
 
     private EditText mSearchText;
 
@@ -83,6 +87,9 @@ public class SearchFragment extends Fragment {
     }
 
     private void init() {
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+        uid = fuser.getUid();
+
         mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -131,7 +138,10 @@ public class SearchFragment extends Fragment {
 
                                 for(int i = 0; i < hitsList.getBookIndex().size(); i++){
                                     Log.d(TAG, "onResponse: data: " + hitsList.getBookIndex().get(i).getBook().toString());
-                                    mBooks.add(hitsList.getBookIndex().get(i).getBook());
+                                    if (!hitsList.getBookIndex().get(i).getBook().getUid().equals(uid) && !hitsList.getBookIndex().get(i).getBook().getBookIsSold()) {
+                                        mBooks.add(hitsList.getBookIndex().get(i).getBook());
+                                    }
+
                                 }
 
                                 Log.d(TAG, "onResponse: size: " + mBooks.size());

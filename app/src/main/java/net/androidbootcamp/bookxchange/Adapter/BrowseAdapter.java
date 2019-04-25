@@ -95,7 +95,7 @@ public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder
     {
         public TextView isbn, title, author, condition, price;
         public ImageView bPic;
-        Button btnMessage, btnDetails;
+        public Button btnMessage, btnDetails;
 
 
         public ViewHolder(@NonNull View itemView)

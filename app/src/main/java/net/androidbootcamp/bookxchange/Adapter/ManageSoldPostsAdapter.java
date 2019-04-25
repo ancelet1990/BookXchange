@@ -1,10 +1,8 @@
 package net.androidbootcamp.bookxchange.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,31 +17,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import net.androidbootcamp.bookxchange.ManagePostsActivity;
 import net.androidbootcamp.bookxchange.R;
 import net.androidbootcamp.bookxchange.model.Book;
 
 import java.util.ArrayList;
 
-public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPostsAdapter.ViewHolder>
-{
+public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPostsAdapter.ViewHolder> {
     private Context context;
     private ArrayList<Book> aBook;
     private DatabaseReference database;
 
 
-    public ManageSoldPostsAdapter(Context context, ArrayList<Book> aBook)
-    {
+    public ManageSoldPostsAdapter(Context context, ArrayList<Book> aBook) {
         this.context = context;
         this.aBook = aBook;
     }
+
     //just to commint and send
     @NonNull
     @Override
-    public ManageSoldPostsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-    {
+    public ManageSoldPostsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.manage_posts_card_view, parent, false);
-
 
 
         return new ManageSoldPostsAdapter.ViewHolder(view);
@@ -52,8 +45,7 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
 
 
     @Override
-    public void onBindViewHolder(@NonNull final ManageSoldPostsAdapter.ViewHolder holder, int position)
-    {
+    public void onBindViewHolder(@NonNull final ManageSoldPostsAdapter.ViewHolder holder, int position) {
         final Book book = aBook.get(position);
         final ManageSoldPostsAdapter.ViewHolder holder1 = holder;
 
@@ -70,14 +62,13 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
         Picasso.with(context).load(book.getPhotoURL()).fit().into(holder1.bPic);
 
 
-
         database = FirebaseDatabase.getInstance().getReference();
 
 
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               aBook.remove(book);
+                aBook.remove(book);
                 holder1.btn.setVisibility(View.INVISIBLE);
                 holder1.sold.setVisibility(View.VISIBLE);
                 database.child("books").child(book.getBookID()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -99,20 +90,17 @@ public class ManageSoldPostsAdapter extends RecyclerView.Adapter<ManageSoldPosts
     }
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return aBook.size();
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder
-    {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView isbn, title, author, condition, price, user, label1, label2, sold;
         public ImageView bPic;
         public Button btn;
 
-        public ViewHolder(@NonNull View itemView)
-        {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             label1 = itemView.findViewById(R.id.txtLabel);

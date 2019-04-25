@@ -28,8 +28,7 @@ import net.androidbootcamp.bookxchange.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersFragment extends Fragment
-{
+public class UsersFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private UserAdapter userAdapter;
@@ -38,8 +37,7 @@ public class UsersFragment extends Fragment
     EditText search_users;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_users, container, false);
 
         recyclerView = view.findViewById(R.id.recyler_view_users);
@@ -51,23 +49,19 @@ public class UsersFragment extends Fragment
         readUsers();
 
         search_users = view.findViewById(R.id.search_users);
-        search_users.addTextChangedListener(new TextWatcher()
-        {
+        search_users.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after)
-            {
+            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count)
-            {
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 searchUsers(charSequence.toString().toLowerCase());
             }
 
             @Override
-            public void afterTextChanged(Editable s)
-            {
+            public void afterTextChanged(Editable s) {
 
             }
         });
@@ -75,18 +69,15 @@ public class UsersFragment extends Fragment
         return view;
     }
 
-    private void searchUsers(String s)
-    {
+    private void searchUsers(String s) {
         final FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
         Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("search")
-                                      .startAt(s)
-                                      .endAt(s + "\uf8ff");
+                .startAt(s)
+                .endAt(s + "\uf8ff");
 
-        query.addValueEventListener(new ValueEventListener()
-        {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
@@ -103,34 +94,27 @@ public class UsersFragment extends Fragment
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
     }
 
-    private void readUsers()
-    {
+    private void readUsers() {
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
 
-        reference.addValueEventListener(new ValueEventListener()
-        {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                if (search_users.getText().toString().equals(""))
-                {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (search_users.getText().toString().equals("")) {
                     mUsers.clear();
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren())
-                    {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         User user = snapshot.getValue(User.class);
 
                         assert user != null;
                         assert firebaseUser != null;
-                        if (!user.getId().equals(firebaseUser.getUid()))
-                        {
+                        if (!user.getId().equals(firebaseUser.getUid())) {
                             mUsers.add(user);
                         }
                     }
@@ -141,8 +125,7 @@ public class UsersFragment extends Fragment
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

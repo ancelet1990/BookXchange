@@ -18,16 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import net.androidbootcamp.bookxchange.Adapter.BrowseAdapter;
-
 import net.androidbootcamp.bookxchange.R;
 import net.androidbootcamp.bookxchange.model.Book;
-import net.androidbootcamp.bookxchange.model.User;
 import net.androidbootcamp.bookxchange.util.DividerItemDecoration;
 import net.androidbootcamp.bookxchange.util.VerticalSpaceItemDecoration;
 
 import java.util.ArrayList;
-
-import static android.widget.LinearLayout.HORIZONTAL;
 
 public class BrowseFragment extends Fragment {
 
@@ -60,13 +56,10 @@ public class BrowseFragment extends Fragment {
         uid = fuser.getUid();
 
         reference = FirebaseDatabase.getInstance().getReference().child("books");
-        reference.addValueEventListener(new ValueEventListener()
-        {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
-                {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Book b = dataSnapshot1.getValue(Book.class);
                     if (!b.getBookIsSold() && !uid.equals(b.getUid())) {
                         mBook.add(b);
@@ -77,8 +70,7 @@ public class BrowseFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

@@ -29,8 +29,8 @@
                     android:id="@+id/buybooksheader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:text="Buy Books"
+                    android:layout_marginStart="25dp"
+                    android:text="@string/buy_books"
                     android:textColor="#fff"
                     android:textSize="18sp"
                     android:textStyle="bold" />

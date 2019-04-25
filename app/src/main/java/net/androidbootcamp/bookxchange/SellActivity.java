@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -40,8 +40,7 @@ import net.androidbootcamp.bookxchange.model.Book;
 import java.io.IOException;
 import java.util.UUID;
 
-public class SellActivity extends AppCompatActivity
-{
+public class SellActivity extends AppCompatActivity {
     private EditText txtISBN, txtTitle, txtAuthor, txtPrice, txtTags, txtEdition;
     private Spinner spConditon;
     private String condition, bookID;
@@ -59,8 +58,7 @@ public class SellActivity extends AppCompatActivity
     private StorageReference storageReference;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell);
 
@@ -82,19 +80,16 @@ public class SellActivity extends AppCompatActivity
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        spConditon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
+        spConditon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 condition = spConditon.getSelectedItem().toString();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
+            public void onNothingSelected(AdapterView<?> parent) {
                 Toast.makeText(getApplicationContext(), "Please select a condition",
-                               Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -102,33 +97,27 @@ public class SellActivity extends AppCompatActivity
                 .createFromResource(this, R.array.condition_array, R.layout.spinner_item);
         spConditon.setAdapter(condition_adapter);
 
-        btnUploadPic.setOnClickListener(new View.OnClickListener()
-        {
+        btnUploadPic.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 chooseImage();
             }
         });
 
-        fabCreatePost.setOnClickListener(new View.OnClickListener()
-        {
+        fabCreatePost.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 String isbn = txtISBN.getText().toString().trim();
                 String title = txtTitle.getText().toString().trim();
                 String author = txtAuthor.getText().toString().trim();
                 String price = txtPrice.getText().toString().trim();
                 String edition = txtEdition.getText().toString().trim();
                 String tags = txtTags.getText().toString().trim();
-                if (TextUtils.isEmpty(condition))
-                {
+                if (TextUtils.isEmpty(condition)) {
                     Toast.makeText(getApplicationContext(), "Please select a condition",
-                                   Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
-
 
 
                 database = FirebaseDatabase.getInstance().getReference();
@@ -150,8 +139,7 @@ public class SellActivity extends AppCompatActivity
         });
     }
 
-    private void chooseImage()
-    {
+    private void chooseImage() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -159,30 +147,25 @@ public class SellActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null &&
-            data.getData() != null)
-        {
+                data.getData() != null) {
             filePath = data.getData();
-            try
-            {
+            try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 imageView.clearColorFilter();
                 imageView.setImageBitmap(bitmap);
                 uploadImage();
-            } catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
     private void uploadImage() {
-        if (filePath != null)
-        {
+        if (filePath != null) {
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
@@ -192,30 +175,24 @@ public class SellActivity extends AppCompatActivity
             final StorageReference ref = storageReference.child("Book_Images/" + bookID);
 
             ref.putFile(filePath)
-               .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
-               {
-                   @Override
-                   public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
-                   {
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
 
-                   }
-               }).addOnFailureListener(new OnFailureListener()
-            {
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
                 @Override
-                public void onFailure(@NonNull Exception e)
-                {
+                public void onFailure(@NonNull Exception e) {
                     progressDialog.dismiss();
                     Toast.makeText(SellActivity.this, "Failed " + e.getMessage(),
-                                   Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT).show();
                 }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>()
-            {
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot)
-                {
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                     double progress = (100.0 * taskSnapshot.getBytesTransferred() /
-                                       taskSnapshot.getTotalByteCount());
+                            taskSnapshot.getTotalByteCount());
                     progressDialog.setMessage("Uploaded " + (int) progress + "%");
                 }
             }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -236,31 +213,26 @@ public class SellActivity extends AppCompatActivity
                         photoURL = ref.getDownloadUrl().toString();
                         progressDialog.dismiss();
                         Toast.makeText(SellActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
 
 
                     }
                 }
             });
-        } else
-        {
+        } else {
             Toast.makeText(SellActivity.this, "Filepath is NULL", Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.account:
                 Intent intent = new Intent(this, AccountActivity.class);
                 this.startActivity(intent);

@@ -2,8 +2,6 @@ package net.androidbootcamp.bookxchange;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -13,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,10 +19,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import net.androidbootcamp.bookxchange.Adapter.BrowseAdapter;
 import net.androidbootcamp.bookxchange.model.Book;
-
-import java.util.ArrayList;
 
 public class BookDetailActivity extends AppCompatActivity {
     private TextView isbn, title, author, condition, price, edition, tags;
@@ -34,7 +28,7 @@ public class BookDetailActivity extends AppCompatActivity {
     private Button btnMessage;
     private Book book;
 
-    public BookDetailActivity(){
+    public BookDetailActivity() {
 
     }
 
@@ -56,7 +50,7 @@ public class BookDetailActivity extends AppCompatActivity {
 
 
         //Intent intent = getIntent();
-       // book_ID = intent.getStringExtra("bookid");
+        // book_ID = intent.getStringExtra("bookid");
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             bookID = bundle.getString("bookid");
@@ -72,7 +66,7 @@ public class BookDetailActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DataSnapshot singleSnapshot = dataSnapshot.getChildren().iterator().next();
-                if(singleSnapshot != null){
+                if (singleSnapshot != null) {
                     book = singleSnapshot.getValue(Book.class);
                     Log.d("XXX ", "onDataChange: found the book: " + book.getTitle());
 
@@ -80,18 +74,27 @@ public class BookDetailActivity extends AppCompatActivity {
                     isbn.setText("ISBN: " + book.getIsbn());
                     author.setText(book.getAuthor());
                     condition.setText("Condition: " + "\t" + book.getCondition());
-                    price.setText("Asking Price: $"+ book.getPrice());
+                    price.setText("Asking Price: $" + book.getPrice());
                     tags.setText("Tags: " + book.getTags());
                     Picasso.with(getApplicationContext()).load(book.getPhotoURL()).fit().into(bookImage);
 
                     String end = "";
                     int no = Integer.parseInt(book.getEdition());
 
-                    if (no == 1) { end = "st"; }
-                    if (no == 2) { end = "nd"; }
-                    if  (no == 3) { end = "rd"; }
-                    if (no > 3) { end = "th"; }
-                    else { end = "";}
+                    if (no == 1) {
+                        end = "st";
+                    }
+                    if (no == 2) {
+                        end = "nd";
+                    }
+                    if (no == 3) {
+                        end = "rd";
+                    }
+                    if (no > 3) {
+                        end = "th";
+                    } else {
+                        end = "";
+                    }
 
                     edition.setText(book.getEdition() + end + " Edition");
 
@@ -130,18 +133,16 @@ public class BookDetailActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.account:
                 Intent intent = new Intent(this, AccountActivity.class);
                 this.startActivity(intent);

@@ -26,16 +26,14 @@ import net.androidbootcamp.bookxchange.model.User;
 
 import java.util.List;
 
-public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>
-{
+public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder> {
     private Context mContext;
     private List<User> mUsers;
     private boolean isChat;
 
     String theLastMessage;
 
-    public ChatsAdapter(Context mContext, List<User> mUsers, boolean isChat)
-    {
+    public ChatsAdapter(Context mContext, List<User> mUsers, boolean isChat) {
         this.mUsers = mUsers;
         this.mContext = mContext;
         this.isChat = isChat;
@@ -43,8 +41,7 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>
 
     @NonNull
     @Override
-    public ChatsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-    {
+    public ChatsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.user_item, parent, false);
         return new ChatsAdapter.ViewHolder(view);
     }
@@ -53,47 +50,37 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final User user = mUsers.get(position);
         holder.username.setText(user.getFirstName() + " " + user.getLastName());
-        if (user.getImageURL().equals("default"))
-        {
+        if (user.getImageURL().equals("default")) {
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
-        } else
-        {
+        } else {
             Glide.with(mContext).load(user.getImageURL()).into(holder.profile_image);
         }
         String userInitials = user.getFirstName().charAt(0) + "" + user.getLastName().charAt(0);
         holder.initials.setText(userInitials);
 
         //added for last message
-        if (isChat)
-        {
+        if (isChat) {
             lastMessage(user.getId(), holder.last_msg);
-        } else
-        {
+        } else {
             holder.last_msg.setVisibility(View.GONE);
         }
 
-        if (isChat)
-        {
-            if (user.getStatus().equals("online"))
-            {
+        if (isChat) {
+            if (user.getStatus().equals("online")) {
                 holder.img_on.setVisibility(View.VISIBLE);
                 holder.img_off.setVisibility(View.GONE);
-            } else
-            {
+            } else {
                 holder.img_on.setVisibility(View.GONE);
                 holder.img_off.setVisibility(View.VISIBLE);
             }
-        } else
-        {
+        } else {
             holder.img_on.setVisibility(View.GONE);
             holder.img_off.setVisibility(View.GONE);
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener()
-        {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent intent = new Intent(mContext, MessageActivity.class);
                 intent.putExtra("userid", user.getId());
                 mContext.startActivity(intent);
@@ -104,21 +91,18 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>
 
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return mUsers.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
-    {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView username;
         public ImageView profile_image;
         private ImageView img_on;
         private ImageView img_off;
         private TextView last_msg, initials;
 
-        public ViewHolder(View itemView)
-        {
+        public ViewHolder(View itemView) {
             super(itemView);
 
             username = itemView.findViewById(R.id.username);
@@ -131,29 +115,23 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>
     }
 
     //check for last message
-    private void lastMessage(final String userid, final TextView last_msg)
-    {
+    private void lastMessage(final String userid, final TextView last_msg) {
         theLastMessage = "default";
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
 
-        reference.addValueEventListener(new ValueEventListener()
-        {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren())
-                {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Message chat = snapshot.getValue(Message.class);
                     if (chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(userid) ||
-                            chat.getReceiver().equals(userid) && chat.getSender().equals(firebaseUser.getUid()))
-                    {
+                            chat.getReceiver().equals(userid) && chat.getSender().equals(firebaseUser.getUid())) {
                         theLastMessage = chat.getMessage();
                     }
                 }
 
-                switch (theLastMessage)
-                {
+                switch (theLastMessage) {
                     case "default":
                         last_msg.setText("No message");
                         break;
@@ -166,8 +144,7 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

@@ -1,14 +1,10 @@
 package net.androidbootcamp.bookxchange.Fragments;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -22,7 +18,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
+
 import net.androidbootcamp.bookxchange.Adapter.SearchAdapter;
 import net.androidbootcamp.bookxchange.R;
 import net.androidbootcamp.bookxchange.model.Book;
@@ -59,8 +55,7 @@ public class SearchFragment extends Fragment {
     private EditText mSearchText;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         recyclerView = view.findViewById(R.id.searchRecycler);
@@ -94,10 +89,10 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
-                if(actionId == EditorInfo.IME_ACTION_SEARCH
-                        ||actionId == EditorInfo.IME_ACTION_DONE
+                if (actionId == EditorInfo.IME_ACTION_SEARCH
+                        || actionId == EditorInfo.IME_ACTION_DONE
                         || event.getAction() == KeyEvent.ACTION_DOWN
-                        || event.getAction() == KeyEvent.KEYCODE_ENTER){
+                        || event.getAction() == KeyEvent.KEYCODE_ENTER) {
 
                     mBooks = new ArrayList<Book>();
 
@@ -113,7 +108,7 @@ public class SearchFragment extends Fragment {
 
                     String searchString = "";
 
-                    if(!mSearchText.equals("")){
+                    if (!mSearchText.equals("")) {
                         searchString = searchString + mSearchText.getText().toString() + "*";
                     }
 
@@ -125,18 +120,18 @@ public class SearchFragment extends Fragment {
 
                             HitsList hitsList = new HitsList();
                             String jsonResponse = "";
-                            try{
+                            try {
                                 Log.d(TAG, "onResponse: server response: " + response.toString());
 
-                                if(response.isSuccessful()){
+                                if (response.isSuccessful()) {
                                     hitsList = response.body().getHits();
-                                }else{
+                                } else {
                                     jsonResponse = response.errorBody().string();
                                 }
 
                                 Log.d(TAG, "onResponse: hits: " + hitsList);
 
-                                for(int i = 0; i < hitsList.getBookIndex().size(); i++){
+                                for (int i = 0; i < hitsList.getBookIndex().size(); i++) {
                                     Log.d(TAG, "onResponse: data: " + hitsList.getBookIndex().get(i).getBook().toString());
                                     if (!hitsList.getBookIndex().get(i).getBook().getUid().equals(uid) && !hitsList.getBookIndex().get(i).getBook().getBookIsSold()) {
                                         mBooks.add(hitsList.getBookIndex().get(i).getBook());
@@ -149,20 +144,18 @@ public class SearchFragment extends Fragment {
                                 //setup the list of posts
                                 setupBooksList();
 
-                            }catch (NullPointerException e){
-                                Log.e(TAG, "onResponse: NullPointerException: " + e.getMessage() );
-                            }
-                            catch (IndexOutOfBoundsException e){
-                                Log.e(TAG, "onResponse: IndexOutOfBoundsException: " + e.getMessage() );
-                            }
-                            catch (IOException e){
-                                Log.e(TAG, "onResponse: IOException: " + e.getMessage() );
+                            } catch (NullPointerException e) {
+                                Log.e(TAG, "onResponse: NullPointerException: " + e.getMessage());
+                            } catch (IndexOutOfBoundsException e) {
+                                Log.e(TAG, "onResponse: IndexOutOfBoundsException: " + e.getMessage());
+                            } catch (IOException e) {
+                                Log.e(TAG, "onResponse: IOException: " + e.getMessage());
                             }
                         }
 
                         @Override
                         public void onFailure(Call<HitsObject> call, Throwable t) {
-                            Log.e(TAG, "onFailure: " + t.getMessage() );
+                            Log.e(TAG, "onFailure: " + t.getMessage());
                             Toast.makeText(getActivity(), "search failed", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -173,7 +166,7 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    public void viewPost(String bookID){
+    public void viewPost(String bookID) {
         BookDetailFragment fragment = new BookDetailFragment();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 

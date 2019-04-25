@@ -15,7 +15,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="60dp"
         android:gravity="start"
-        android:text="Name:"
+        android:text="@string/name"
         android:textAllCaps="true"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
@@ -23,18 +23,6 @@
         android:typeface="sans"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-    <!--<View-->
-    <!--android:id="@+id/background"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:background="@color/colorPrimaryDark"-->
-    <!--app:layout_constraintBottom_toBottomOf="@id/txtAccountSchool"-->
-    <!--app:layout_constraintEnd_toEndOf="@+id/txtAccountEmail"-->
-    <!--app:layout_constraintHorizontal_bias="0.0"-->
-    <!--app:layout_constraintStart_toStartOf="@+id/txtAccountName"-->
-    <!--app:layout_constraintTop_toTopOf="@+id/txtAccountName"-->
-    <!--app:layout_constraintVertical_bias="0.0" />-->
 
     <TextView
         android:id="@+id/txtAccountName"
@@ -50,12 +38,7 @@
         android:typeface="sans"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-    <!--android:paddingLeft="32dp"-->
-    <!--android:paddingTop="50dp"-->
-    <!--android:paddingRight="32dp"-->
 
-    <!--android:paddingLeft="50dp"-->
-    <!--android:paddingRight="50dp"-->
     <TextView
         android:id="@+id/txtAccountEmail"
         android:layout_width="wrap_content"
@@ -78,7 +61,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="16dp"
         android:gravity="start"
-        android:text="E-mail:"
+        android:text="@string/e_mail"
         android:textAllCaps="true"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
@@ -100,9 +83,7 @@
         android:typeface="sans"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtAccountEmail" />
-    <!--android:paddingLeft="50dp"-->
-    <!--android:paddingRight="50dp"-->
-    <!--android:paddingBottom="50dp"-->
+
     <TextView
         android:id="@+id/txtAccountSchool2"
         android:layout_width="75dp"
@@ -111,7 +92,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="16dp"
         android:gravity="start"
-        android:text="School:"
+        android:text="@string/school"
         android:textAllCaps="true"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
@@ -138,7 +119,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <!--app:layout_constraintTop_toBottomOf="@+id/background" />-->
 
     <Button
         android:id="@+id/btnSignOut"

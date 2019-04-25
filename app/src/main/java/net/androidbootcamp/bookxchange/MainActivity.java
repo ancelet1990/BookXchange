@@ -34,8 +34,7 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
     private CircleImageView profile_image;
     private TextView username, initials;
 
@@ -43,8 +42,7 @@ public class MainActivity extends AppCompatActivity
     private DatabaseReference reference;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -60,30 +58,25 @@ public class MainActivity extends AppCompatActivity
         reference =
                 FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 
-        reference.addValueEventListener(new ValueEventListener()
-        {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 username.setText(user.getUsername());
-                if (user.getImageURL().equals("default"))
-                {
+                if (user.getImageURL().equals("default")) {
                     profile_image.setImageResource(R.mipmap.ic_launcher);
-                } else
-                {
+                } else {
                     //Changed to second line when adding txt seen info
                     //                    Glide.with(MainActivity.this).load(user.getImageURL()).into(profile_image);
                     Glide.with(getApplicationContext()).load(user.getImageURL())
-                         .into(profile_image);
+                            .into(profile_image);
                 }
                 String userInitials = user.getFirstName().charAt(0) + "" + user.getLastName().charAt(0);
                 initials.setText(userInitials);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
@@ -93,28 +86,22 @@ public class MainActivity extends AppCompatActivity
 
 
         reference = FirebaseDatabase.getInstance().getReference("Chats");
-        reference.addValueEventListener(new ValueEventListener()
-        {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 MainActivity.ViewPagerAdapter viewPagerAdapter =
                         new MainActivity.ViewPagerAdapter(getSupportFragmentManager());
                 int unread = 0;
-                for (DataSnapshot snapshot : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Message chat = snapshot.getValue(Message.class);
-                    if (chat.getReceiver().equals(firebaseUser.getUid()) && !chat.isIsseen())
-                    {
+                    if (chat.getReceiver().equals(firebaseUser.getUid()) && !chat.isIsseen()) {
                         unread++;
                     }
                 }
 
-                if (unread == 0)
-                {
+                if (unread == 0) {
                     viewPagerAdapter.addFragment(new ChatsFragment(), "Chats");
-                } else
-                {
+                } else {
                     viewPagerAdapter.addFragment(new ChatsFragment(), "(" + unread + ") Chats");
                 }
 
@@ -126,39 +113,33 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter
-    {
+    class ViewPagerAdapter extends FragmentPagerAdapter {
         private ArrayList<Fragment> fragments;
         private ArrayList<String> titles;
 
-        ViewPagerAdapter(FragmentManager fm)
-        {
+        ViewPagerAdapter(FragmentManager fm) {
             super(fm);
             this.fragments = new ArrayList<>();
             this.titles = new ArrayList<>();
         }
 
         @Override
-        public Fragment getItem(int position)
-        {
+        public Fragment getItem(int position) {
             return fragments.get(position);
         }
 
         @Override
-        public int getCount()
-        {
+        public int getCount() {
             return fragments.size();
         }
 
-        public void addFragment(Fragment fragment, String title)
-        {
+        public void addFragment(Fragment fragment, String title) {
             fragments.add(fragment);
             titles.add(title);
         }
@@ -167,14 +148,12 @@ public class MainActivity extends AppCompatActivity
 
         @Nullable
         @Override
-        public CharSequence getPageTitle(int position)
-        {
+        public CharSequence getPageTitle(int position) {
             return titles.get(position);
         }
     }
 
-    private void status(String status)
-    {
+    private void status(String status) {
         reference =
                 FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 
@@ -184,30 +163,25 @@ public class MainActivity extends AppCompatActivity
         reference.updateChildren(hashMap);
     }
 
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         status("online ");
     }
 
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         status("offline");
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.account:
                 Intent intent = new Intent(this, AccountActivity.class);
                 this.startActivity(intent);

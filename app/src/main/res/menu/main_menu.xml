@@ -2,25 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/account"
+    <item
+        android:id="@+id/account"
         android:title="My Account"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
-    <item android:id="@+id/sell_books"
+    <item
+        android:id="@+id/sell_books"
         android:title="Sell Books"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
-    <item android:id="@+id/buy_books"
+    <item
+        android:id="@+id/buy_books"
         android:title="Buy Books"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
-    <item android:id="@+id/messages"
+    <item
+        android:id="@+id/messages"
         android:title="Message"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
-    <item android:id="@+id/posts"
+    <item
+        android:id="@+id/posts"
         android:title="Manage Posts"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/help"
@@ -28,8 +33,9 @@
         android:visible="false"
         app:showAsAction="never" />
 
-    <item android:id="@+id/about"
+    <item
+        android:id="@+id/about"
         android:title="Terms of Use"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
 </menu>

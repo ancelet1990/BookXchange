@@ -19,25 +19,22 @@ import net.androidbootcamp.bookxchange.MessageActivity;
 import net.androidbootcamp.bookxchange.R;
 import net.androidbootcamp.bookxchange.model.Book;
 
-
 import java.util.ArrayList;
 
-public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder>{
+public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder> {
     private Context context;
     private ArrayList<Book> aBook;
 
 
-    public BrowseAdapter(Context context, ArrayList<Book> aBook)
-    {
+    public BrowseAdapter(Context context, ArrayList<Book> aBook) {
         this.context = context;
         this.aBook = aBook;
 
     }
-    //just to commint and send
+
     @NonNull
     @Override
-    public BrowseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-    {
+    public BrowseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.card_view, parent, false);
 
         closeKeyboard(view);
@@ -54,11 +51,9 @@ public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder
         holder.condition.setText("Condition: " + book.getCondition());
         holder.price.setText("$" + book.getPrice());
         Picasso.with(context).load(book.getPhotoURL()).fit().into(holder.bPic);
-        holder.btnMessage.setOnClickListener(new View.OnClickListener()
-        {
+        holder.btnMessage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent intent = new Intent(context, MessageActivity.class);
                 intent.putExtra("userid", book.getUid());
                 context.startActivity(intent);
@@ -85,21 +80,18 @@ public class BrowseAdapter extends RecyclerView.Adapter<BrowseAdapter.ViewHolder
 
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return aBook.size();
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder
-    {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView isbn, title, author, condition, price;
         public ImageView bPic;
         public Button btnMessage, btnDetails;
 
 
-        public ViewHolder(@NonNull View itemView)
-        {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             isbn = itemView.findViewById(R.id.txtISBN);

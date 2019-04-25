@@ -1,8 +1,8 @@
 package net.androidbootcamp.bookxchange;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import net.androidbootcamp.bookxchange.model.User;
 
-public class AccountActivity extends AppCompatActivity
-{
+public class AccountActivity extends AppCompatActivity {
     private TextView txtAccountName, txtAccountEmail, txtAccountSchool;
     private String fullName;
     ImageView imageView;
@@ -32,8 +31,7 @@ public class AccountActivity extends AppCompatActivity
 //    StorageReference storageReference;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
@@ -49,11 +47,9 @@ public class AccountActivity extends AppCompatActivity
         fuser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
 
-        reference.addValueEventListener(new ValueEventListener()
-        {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get user information
                 User user = dataSnapshot.getValue(User.class);
                 fullName = user.getFirstName() + " " + user.getLastName();
@@ -63,30 +59,24 @@ public class AccountActivity extends AppCompatActivity
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
 
-        btnChangePassword.setOnClickListener(new View.OnClickListener()
-        {
+        btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 startActivity(new Intent(AccountActivity.this, ChangePassword.class));
             }
         });
 
-        btnSignOut.setOnClickListener(new View.OnClickListener()
-        {
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 auth = FirebaseAuth.getInstance();
-                if (auth.getCurrentUser() != null)
-                {
+                if (auth.getCurrentUser() != null) {
                     auth.signOut();
                 }
                 startActivity(new Intent(AccountActivity.this, StartActivity.class));
@@ -95,17 +85,14 @@ public class AccountActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.account:
                 Intent intent = new Intent(this, AccountActivity.class);
                 this.startActivity(intent);

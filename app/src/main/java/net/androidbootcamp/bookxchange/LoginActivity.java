@@ -1,9 +1,9 @@
 package net.androidbootcamp.bookxchange;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -17,8 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginActivity extends AppCompatActivity
-{
+public class LoginActivity extends AppCompatActivity {
     private EditText loginEmail, loginPassword;
     private Button /*btnRegister,*/ btnLogin;
     private FirebaseAuth auth;
@@ -27,16 +26,14 @@ public class LoginActivity extends AppCompatActivity
     private static final String TAG = "Login to Account";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        if (auth.getCurrentUser() != null)
-        {
+        if (auth.getCurrentUser() != null) {
             startActivity(new Intent(LoginActivity.this, MainBuyActivity.class));
             finish();
         }
@@ -59,25 +56,21 @@ public class LoginActivity extends AppCompatActivity
 //            }
 //        });
 
-        btnLogin.setOnClickListener(new View.OnClickListener()
-        {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 email = loginEmail.getText().toString();
                 password = loginPassword.getText().toString();
 
-                if (TextUtils.isEmpty(email))
-                {
+                if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address",
-                                   Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (TextUtils.isEmpty(password))
-                {
+                if (TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "Enter password", Toast.LENGTH_SHORT)
-                         .show();
+                            .show();
                     return;
                 }
 
@@ -85,35 +78,29 @@ public class LoginActivity extends AppCompatActivity
 
                 //authenticate user
                 auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>()
-                    {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task)
-                        {
-                            // If sign in fails, display a message to the user. If sign in succeeds
-                            // the auth state listener will be notified and logic to handle the
-                            // signed in user can be handled in the listener.
-                            progressBar.setVisibility(View.GONE);
-                            if (! task.isSuccessful())
-                            {
-                                // there was an error
-                                Log.d(TAG, "auth failed :" + task.getException());
-                                if (password.length() < 6)
-                                {
-                                    loginPassword.setError(getString(R.string.minimum_password));
-                                } else
-                                {
-                                    Toast.makeText(LoginActivity.this,
-                                                   getString(R.string.auth_failed),
-                                                   Toast.LENGTH_LONG).show();
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                // If sign in fails, display a message to the user. If sign in succeeds
+                                // the auth state listener will be notified and logic to handle the
+                                // signed in user can be handled in the listener.
+                                progressBar.setVisibility(View.GONE);
+                                if (!task.isSuccessful()) {
+                                    // there was an error
+                                    Log.d(TAG, "auth failed :" + task.getException());
+                                    if (password.length() < 6) {
+                                        loginPassword.setError(getString(R.string.minimum_password));
+                                    } else {
+                                        Toast.makeText(LoginActivity.this,
+                                                getString(R.string.auth_failed),
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    startActivity(new Intent(LoginActivity.this, MainBuyActivity.class));
+                                    finish();
                                 }
-                            } else
-                            {
-                                startActivity(new Intent(LoginActivity.this, MainBuyActivity.class));
-                                finish();
                             }
-                        }
-                    });
+                        });
             }
         });
     }

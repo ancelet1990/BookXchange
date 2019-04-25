@@ -1,25 +1,20 @@
 package net.androidbootcamp.bookxchange.model;
 
-public class Chatlist
-{
+public class Chatlist {
     public String id;
 
-    public Chatlist()
-    {
+    public Chatlist() {
     }
 
-    public Chatlist(String id)
-    {
+    public Chatlist(String id) {
         this.id = id;
     }
 
-    public String getId()
-    {
+    public String getId() {
         return id;
     }
 
-    public void setId(String id)
-    {
+    public void setId(String id) {
         this.id = id;
     }
 }

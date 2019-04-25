@@ -24,8 +24,7 @@ import net.androidbootcamp.bookxchange.model.Book;
 
 import java.util.ArrayList;
 
-public class ManagePostsActivity extends AppCompatActivity
-{
+public class ManagePostsActivity extends AppCompatActivity {
     DatabaseReference reference;
     RecyclerView recyclerView1, recyclerView2;
     ArrayList<Book> list, list2;
@@ -35,8 +34,7 @@ public class ManagePostsActivity extends AppCompatActivity
     String uid;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
@@ -52,18 +50,14 @@ public class ManagePostsActivity extends AppCompatActivity
 
         reference = FirebaseDatabase.getInstance().getReference().child("books");
 
-        reference.addValueEventListener(new ValueEventListener()
-        {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
                 list2.clear();
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Book b = dataSnapshot1.getValue(Book.class);
-                    if (uid.equals(b.getUid()) && !b.getBookIsSold())
-                    {
+                    if (uid.equals(b.getUid()) && !b.getBookIsSold()) {
                         list.add(b);
                     }
                     if (uid.equals(b.getUid()) && b.getBookIsSold()) {
@@ -77,8 +71,7 @@ public class ManagePostsActivity extends AppCompatActivity
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(ManagePostsActivity.this, "Oops.... Something is wrong", Toast.LENGTH_SHORT)
                         .show();
             }
@@ -86,17 +79,14 @@ public class ManagePostsActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.account:
                 Intent intent = new Intent(this, AccountActivity.class);
                 this.startActivity(intent);

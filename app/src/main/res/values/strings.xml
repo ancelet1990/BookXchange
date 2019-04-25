@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BookXchange</string>
+    <string name="app_name">BookXChange</string>
     <string name="login">Login</string>
     <string name="loginPassword">Password</string>
     <string name="email">Email</string>
@@ -65,7 +65,31 @@
     <string name="terms_2">Welcome to the BookXChange Mobile App (defined below). By using it, you are agreeing to these Terms of Use (defined below). Please read them carefully. If you have any questions, please email us at bookxchange18@gmail.com</string>
     <string name="terms_3">These Terms of Use were last updated on April 23, 2019.</string>
     <string name="terms_4">ACCEPTANCE OF TERMS OF USE</string>
-    <string name="terms_5">BookXChange, Inc. (“BookXChange” "we" or “us” or “our”) owns and operates the mobile applicatuon, BookXChange, the mobile and touch versions and any sites we have now or in the future that reference these Terms of Use (collectively, "Site"). By (a) using the Site and BookXchange’s services through the Site, (b) signing up for an account and/or (c) completing a purchase on the Site, you agree to these Terms of Use (defined below) and any additional terms applicable to certain programs in which you may elect to participate. You also agree to our Privacy Statement, incorporated herein by reference and located at http://www.BookXchange.com/privacy ("Privacy Statement"), and acknowledge that you will regularly visit the Terms of Use (defined below) to familiarize yourself with any updates. The Privacy Statement, together with these terms of use, and any other terms contained herein or incorporated herein by reference, are collectively referred to as the "Terms of Use." The term "using" also includes any person or entity that accesses or uses the Site with crawlers, robots, data mining, or extraction tools or any other functionality.</string>
+    <string name="terms_5">BookXChange, Inc. (“BookXChange” "we" or “us” or “our”) owns and operates the mobile applicatuon, BookXChange, the mobile and touch versions and any sites we have now or in the future that reference these Terms of Use (collectively, "Site"). By (a) using the Site and BookXchange’s services through the Site, (b) signing up for an account and/or © completing a purchase on the Site, you agree to these Terms of Use (defined below) and any additional terms applicable to certain programs in which you may elect to participate. You also agree to our Privacy Statement, incorporated herein by reference and located at http://www.BookXchange.com/privacy ("Privacy Statement"), and acknowledge that you will regularly visit the Terms of Use (defined below) to familiarize yourself with any updates. The Privacy Statement, together with these terms of use, and any other terms contained herein or incorporated herein by reference, are collectively referred to as the "Terms of Use." The term "using" also includes any person or entity that accesses or uses the Site with crawlers, robots, data mining, or extraction tools or any other functionality.</string>
     <string name="terms_6">IF YOU DO NOT AGREE TO THESE TERMS OF USE, IMMEDIATELY STOP USING THE SITE AND DO NOT USE ANY BOOKXCHANGE SERVICE, PARTICIPATE IN ANY PROGRAM OR PURCHASE ANY VOUCHER, PRODUCT OR OTHER GOOD OR SERVICE OFFERED THROUGH THE SITE.</string>
-    <string name ="terms_7"></string>
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="name">Name:</string>
+    <string name="e_mail">E-mail:</string>
+    <string name="school">School:</string>
+    <string name="message_seller">message seller</string>
+    <string name="price">Price</string>
+    <string name="condition">Condition</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="edition">Edition</string>
+    <string name="isbn">ISBN</string>
+    <string name="initials_default">XX</string>
+    <string name="buy_books">Buy Books</string>
+    <string name="type_a_message">Type a message…</string>
+    <string name="button_send">button send</string>
+    <string name="no_active_posts_to_display">no active posts to display…</string>
+    <string name="sold_books_empty">you have not sold any books yet…</string>
+    <string name="enter_tags">Enter tags (math, algebra, trig)</string>
+    <string name="register">Register</string>
+    <string name="details">details</string>
+    <string name="recieve_message">hello</string>
+    <string name="search_hint">Search…</string>
+    <string name="marked_as_sold">MARKED AS SOLD</string>
+    <string name="mark_as_sold">mark as sold</string>
+    <string name="username">username</string>
 </resources>

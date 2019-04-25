@@ -10,7 +10,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -25,13 +25,14 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:visibility="gone" />
+
             <TextView
                 android:id="@+id/initials"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/rounded_textview"
                 android:gravity="center"
-                android:text="JW"
+                android:text="@string/initials_default"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
@@ -40,7 +41,7 @@
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
                 android:textColor="#fff"
                 android:textStyle="bold" />
 
@@ -53,7 +54,7 @@
         android:layout_height="match_parent"
         android:id="@+id/recyler_view"
         android:layout_below="@+id/bar_layout"
-        android:layout_above="@id/bottom"/>
+        android:layout_above="@id/bottom" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -67,19 +68,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/text_send"
-            android:layout_toLeftOf="@id/btn_send"
+            android:layout_toStartOf="@id/btn_send"
             android:layout_centerVertical="true"
             android:background="@android:color/transparent"
-            android:hint="Type a message..."/>
+            android:hint="@string/type_a_message" />
 
         <ImageButton
             android:id="@+id/btn_send"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:background="@drawable/ic_action_name"
-            android:tint="@color/colorPrimary" />
+            android:tint="@color/colorPrimary"
+            android:contentDescription="@string/button_send" />
 
     </RelativeLayout>
 

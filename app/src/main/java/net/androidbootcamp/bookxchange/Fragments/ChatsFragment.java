@@ -19,7 +19,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import net.androidbootcamp.bookxchange.Adapter.ChatsAdapter;
-import net.androidbootcamp.bookxchange.Adapter.UserAdapter;
 import net.androidbootcamp.bookxchange.Notifications.Token;
 import net.androidbootcamp.bookxchange.R;
 import net.androidbootcamp.bookxchange.model.Chatlist;
@@ -28,8 +27,7 @@ import net.androidbootcamp.bookxchange.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatsFragment extends Fragment
-{
+public class ChatsFragment extends Fragment {
     private RecyclerView recyclerView;
     private ChatsAdapter chatsAdapter;
     private List<User> mUsers;
@@ -42,8 +40,7 @@ public class ChatsFragment extends Fragment
     private List<Chatlist> usersList;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chats, container, false);
 
         recyclerView = view.findViewById(R.id.recyler_view_chats);
@@ -57,18 +54,15 @@ public class ChatsFragment extends Fragment
 
     private void init() {
         fuser = FirebaseAuth.getInstance().getCurrentUser();
-        
+
         usersList = new ArrayList<>();
 
         //new code
         reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(fuser.getUid());
-        reference.addValueEventListener(new ValueEventListener()
-        {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren())
-                {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Chatlist chatlist = snapshot.getValue(Chatlist.class);
                     usersList.add(chatlist);
                 }
@@ -77,8 +71,7 @@ public class ChatsFragment extends Fragment
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
@@ -86,30 +79,23 @@ public class ChatsFragment extends Fragment
     }
 
     //for notifications
-    private void updateToken(String token)
-    {
+    private void updateToken(String token) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
         Token token1 = new Token(token);
         reference.child(fuser.getUid()).setValue(token1);
     }
 
-    private void chatList()
-    {
+    private void chatList() {
         mUsers = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference("Users");
-        reference.addValueEventListener(new ValueEventListener()
-        {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
-                    for (Chatlist chatlist : usersList)
-                    {
-                        if (user.getId().equals(chatlist.getId()))
-                        {
+                    for (Chatlist chatlist : usersList) {
+                        if (user.getId().equals(chatlist.getId())) {
                             mUsers.add(user);
                         }
                     }
@@ -120,8 +106,7 @@ public class ChatsFragment extends Fragment
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

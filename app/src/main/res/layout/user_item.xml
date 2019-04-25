@@ -18,7 +18,7 @@
         android:layout_height="50dp"
         android:background="@drawable/rounded_textview"
         android:gravity="center"
-        android:text="JW"
+        android:text="@string/initials_default"
         android:textColor="@android:color/white"
         android:textSize="24sp" />
 
@@ -28,10 +28,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_toEndOf="@id/profile_image"
-        android:layout_toRightOf="@id/profile_image"
-        android:text="username"
+        android:text="@string/username"
         android:textSize="18sp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -39,10 +38,9 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_below="@id/username"
-        android:layout_marginLeft="-15dp"
+        android:layout_marginStart="-15dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@id/profile_image"
-        android:layout_toRightOf="@id/profile_image"
         android:src="@mipmap/ic_launcher"
         android:visibility="gone"
         app:civ_border_color="#05df29"
@@ -53,10 +51,9 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_below="@id/username"
-        android:layout_marginLeft="-15dp"
+        android:layout_marginStart="-15dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@id/profile_image"
-        android:layout_toRightOf="@id/profile_image"
         android:src="@mipmap/ic_launcher"
         android:visibility="gone"
         app:civ_border_color="#bfbfbf"
@@ -67,9 +64,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/username"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:layout_toRightOf="@id/profile_image"
         android:maxLines="1"
         android:paddingTop="5dp"
         android:textColor="@color/colorPrimaryDark" />

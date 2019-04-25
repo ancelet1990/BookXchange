@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
@@ -26,7 +24,8 @@
             android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textColorHint="@color/colorTextSecondary" />
+            android:textColorHint="@color/colorTextSecondary"
+            android:autofillHints="" tools:targetApi="o"/>
 
         <EditText
             android:id="@+id/txtTitle"
@@ -41,7 +40,8 @@
             android:inputType="textAutoCorrect|text|textCapWords"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textColorHint="@color/colorTextSecondary" />
+            android:textColorHint="@color/colorTextSecondary"
+            android:autofillHints="" tools:targetApi="o"/>
 
         <EditText
             android:id="@+id/txtEdiiton"
@@ -56,7 +56,8 @@
             android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textColorHint="@color/colorTextSecondary" />
+            android:textColorHint="@color/colorTextSecondary"
+            android:autofillHints="" tools:targetApi="o"/>
 
         <EditText
             android:id="@+id/txtAuthor"
@@ -71,7 +72,8 @@
             android:inputType="textPersonName"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textColorHint="@color/colorTextSecondary" />
+            android:textColorHint="@color/colorTextSecondary"
+            android:autofillHints="" tools:targetApi="o"/>
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -108,7 +110,8 @@
             android:inputType="numberDecimal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textColorHint="@color/colorTextSecondary" />
+            android:textColorHint="@color/colorTextSecondary"
+            android:autofillHints="" tools:targetApi="o"/>
 
         <EditText
             android:id="@+id/txtTags"
@@ -119,11 +122,12 @@
             android:layout_marginRight="35dp"
             android:background="@drawable/edit_text_style"
             android:ems="10"
-            android:hint="Enter tags (math, algebra, trig)"
+            android:hint="@string/enter_tags"
             android:inputType="textAutoCorrect|textCapWords"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textColorHint="@color/colorTextSecondary" />
+            android:textColorHint="@color/colorTextSecondary"
+            android:autofillHints="" tools:targetApi="o"/>
 
         <Button
             android:id="@+id/btnAddPic"
@@ -145,7 +149,8 @@
             android:layout_height="173dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            app:srcCompat="@drawable/image_icon" />
+            app:srcCompat="@drawable/image_icon"
+            android:contentDescription="@string/image_photo_upload" />
 
     </LinearLayout>
 
@@ -165,13 +170,13 @@
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:clickable="true"
         app:backgroundTint="#365470"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="40dp"
-        app:srcCompat="@drawable/exit_to_app_white_36x36" />
+        app:srcCompat="@drawable/exit_to_app_white_36x36"
+        android:focusable="true" />
 
 </android.support.constraint.ConstraintLayout>

@@ -27,7 +27,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     private Context mContext;
     private ArrayList<Book> mBooks;
 
-    public SearchAdapter(Context context, ArrayList<Book> aBook){
+    public SearchAdapter(Context context, ArrayList<Book> aBook) {
         this.mContext = context;
         this.mBooks = aBook;
     }
@@ -51,11 +51,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         holder.condition.setText("Condition: " + book.getCondition());
         holder.price.setText("$" + book.getPrice());
         Picasso.with(mContext).load(book.getPhotoURL()).fit().into(holder.bPic);
-        holder.btnMessage.setOnClickListener(new View.OnClickListener()
-        {
+        holder.btnMessage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent intent = new Intent(mContext, MessageActivity.class);
                 intent.putExtra("userid", book.getUid());
                 mContext.startActivity(intent);
@@ -80,8 +78,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     }
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return mBooks.size();
     }
 

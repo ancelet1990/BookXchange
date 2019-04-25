@@ -1,6 +1,7 @@
 package net.androidbootcamp.bookxchange;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,13 +32,14 @@ import net.androidbootcamp.bookxchange.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
 {
     CircleImageView profile_image;
-    TextView username;
+    TextView username, initials;
 
     FirebaseUser firebaseUser;
     DatabaseReference reference;
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity
 
         profile_image = findViewById(R.id.profile_image);
         username = findViewById(R.id.username);
+        initials = findViewById(R.id.initials);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference =
@@ -76,6 +79,11 @@ public class MainActivity extends AppCompatActivity
                     Glide.with(getApplicationContext()).load(user.getImageURL())
                          .into(profile_image);
                 }
+                String userInitials = user.getFirstName().charAt(0) + "" + user.getLastName().charAt(0);
+                initials.setText(userInitials);
+//                Random rnd = new Random();
+//                int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+//                initials.setBackgroundColor(color);
             }
 
             @Override

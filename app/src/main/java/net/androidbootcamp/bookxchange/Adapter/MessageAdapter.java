@@ -66,6 +66,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             Glide.with(mContext).load(imageurl).into(holder.profile_image);
         }
 
+
         //Check last message
         if (position == msg.size() - 1)
         {
@@ -90,7 +91,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView show_message;
+        public TextView show_message, initials;
         public ImageView profile_image;
         public TextView txt_seen;
 
@@ -101,6 +102,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             show_message = itemView.findViewById(R.id.show_message);
             profile_image = itemView.findViewById(R.id.profile_image);
             txt_seen = itemView.findViewById(R.id.txt_seen);
+            initials = itemView.findViewById(R.id.initials);
         }
     }
 

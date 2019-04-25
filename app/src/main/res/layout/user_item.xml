@@ -9,7 +9,19 @@
         android:id="@+id/profile_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ic_launcher"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/initials"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_textview"
+        android:gravity="center"
+        android:text="JW"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
 
     <TextView
         android:id="@+id/username"

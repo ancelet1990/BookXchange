@@ -60,6 +60,8 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>
         {
             Glide.with(mContext).load(user.getImageURL()).into(holder.profile_image);
         }
+        String userInitials = user.getFirstName().charAt(0) + "" + user.getLastName().charAt(0);
+        holder.initials.setText(userInitials);
 
         //added for last message
         if (isChat)
@@ -113,7 +115,7 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>
         public ImageView profile_image;
         private ImageView img_on;
         private ImageView img_off;
-        private TextView last_msg;
+        private TextView last_msg, initials;
 
         public ViewHolder(View itemView)
         {
@@ -124,6 +126,7 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder>
             img_on = itemView.findViewById(R.id.img_on);
             img_off = itemView.findViewById(R.id.img_off);
             last_msg = itemView.findViewById(R.id.last_msg);
+            initials = itemView.findViewById(R.id.initials);
         }
     }
 

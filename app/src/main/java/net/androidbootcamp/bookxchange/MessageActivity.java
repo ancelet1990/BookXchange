@@ -37,7 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MessageActivity extends AppCompatActivity
 {
     private CircleImageView profile_image;
-    private TextView username;
+    private TextView username, initials;
 
     private FirebaseUser fuser;
     private DatabaseReference reference;
@@ -90,6 +90,7 @@ public class MessageActivity extends AppCompatActivity
         username = findViewById(R.id.username);
         btn_send = findViewById(R.id.btn_send);
         text_send = findViewById(R.id.text_send);
+        initials = findViewById(R.id.initials);
 
         intent = getIntent();
         userid = intent.getStringExtra("userid");
@@ -132,6 +133,8 @@ public class MessageActivity extends AppCompatActivity
                     Glide.with(getApplicationContext()).load(user.getImageURL()).into(profile_image);
 
                 }
+                String userInitials = user.getFirstName().charAt(0) + "" + user.getLastName().charAt(0);
+                initials.setText(userInitials);
 
                 readMessages(fuser.getUid(), userid, user.getImageURL());
             }

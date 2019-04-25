@@ -23,7 +23,18 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
                 android:layout_width="30dp"
-                android:layout_height="30dp" />
+                android:layout_height="30dp"
+                android:visibility="gone" />
+            <TextView
+                android:id="@+id/initials"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/rounded_textview"
+                android:gravity="center"
+                android:text="JW"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
 
             <TextView
                 android:id="@+id/username"

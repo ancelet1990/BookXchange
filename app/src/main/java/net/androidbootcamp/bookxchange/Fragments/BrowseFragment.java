@@ -44,9 +44,7 @@ public class BrowseFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //add ItemDecoration
         recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(VERTICAL_ITEM_SPACE));
-        //or
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
-        //or
+
         recyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity(), R.drawable.drawable_divider));
 

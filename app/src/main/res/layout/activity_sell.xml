@@ -172,11 +172,13 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:clickable="true"
+        android:focusable="true"
+        android:scaleType="fitCenter"
         app:backgroundTint="#365470"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="40dp"
         app:srcCompat="@drawable/exit_to_app_white_36x36"
-        android:focusable="true" />
+        app:useCompatPadding="false" />
 
 </android.support.constraint.ConstraintLayout>

@@ -28,8 +28,8 @@
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="3dp"
         android:layout_toEndOf="@id/profile_image"
         android:text="@string/username"
         android:textColor="@color/colorTextPrimary"
@@ -64,19 +64,6 @@
         android:visibility="gone"
         app:civ_border_color="#bfbfbf"
         app:civ_border_width="10dp"
-        tools:ignore="RtlHardcoded" />
-
-    <TextView
-        android:id="@+id/last_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="-6dp"
-        android:layout_toRightOf="@id/profile_image"
-        android:maxLines="1"
-        android:paddingTop="5dp"
-        android:textColor="@color/colorPrimaryDark"
         tools:ignore="RtlHardcoded" />
 
 </RelativeLayout>

@@ -23,6 +23,8 @@ import net.androidbootcamp.bookxchange.Notifications.Token;
 import net.androidbootcamp.bookxchange.R;
 import net.androidbootcamp.bookxchange.model.Chatlist;
 import net.androidbootcamp.bookxchange.model.User;
+import net.androidbootcamp.bookxchange.util.DividerItemDecoration;
+import net.androidbootcamp.bookxchange.util.VerticalSpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +34,9 @@ public class ChatsFragment extends Fragment {
     private ChatsAdapter chatsAdapter;
     private List<User> mUsers;
 
-    FirebaseUser fuser;
-    DatabaseReference reference;
+    private FirebaseUser fuser;
+    private DatabaseReference reference;
 
-    //change this
-    //    private List<String> usersList;
     private List<Chatlist> usersList;
 
     @Override
@@ -46,6 +46,9 @@ public class ChatsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyler_view_chats);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //add ItemDecoration
+        recyclerView.addItemDecoration(
+                new DividerItemDecoration(getActivity(), R.drawable.drawable_divider));
 
         init();
         updateToken(FirebaseInstanceId.getInstance().getToken());
@@ -57,7 +60,6 @@ public class ChatsFragment extends Fragment {
 
         usersList = new ArrayList<>();
 
-        //new code
         reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(fuser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -112,55 +114,4 @@ public class ChatsFragment extends Fragment {
         });
     }
 
-    //removed for performance
-    //    private void readChats()
-    //    {
-    //        mUsers = new ArrayList<>();
-    //
-    //        reference = FirebaseDatabase.getInstance().getReference("Users");
-    //
-    //        reference.addValueEventListener(new ValueEventListener()
-    //        {
-    //            @Override
-    //            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-    //            {
-    //                mUsers.clear();
-    //
-    //                for (DataSnapshot snapshot : dataSnapshot.getChildren())
-    //                {
-    //                    User user = snapshot.getValue(User.class);
-    //
-    //                    //display 1 user from chats
-    //                    for (String id : usersList)
-    //                    {
-    //                        if (user.getId().equals(id))
-    //                        {
-    //                            if (mUsers.size() != 0)
-    //                            {
-    //                                for (User user1 : mUsers)
-    //                                {
-    //                                    if (!user.getId().equals(user1.getId()))
-    //                                    {
-    //                                        mUsers.add(user);
-    //                                    }
-    //                                }
-    //                            } else
-    //                            {
-    //                                mUsers.add(user);
-    //                            }
-    //                        }
-    //                    }
-    //                }
-    //
-    //                userAdapter = new UserAdapter(getContext(), mUsers, true);
-    //                recyclerView.setAdapter(userAdapter);
-    //            }
-    //
-    //            @Override
-    //            public void onCancelled(@NonNull DatabaseError databaseError)
-    //            {
-    //
-    //            }
-    //        });
-    //    }
 }

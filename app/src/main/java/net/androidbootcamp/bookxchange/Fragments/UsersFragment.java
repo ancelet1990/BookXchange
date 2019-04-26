@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import net.androidbootcamp.bookxchange.Adapter.UserAdapter;
 import net.androidbootcamp.bookxchange.R;
 import net.androidbootcamp.bookxchange.model.User;
+import net.androidbootcamp.bookxchange.util.DividerItemDecoration;
+import net.androidbootcamp.bookxchange.util.VerticalSpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ public class UsersFragment extends Fragment {
     private UserAdapter userAdapter;
     private List<User> mUsers;
 
-    EditText search_users;
+    private EditText search_users;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

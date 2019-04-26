@@ -42,7 +42,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.user_item, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.user_item_chat, parent, false);
         return new UserAdapter.ViewHolder(view);
     }
 
@@ -59,12 +59,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         String userInitials = user.getFirstName().charAt(0) + "" + user.getLastName().charAt(0);
         holder.initials.setText(userInitials);
 
-        //added for last message
-        if (isChat) {
-            lastMessage(user.getId(), holder.last_msg);
-        } else {
-            holder.last_msg.setVisibility(View.GONE);
-        }
 
         if (isChat) {
             if (user.getStatus().equals("online")) {
@@ -99,7 +93,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         public ImageView profile_image;
         private ImageView img_on;
         private ImageView img_off;
-        private TextView last_msg;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -108,7 +101,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             profile_image = itemView.findViewById(R.id.profile_image);
             img_on = itemView.findViewById(R.id.img_on);
             img_off = itemView.findViewById(R.id.img_off);
-            last_msg = itemView.findViewById(R.id.last_msg);
             initials = itemView.findViewById(R.id.initials);
         }
     }

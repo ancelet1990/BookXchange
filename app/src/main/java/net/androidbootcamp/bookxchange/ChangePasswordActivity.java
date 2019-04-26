@@ -16,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class ChangePassword extends AppCompatActivity {
+public class ChangePasswordActivity extends AppCompatActivity {
     private FirebaseUser user;
 
     @Override
@@ -61,12 +61,12 @@ public class ChangePassword extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(ChangePassword.this, "Password is updated!",
+                                    Toast.makeText(ChangePasswordActivity.this, "Password is updated!",
                                             Toast.LENGTH_SHORT).show();
                                     startActivity(
-                                            new Intent(ChangePassword.this, AccountActivity.class));
+                                            new Intent(ChangePasswordActivity.this, AccountActivity.class));
                                 } else {
-                                    Toast.makeText(ChangePassword.this, "Failed to update password!",
+                                    Toast.makeText(ChangePasswordActivity.this, "Failed to update password!",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }

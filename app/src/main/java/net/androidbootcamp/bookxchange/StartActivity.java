@@ -10,20 +10,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class StartActivity extends AppCompatActivity {
-    //so i can send it
 
-    Button login;
-    Button register;
-    FirebaseUser firebaseUser;
+    private Button login, register;
+    private FirebaseUser firebaseUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+        //initialize login and register buttons
         login = findViewById(R.id.btnLogin);
         register = findViewById(R.id.btnRegister);
 
+        //start login activity if login button is clicked
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,6 +32,7 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+        //start signup activity if register button is clicked
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +44,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        //check to see if there is already a user signed in, if there is then start the MainBuyActivity
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if (firebaseUser != null) {

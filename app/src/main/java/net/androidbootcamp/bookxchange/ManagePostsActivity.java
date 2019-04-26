@@ -21,6 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 import net.androidbootcamp.bookxchange.Adapter.ManagePostsAdapter;
 import net.androidbootcamp.bookxchange.Adapter.ManageSoldPostsAdapter;
 import net.androidbootcamp.bookxchange.model.Book;
+import net.androidbootcamp.bookxchange.util.DividerItemDecoration;
+import net.androidbootcamp.bookxchange.util.VerticalSpaceItemDecoration;
 
 import java.util.ArrayList;
 
@@ -32,6 +34,7 @@ public class ManagePostsActivity extends AppCompatActivity {
     ManageSoldPostsAdapter soldPostsAdapter;
     FirebaseUser fuser;
     String uid;
+    private static final int VERTICAL_ITEM_SPACE = 48;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,15 @@ public class ManagePostsActivity extends AppCompatActivity {
         recyclerView2 = findViewById(R.id.recyclerSold);
         recyclerView1.setLayoutManager(new LinearLayoutManager(this));
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
+
+        //add ItemDecoration
+        recyclerView1.addItemDecoration(new VerticalSpaceItemDecoration(VERTICAL_ITEM_SPACE));
+        recyclerView1.addItemDecoration(
+                new DividerItemDecoration(this, R.drawable.drawable_divider));
+        recyclerView2.addItemDecoration(new VerticalSpaceItemDecoration(VERTICAL_ITEM_SPACE));
+        recyclerView2.addItemDecoration(
+                new DividerItemDecoration(this, R.drawable.drawable_divider));
+
         list = new ArrayList<Book>();
         list2 = new ArrayList<Book>();
 

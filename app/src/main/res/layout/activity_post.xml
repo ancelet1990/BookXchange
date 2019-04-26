@@ -40,6 +40,12 @@
 
             </android.support.v7.widget.RecyclerView>
 
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/drawable_divider" />
+
             <TextView
                 android:id="@+id/txtLabel2"
                 android:layout_width="match_parent"

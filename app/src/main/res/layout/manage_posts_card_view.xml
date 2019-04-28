@@ -23,7 +23,7 @@
         <ImageView
             android:id="@+id/imgBookPhoto"
             android:layout_width="100dp"
-            android:layout_height="125dp"
+            android:layout_height="135dp"
             android:contentDescription="@string/image_photo_upload"
             app:srcCompat="@drawable/notebook" />
 

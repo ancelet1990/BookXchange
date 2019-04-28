@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
@@ -22,22 +22,22 @@
 
         <ImageView
             android:id="@+id/imgBookPhoto"
-            android:layout_width="103dp"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/notebook"
-            android:contentDescription="@string/image_photo_upload" />
+            android:layout_width="100dp"
+            android:layout_height="135dp"
+            android:contentDescription="@string/image_photo_upload"
+            app:srcCompat="@drawable/notebook" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:baselineAligned="false">
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -90,7 +90,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 

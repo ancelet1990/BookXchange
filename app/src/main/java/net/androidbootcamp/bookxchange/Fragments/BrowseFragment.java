@@ -62,7 +62,6 @@ public class BrowseFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-
                     //if book has not been marked as sold AND the book was not posted by the current user, add book to ArrayList
                     Book b = dataSnapshot1.getValue(Book.class);
                     if (!b.getBookIsSold() && !uid.equals(b.getUid())) {
